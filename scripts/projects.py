@@ -3,28 +3,30 @@ import html, re, sys
 
 PROFILE = "https://www.behance.net/noorxtk"
 
-# Newest first. Replace `url` with each project's Behance gallery link.
+# Newest first.
 PROJECTS = [
-    dict(title="Rent-a-Car Website", cat="Web Design · Car Rental", url=PROFILE, emoji="🚗",
+    # Direct Behance gallery links (newest first by gallery ID)
+    dict(title="Gym Landing Page", cat="Landing Page · Fitness", url="https://www.behance.net/gallery/186135665/Gym-Landing-Page-ui-ui-design-uiux-design", emoji="🏋️",
+         head="Build your best body", stat="12k members", a="#ef4444", b="#fb923c", bg1="#140707", bg2="#dc2626"),
+    dict(title="Bitcoin Mining Landing Page", cat="Landing Page · Crypto", url="https://www.behance.net/gallery/182492455/Bitcoin-Mining-Landing-Page-UI-Design-UIUX-Design", emoji="₿",
+         head="Mine Bitcoin smarter", stat="+24.8% today", a="#f59e0b", b="#fde047", bg1="#0b0b14", bg2="#b45309"),
+    dict(title="Car Rental Website Landing Page", cat="Landing Page · Car Rental", url="https://www.behance.net/gallery/179879931/Car-Rental-Website-Landing-Page-UI-Design-UIUX-Design", emoji="🚗",
          head="Drive your dream car", stat="4.9★ rated", a="#ff5a1f", b="#ffb347", bg1="#1a0f0a", bg2="#ff5a1f"),
-    dict(title="Nattoral — Organic Brand", cat="Web Design · E-commerce", url=PROFILE, emoji="🌿",
-         head="Pure. Natural. Yours.", stat="100% organic", a="#16a34a", b="#bef264", bg1="#06180d", bg2="#16a34a"),
-    dict(title="Crypto Exchange Platform", cat="UI/UX · Fintech", url=PROFILE, emoji="₿",
-         head="Trade crypto smarter", stat="+24.8% today", a="#f59e0b", b="#fde047", bg1="#0b0b14", bg2="#7c3aed"),
-    dict(title="Fitness Training Website", cat="Web Design · Health", url=PROFILE, emoji="🏋️",
-         head="Train harder. Live better.", stat="12k members", a="#ef4444", b="#fb923c", bg1="#140707", bg2="#dc2626"),
-    dict(title="Project Management SaaS", cat="Product Design · SaaS", url=PROFILE, emoji="✅",
-         head="Ship projects faster", stat="98% on time", a="#4f46e5", b="#38bdf8", bg1="#0a0c1f", bg2="#4f46e5"),
-    dict(title="AI Content Writing Tool", cat="Landing Page · AI", url=PROFILE, emoji="✍️",
-         head="Write 10x faster with AI", stat="2M words", a="#db2777", b="#a78bfa", bg1="#16061a", bg2="#c026d3"),
-    dict(title="Personal Portfolio", cat="Web Design · Portfolio", url=PROFILE, emoji="👋",
-         head="Designer who codes", stat="120+ projects", a="#111111", b="#ff5a1f", bg1="#1b1b1b", bg2="#6b7280"),
-    dict(title="Shopora — E-commerce App", cat="Mobile App · UI/UX", url=PROFILE, emoji="🛍️",
-         head="Shop the new season", stat="−30% sale", a="#0ea5e9", b="#22d3ee", bg1="#04131c", bg2="#0284c7"),
-    dict(title="Real Estate Website", cat="Web Design · Property", url=PROFILE, emoji="🏡",
-         head="Find your next home", stat="2,400 listings", a="#0f766e", b="#5eead4", bg1="#041614", bg2="#0d9488"),
-    dict(title="Travel Agency Website", cat="Web Design · Travel", url=PROFILE, emoji="✈️",
-         head="Explore the world", stat="150+ tours", a="#2563eb", b="#fbbf24", bg1="#06102a", bg2="#1d4ed8"),
+    dict(title="Storage Management Dashboard", cat="Dashboard · SaaS", url="https://www.behance.net/gallery/168541189/Storage-Management-Dashboard-ui-ui-Design-uiux-Design", emoji="🗂️",
+         head="All your files, organized", stat="1.2 TB used", a="#4f46e5", b="#38bdf8", bg1="#0a0c1f", bg2="#4f46e5"),
+    dict(title="Cloud Storage Dashboard", cat="Dashboard · SaaS", url="https://www.behance.net/gallery/165367125/Cloud-Storage-Dashboard-UIUX-and-UI-Design", emoji="☁️",
+         head="Your cloud, simplified", stat="99.9% uptime", a="#0ea5e9", b="#22d3ee", bg1="#04131c", bg2="#0284c7"),
+    # Real projects on the profile; replace url with the gallery link when available
+    dict(title="SaaS Landing Page", cat="Landing Page · SaaS", url=PROFILE, emoji="🚀",
+         head="Grow your SaaS faster", stat="+38% signups", a="#7c3aed", b="#c084fc", bg1="#100820", bg2="#7c3aed"),
+    dict(title="Crypto Management Dashboard", cat="Dashboard · Fintech", url=PROFILE, emoji="📈",
+         head="Track every coin", stat="$48,920 balance", a="#16a34a", b="#a3e635", bg1="#06180d", bg2="#15803d"),
+    dict(title="Project Management Landing Page", cat="Landing Page · SaaS", url=PROFILE, emoji="✅",
+         head="Ship projects on time", stat="98% on time", a="#2563eb", b="#60a5fa", bg1="#06102a", bg2="#1d4ed8"),
+    dict(title="Interior Design Landing Page", cat="Landing Page · Interior", url=PROFILE, emoji="🛋️",
+         head="Design spaces you love", stat="500+ homes", a="#a16207", b="#fcd34d", bg1="#17110a", bg2="#92400e"),
+    dict(title="Marketing Agency Landing Page", cat="Landing Page · Agency", url=PROFILE, emoji="📣",
+         head="Marketing that converts", stat="3x ROI", a="#db2777", b="#f9a8d4", bg1="#16061a", bg2="#be185d"),
 ]
 
 ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>'
