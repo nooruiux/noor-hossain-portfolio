@@ -6,17 +6,17 @@ PROFILE = "https://www.behance.net/noorxtk"
 # Newest first.
 PROJECTS = [
     # Live websites (in the order given)
-    dict(title="AI Content Writing Website", cat="Web Design · AI SaaS", url="https://content-writing-ai-website.vercel.app/", emoji="✍️",
+    dict(img="content-writing-ai-website", title="Quantum — AI Content Writing Website", cat="Web Design · AI SaaS", url="https://content-writing-ai-website.vercel.app/", emoji="✍️",
          head="Write 10x faster with AI", stat="2M words", a="#db2777", b="#a78bfa", bg1="#16061a", bg2="#c026d3"),
-    dict(title="Project Management SaaS Website", cat="Web Design · SaaS", url="https://project-management-saa-s-website.vercel.app/", emoji="✅",
+    dict(img="project-management-saas-website", title="WorkUp — Project Management SaaS", cat="Web Design · SaaS", url="https://project-management-saa-s-website.vercel.app/", emoji="✅",
          head="Ship projects on time", stat="98% on time", a="#2563eb", b="#60a5fa", bg1="#06102a", bg2="#1d4ed8"),
-    dict(title="Fitness Training Website", cat="Web Design · Fitness", url="https://fitness-training-website-bay.vercel.app/", emoji="🏋️",
+    dict(img="fitness-training-website", title="Gymnastic — Fitness Training Website", cat="Web Design · Fitness", url="https://fitness-training-website-bay.vercel.app/", emoji="🏋️",
          head="Train harder. Live better.", stat="12k members", a="#ef4444", b="#fb923c", bg1="#140707", bg2="#dc2626"),
-    dict(title="Cryptocurrency Website", cat="Web Design · Crypto", url="https://cryptocurrency-website-development.vercel.app/", emoji="₿",
+    dict(img="cryptocurrency-website", title="Lumino — Bitcoin Mining Website", cat="Web Design · Crypto", url="https://cryptocurrency-website-development.vercel.app/", emoji="₿",
          head="Trade crypto smarter", stat="+24.8% today", a="#f59e0b", b="#fde047", bg1="#0b0b14", bg2="#7c3aed"),
-    dict(title="Rent-a-Car Website", cat="Web Design · Car Rental", url="https://rent-a-car-website-eight.vercel.app/", emoji="🚗",
+    dict(img="rent-a-car-website", title="Rent — Car Rental Website", cat="Web Design · Car Rental", url="https://rent-a-car-website-eight.vercel.app/", emoji="🚗",
          head="Drive your dream car", stat="4.9★ rated", a="#ff5a1f", b="#ffb347", bg1="#1a0f0a", bg2="#ff5a1f"),
-    dict(title="Nattoral Website", cat="Web Design · Brand", url="https://nattoral-zeta.vercel.app/", emoji="🌿",
+    dict(img="nattoral", title="Nattoral — Skincare E-commerce", cat="Web Design · E-commerce", url="https://nattoral-zeta.vercel.app/", emoji="🌿",
          head="Pure. Natural. Yours.", stat="100% natural", a="#16a34a", b="#bef264", bg1="#06180d", bg2="#16a34a"),
     # Behance case studies
     dict(title="Gym Landing Page", cat="Landing Page · Fitness", url="https://www.behance.net/gallery/186135665/Gym-Landing-Page-ui-ui-design-uiux-design", emoji="💪",
@@ -37,10 +37,12 @@ def card(i, p):
     live = "behance.net" not in p["url"]
     where = "live site" if live else "Behance"
     tag = '<span class="pj-tag pj-live"><i></i>Live site</span>' if live else '<span class="pj-tag">Behance</span>'
-    style = f"--a:{e['a']};--b:{e['b']};--bg1:{e['bg1']};--bg2:{e['bg2']}"
-    return f'''        <article class="pj rv">
-          <a class="pj-cover" href="{e['url']}" target="_blank" rel="noopener" style="{style}" aria-label="View {e['title']} ({where})">
-            <div class="mk" aria-hidden="true">
+    if p.get("img"):
+        img, title = e["img"], e["title"]
+        cover = (f'<img class="pj-img" src="assets/work/{img}.webp" srcset="assets/work/{img}-800.webp 800w, assets/work/{img}.webp 1200w" '
+                 f'sizes="(max-width:760px) 92vw, 600px" width="1200" height="900" loading="lazy" decoding="async" alt="{title} — desktop and mobile mockup">')
+    else:
+        cover = f'''<div class="mk" aria-hidden="true">
               <div class="mk-browser">
                 <div class="mk-bar"><i></i><i></i><i></i><span></span></div>
                 <div class="mk-site">
@@ -56,7 +58,11 @@ def card(i, p):
                 <div class="mk-notch"></div>
                 <div class="mk-app"><span class="mk-emoji">{e['emoji']}</span><strong>{e['head']}</strong><i></i><i></i><i></i><em></em></div>
               </div>
-            </div>
+            </div>'''
+    style = f"--a:{e['a']};--b:{e['b']};--bg1:{e['bg1']};--bg2:{e['bg2']}"
+    return f'''        <article class="pj rv">
+          <a class="pj-cover" href="{e['url']}" target="_blank" rel="noopener" style="{style}" aria-label="View {e['title']} ({where})">
+            {cover}
             <span class="pj-num">{i:02d}</span>
             {tag}
           </a>
@@ -88,6 +94,8 @@ CSS = r'''/* Work */
   background:radial-gradient(90% 80% at 85% 10%,color-mix(in srgb,var(--bg2) 85%,transparent),transparent 60%),radial-gradient(70% 70% at 0% 100%,color-mix(in srgb,var(--b) 35%,transparent),transparent 60%),var(--bg1)}
 .pj-cover::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.5;background:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 8cqw),repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 1px,transparent 1px 8cqw);mask-image:radial-gradient(80% 80% at 50% 40%,#000,transparent)}
 .pj-cover::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);pointer-events:none}
+.pj-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.pj:hover .pj-img{transform:scale(1.035)}
 .pj-tag{position:absolute;top:3.2cqw;right:3.6cqw;display:inline-flex;align-items:center;gap:6px;font:600 12px/1 var(--sans);color:#fff;padding:7px 11px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .pj-live i{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.25)}
 .pj-num{position:absolute;top:4cqw;left:4.5cqw;font:600 2.6cqw/1 var(--sans);color:rgba(255,255,255,.55);letter-spacing:.05em}

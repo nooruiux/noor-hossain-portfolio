@@ -124,6 +124,8 @@ section{padding:clamp(72px,10vw,128px) 0}
   background:radial-gradient(90% 80% at 85% 10%,color-mix(in srgb,var(--bg2) 85%,transparent),transparent 60%),radial-gradient(70% 70% at 0% 100%,color-mix(in srgb,var(--b) 35%,transparent),transparent 60%),var(--bg1)}
 .pj-cover::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.5;background:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 8cqw),repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 1px,transparent 1px 8cqw);mask-image:radial-gradient(80% 80% at 50% 40%,#000,transparent)}
 .pj-cover::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);pointer-events:none}
+.pj-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.pj:hover .pj-img{transform:scale(1.035)}
 .pj-tag{position:absolute;top:3.2cqw;right:3.6cqw;display:inline-flex;align-items:center;gap:6px;font:600 12px/1 var(--sans);color:#fff;padding:7px 11px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .pj-live i{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.25)}
 .pj-num{position:absolute;top:4cqw;left:4.5cqw;font:600 2.6cqw/1 var(--sans);color:rgba(255,255,255,.55);letter-spacing:.05em}
@@ -332,165 +334,69 @@ footer{padding:48px 0 40px}
       </div>
       <div class="work">
         <article class="pj rv">
-          <a class="pj-cover" href="https://content-writing-ai-website.vercel.app/" target="_blank" rel="noopener" style="--a:#db2777;--b:#a78bfa;--bg1:#16061a;--bg2:#c026d3" aria-label="View AI Content Writing Website (live site)">
-            <div class="mk" aria-hidden="true">
-              <div class="mk-browser">
-                <div class="mk-bar"><i></i><i></i><i></i><span></span></div>
-                <div class="mk-site">
-                  <div class="mk-nav"><b></b><span></span><span></span><span></span><em></em></div>
-                  <div class="mk-hero">
-                    <div class="mk-copy"><strong>Write 10x faster with AI</strong><span></span><span></span><em>Get started</em></div>
-                    <div class="mk-visual"><span class="mk-emoji">✍️</span><span class="mk-chip">2M words</span></div>
-                  </div>
-                  <div class="mk-cards"><i></i><i></i><i></i></div>
-                </div>
-              </div>
-              <div class="mk-phone">
-                <div class="mk-notch"></div>
-                <div class="mk-app"><span class="mk-emoji">✍️</span><strong>Write 10x faster with AI</strong><i></i><i></i><i></i><em></em></div>
-              </div>
-            </div>
+          <a class="pj-cover" href="https://content-writing-ai-website.vercel.app/" target="_blank" rel="noopener" style="--a:#db2777;--b:#a78bfa;--bg1:#16061a;--bg2:#c026d3" aria-label="View Quantum — AI Content Writing Website (live site)">
+            <img class="pj-img" src="assets/work/content-writing-ai-website.webp" srcset="assets/work/content-writing-ai-website-800.webp 800w, assets/work/content-writing-ai-website.webp 1200w" sizes="(max-width:760px) 92vw, 600px" width="1200" height="900" loading="lazy" decoding="async" alt="Quantum — AI Content Writing Website — desktop and mobile mockup">
             <span class="pj-num">01</span>
             <span class="pj-tag pj-live"><i></i>Live site</span>
           </a>
           <div class="pj-meta">
-            <div><h3>AI Content Writing Website</h3><p>Web Design · AI SaaS</p></div>
-            <a class="pj-arrow" href="https://content-writing-ai-website.vercel.app/" target="_blank" rel="noopener" aria-label="Open AI Content Writing Website (live site)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+            <div><h3>Quantum — AI Content Writing Website</h3><p>Web Design · AI SaaS</p></div>
+            <a class="pj-arrow" href="https://content-writing-ai-website.vercel.app/" target="_blank" rel="noopener" aria-label="Open Quantum — AI Content Writing Website (live site)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
           </div>
         </article>
         <article class="pj rv">
-          <a class="pj-cover" href="https://project-management-saa-s-website.vercel.app/" target="_blank" rel="noopener" style="--a:#2563eb;--b:#60a5fa;--bg1:#06102a;--bg2:#1d4ed8" aria-label="View Project Management SaaS Website (live site)">
-            <div class="mk" aria-hidden="true">
-              <div class="mk-browser">
-                <div class="mk-bar"><i></i><i></i><i></i><span></span></div>
-                <div class="mk-site">
-                  <div class="mk-nav"><b></b><span></span><span></span><span></span><em></em></div>
-                  <div class="mk-hero">
-                    <div class="mk-copy"><strong>Ship projects on time</strong><span></span><span></span><em>Get started</em></div>
-                    <div class="mk-visual"><span class="mk-emoji">✅</span><span class="mk-chip">98% on time</span></div>
-                  </div>
-                  <div class="mk-cards"><i></i><i></i><i></i></div>
-                </div>
-              </div>
-              <div class="mk-phone">
-                <div class="mk-notch"></div>
-                <div class="mk-app"><span class="mk-emoji">✅</span><strong>Ship projects on time</strong><i></i><i></i><i></i><em></em></div>
-              </div>
-            </div>
+          <a class="pj-cover" href="https://project-management-saa-s-website.vercel.app/" target="_blank" rel="noopener" style="--a:#2563eb;--b:#60a5fa;--bg1:#06102a;--bg2:#1d4ed8" aria-label="View WorkUp — Project Management SaaS (live site)">
+            <img class="pj-img" src="assets/work/project-management-saas-website.webp" srcset="assets/work/project-management-saas-website-800.webp 800w, assets/work/project-management-saas-website.webp 1200w" sizes="(max-width:760px) 92vw, 600px" width="1200" height="900" loading="lazy" decoding="async" alt="WorkUp — Project Management SaaS — desktop and mobile mockup">
             <span class="pj-num">02</span>
             <span class="pj-tag pj-live"><i></i>Live site</span>
           </a>
           <div class="pj-meta">
-            <div><h3>Project Management SaaS Website</h3><p>Web Design · SaaS</p></div>
-            <a class="pj-arrow" href="https://project-management-saa-s-website.vercel.app/" target="_blank" rel="noopener" aria-label="Open Project Management SaaS Website (live site)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+            <div><h3>WorkUp — Project Management SaaS</h3><p>Web Design · SaaS</p></div>
+            <a class="pj-arrow" href="https://project-management-saa-s-website.vercel.app/" target="_blank" rel="noopener" aria-label="Open WorkUp — Project Management SaaS (live site)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
           </div>
         </article>
         <article class="pj rv">
-          <a class="pj-cover" href="https://fitness-training-website-bay.vercel.app/" target="_blank" rel="noopener" style="--a:#ef4444;--b:#fb923c;--bg1:#140707;--bg2:#dc2626" aria-label="View Fitness Training Website (live site)">
-            <div class="mk" aria-hidden="true">
-              <div class="mk-browser">
-                <div class="mk-bar"><i></i><i></i><i></i><span></span></div>
-                <div class="mk-site">
-                  <div class="mk-nav"><b></b><span></span><span></span><span></span><em></em></div>
-                  <div class="mk-hero">
-                    <div class="mk-copy"><strong>Train harder. Live better.</strong><span></span><span></span><em>Get started</em></div>
-                    <div class="mk-visual"><span class="mk-emoji">🏋️</span><span class="mk-chip">12k members</span></div>
-                  </div>
-                  <div class="mk-cards"><i></i><i></i><i></i></div>
-                </div>
-              </div>
-              <div class="mk-phone">
-                <div class="mk-notch"></div>
-                <div class="mk-app"><span class="mk-emoji">🏋️</span><strong>Train harder. Live better.</strong><i></i><i></i><i></i><em></em></div>
-              </div>
-            </div>
+          <a class="pj-cover" href="https://fitness-training-website-bay.vercel.app/" target="_blank" rel="noopener" style="--a:#ef4444;--b:#fb923c;--bg1:#140707;--bg2:#dc2626" aria-label="View Gymnastic — Fitness Training Website (live site)">
+            <img class="pj-img" src="assets/work/fitness-training-website.webp" srcset="assets/work/fitness-training-website-800.webp 800w, assets/work/fitness-training-website.webp 1200w" sizes="(max-width:760px) 92vw, 600px" width="1200" height="900" loading="lazy" decoding="async" alt="Gymnastic — Fitness Training Website — desktop and mobile mockup">
             <span class="pj-num">03</span>
             <span class="pj-tag pj-live"><i></i>Live site</span>
           </a>
           <div class="pj-meta">
-            <div><h3>Fitness Training Website</h3><p>Web Design · Fitness</p></div>
-            <a class="pj-arrow" href="https://fitness-training-website-bay.vercel.app/" target="_blank" rel="noopener" aria-label="Open Fitness Training Website (live site)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+            <div><h3>Gymnastic — Fitness Training Website</h3><p>Web Design · Fitness</p></div>
+            <a class="pj-arrow" href="https://fitness-training-website-bay.vercel.app/" target="_blank" rel="noopener" aria-label="Open Gymnastic — Fitness Training Website (live site)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
           </div>
         </article>
         <article class="pj rv">
-          <a class="pj-cover" href="https://cryptocurrency-website-development.vercel.app/" target="_blank" rel="noopener" style="--a:#f59e0b;--b:#fde047;--bg1:#0b0b14;--bg2:#7c3aed" aria-label="View Cryptocurrency Website (live site)">
-            <div class="mk" aria-hidden="true">
-              <div class="mk-browser">
-                <div class="mk-bar"><i></i><i></i><i></i><span></span></div>
-                <div class="mk-site">
-                  <div class="mk-nav"><b></b><span></span><span></span><span></span><em></em></div>
-                  <div class="mk-hero">
-                    <div class="mk-copy"><strong>Trade crypto smarter</strong><span></span><span></span><em>Get started</em></div>
-                    <div class="mk-visual"><span class="mk-emoji">₿</span><span class="mk-chip">+24.8% today</span></div>
-                  </div>
-                  <div class="mk-cards"><i></i><i></i><i></i></div>
-                </div>
-              </div>
-              <div class="mk-phone">
-                <div class="mk-notch"></div>
-                <div class="mk-app"><span class="mk-emoji">₿</span><strong>Trade crypto smarter</strong><i></i><i></i><i></i><em></em></div>
-              </div>
-            </div>
+          <a class="pj-cover" href="https://cryptocurrency-website-development.vercel.app/" target="_blank" rel="noopener" style="--a:#f59e0b;--b:#fde047;--bg1:#0b0b14;--bg2:#7c3aed" aria-label="View Lumino — Bitcoin Mining Website (live site)">
+            <img class="pj-img" src="assets/work/cryptocurrency-website.webp" srcset="assets/work/cryptocurrency-website-800.webp 800w, assets/work/cryptocurrency-website.webp 1200w" sizes="(max-width:760px) 92vw, 600px" width="1200" height="900" loading="lazy" decoding="async" alt="Lumino — Bitcoin Mining Website — desktop and mobile mockup">
             <span class="pj-num">04</span>
             <span class="pj-tag pj-live"><i></i>Live site</span>
           </a>
           <div class="pj-meta">
-            <div><h3>Cryptocurrency Website</h3><p>Web Design · Crypto</p></div>
-            <a class="pj-arrow" href="https://cryptocurrency-website-development.vercel.app/" target="_blank" rel="noopener" aria-label="Open Cryptocurrency Website (live site)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+            <div><h3>Lumino — Bitcoin Mining Website</h3><p>Web Design · Crypto</p></div>
+            <a class="pj-arrow" href="https://cryptocurrency-website-development.vercel.app/" target="_blank" rel="noopener" aria-label="Open Lumino — Bitcoin Mining Website (live site)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
           </div>
         </article>
         <article class="pj rv">
-          <a class="pj-cover" href="https://rent-a-car-website-eight.vercel.app/" target="_blank" rel="noopener" style="--a:#ff5a1f;--b:#ffb347;--bg1:#1a0f0a;--bg2:#ff5a1f" aria-label="View Rent-a-Car Website (live site)">
-            <div class="mk" aria-hidden="true">
-              <div class="mk-browser">
-                <div class="mk-bar"><i></i><i></i><i></i><span></span></div>
-                <div class="mk-site">
-                  <div class="mk-nav"><b></b><span></span><span></span><span></span><em></em></div>
-                  <div class="mk-hero">
-                    <div class="mk-copy"><strong>Drive your dream car</strong><span></span><span></span><em>Get started</em></div>
-                    <div class="mk-visual"><span class="mk-emoji">🚗</span><span class="mk-chip">4.9★ rated</span></div>
-                  </div>
-                  <div class="mk-cards"><i></i><i></i><i></i></div>
-                </div>
-              </div>
-              <div class="mk-phone">
-                <div class="mk-notch"></div>
-                <div class="mk-app"><span class="mk-emoji">🚗</span><strong>Drive your dream car</strong><i></i><i></i><i></i><em></em></div>
-              </div>
-            </div>
+          <a class="pj-cover" href="https://rent-a-car-website-eight.vercel.app/" target="_blank" rel="noopener" style="--a:#ff5a1f;--b:#ffb347;--bg1:#1a0f0a;--bg2:#ff5a1f" aria-label="View Rent — Car Rental Website (live site)">
+            <img class="pj-img" src="assets/work/rent-a-car-website.webp" srcset="assets/work/rent-a-car-website-800.webp 800w, assets/work/rent-a-car-website.webp 1200w" sizes="(max-width:760px) 92vw, 600px" width="1200" height="900" loading="lazy" decoding="async" alt="Rent — Car Rental Website — desktop and mobile mockup">
             <span class="pj-num">05</span>
             <span class="pj-tag pj-live"><i></i>Live site</span>
           </a>
           <div class="pj-meta">
-            <div><h3>Rent-a-Car Website</h3><p>Web Design · Car Rental</p></div>
-            <a class="pj-arrow" href="https://rent-a-car-website-eight.vercel.app/" target="_blank" rel="noopener" aria-label="Open Rent-a-Car Website (live site)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+            <div><h3>Rent — Car Rental Website</h3><p>Web Design · Car Rental</p></div>
+            <a class="pj-arrow" href="https://rent-a-car-website-eight.vercel.app/" target="_blank" rel="noopener" aria-label="Open Rent — Car Rental Website (live site)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
           </div>
         </article>
         <article class="pj rv">
-          <a class="pj-cover" href="https://nattoral-zeta.vercel.app/" target="_blank" rel="noopener" style="--a:#16a34a;--b:#bef264;--bg1:#06180d;--bg2:#16a34a" aria-label="View Nattoral Website (live site)">
-            <div class="mk" aria-hidden="true">
-              <div class="mk-browser">
-                <div class="mk-bar"><i></i><i></i><i></i><span></span></div>
-                <div class="mk-site">
-                  <div class="mk-nav"><b></b><span></span><span></span><span></span><em></em></div>
-                  <div class="mk-hero">
-                    <div class="mk-copy"><strong>Pure. Natural. Yours.</strong><span></span><span></span><em>Get started</em></div>
-                    <div class="mk-visual"><span class="mk-emoji">🌿</span><span class="mk-chip">100% natural</span></div>
-                  </div>
-                  <div class="mk-cards"><i></i><i></i><i></i></div>
-                </div>
-              </div>
-              <div class="mk-phone">
-                <div class="mk-notch"></div>
-                <div class="mk-app"><span class="mk-emoji">🌿</span><strong>Pure. Natural. Yours.</strong><i></i><i></i><i></i><em></em></div>
-              </div>
-            </div>
+          <a class="pj-cover" href="https://nattoral-zeta.vercel.app/" target="_blank" rel="noopener" style="--a:#16a34a;--b:#bef264;--bg1:#06180d;--bg2:#16a34a" aria-label="View Nattoral — Skincare E-commerce (live site)">
+            <img class="pj-img" src="assets/work/nattoral.webp" srcset="assets/work/nattoral-800.webp 800w, assets/work/nattoral.webp 1200w" sizes="(max-width:760px) 92vw, 600px" width="1200" height="900" loading="lazy" decoding="async" alt="Nattoral — Skincare E-commerce — desktop and mobile mockup">
             <span class="pj-num">06</span>
             <span class="pj-tag pj-live"><i></i>Live site</span>
           </a>
           <div class="pj-meta">
-            <div><h3>Nattoral Website</h3><p>Web Design · Brand</p></div>
-            <a class="pj-arrow" href="https://nattoral-zeta.vercel.app/" target="_blank" rel="noopener" aria-label="Open Nattoral Website (live site)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+            <div><h3>Nattoral — Skincare E-commerce</h3><p>Web Design · E-commerce</p></div>
+            <a class="pj-arrow" href="https://nattoral-zeta.vercel.app/" target="_blank" rel="noopener" aria-label="Open Nattoral — Skincare E-commerce (live site)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
           </div>
         </article>
         <article class="pj rv">
