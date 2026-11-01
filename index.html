@@ -448,6 +448,14 @@ section{padding:clamp(72px,10vw,128px) 0}
 .tel select{font:inherit;font-size:14px;color:#fff;background:transparent;border:0;outline:none;padding:6px 0 14px;cursor:pointer}
 .tel select option{color:#111}
 .tel input{border:0!important}
+.sel{position:relative;border-bottom:1px solid rgba(255,255,255,.18);transition:border-color .3s}
+.sel:focus-within{border-color:var(--accent)}
+.sel select{appearance:none;-webkit-appearance:none;width:100%;font:inherit;font-size:15px;color:#fff;background:transparent;border:0;outline:none;padding:6px 32px 14px 0;cursor:pointer}
+.sel select:invalid{color:#77746d}
+.sel select option{color:#111;background:#fff}
+.sel svg{position:absolute;right:2px;top:8px;width:18px;height:18px;color:#a8a59e;pointer-events:none;transition:transform .3s}
+.sel:focus-within svg{transform:rotate(180deg);color:var(--accent)}
+.sel.bad{border-color:#f87171}
 fieldset.fld{border:0;padding:0;margin:0;min-width:0}
 fieldset.fld legend{margin-bottom:12px;padding:0}
 .budgets{display:flex;flex-wrap:wrap;gap:10px}
@@ -838,6 +846,7 @@ footer{padding:48px 0 40px}
           <label class="fld half"><span>WhatsApp number</span>
             <div class="tel"><select name="cc" aria-label="Country code"><option value="+880">🇧🇩 +880</option><option value="+1">🇺🇸 +1</option><option value="+44">🇬🇧 +44</option><option value="+971">🇦🇪 +971</option><option value="+966">🇸🇦 +966</option><option value="+91">🇮🇳 +91</option><option value="+61">🇦🇺 +61</option></select><input name="phone" type="tel" autocomplete="tel-national" placeholder="1XXX XXXXXX"></div>
           </label>
+          <label class="fld"><span>Service required <em>*</em></span><div class="sel"><select name="service" required><option value="" selected disabled>Select your service</option><option>UI/UX Design</option><option>SaaS Design</option><option>Brand Identity</option><option>Webflow</option><option>Web Design</option><option>MVP Development</option><option>WordPress</option><option>Framer</option></select><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></div></label>
           <fieldset class="fld"><legend>Project budget</legend><div class="budgets"><label><input type="radio" name="budget" value="Less than $1K"><span>Less than $1K</span></label><label><input type="radio" name="budget" value="$1K – $3K"><span>$1K – $3K</span></label><label><input type="radio" name="budget" value="$3K – $5K"><span>$3K – $5K</span></label><label><input type="radio" name="budget" value="$5K – $10K"><span>$5K – $10K</span></label><label><input type="radio" name="budget" value="$10K – $20K"><span>$10K – $20K</span></label><label><input type="radio" name="budget" value="$20K – $50K"><span>$20K – $50K</span></label><label><input type="radio" name="budget" value="More than $50K"><span>More than $50K</span></label></div></fieldset>
           <label class="fld"><span>Project details <em>*</em></span><textarea name="details" rows="3" placeholder="I want to redesign my website…" required></textarea></label>
           <div class="cx-send"><button type="submit">Send inquiry <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><span class="cx-msg" role="status" aria-live="polite"></span></div>
@@ -866,15 +875,16 @@ footer{padding:48px 0 40px}
     e.preventDefault();
     const f = form.elements, msg = form.querySelector('.cx-msg');
     const email = f.email.value.trim(), details = f.details.value.trim();
-    [f.email, f.details].forEach((el) => el.classList.remove('bad'));
+    [f.email, f.details].forEach((el) => el.classList.remove('bad')); const selBox = f.service.parentElement; selBox.classList.remove('bad');
+    const okService = !!f.service.value; if (!okService) selBox.classList.add('bad');
     const okEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     if (!okEmail) f.email.classList.add('bad');
     if (!details) f.details.classList.add('bad');
-    if (!okEmail || !details) { msg.className = 'cx-msg err'; msg.textContent = 'Please add a valid email and your project details.'; (okEmail ? f.details : f.email).focus(); return; }
+    if (!okEmail || !details || !okService) { msg.className = 'cx-msg err'; msg.textContent = 'Please add a valid email, choose a service and describe your project.'; (!okEmail ? f.email : !okService ? f.service : f.details).focus(); return; }
     const budget = (form.querySelector('input[name=budget]:checked') || {}).value || 'Not specified';
     const phone = f.phone.value.trim() ? f.cc.value + ' ' + f.phone.value.trim() : '—';
     const name = f.name.value.trim() || '—';
-    const body = `Name: ${name}\nEmail: ${email}\nWhatsApp: ${phone}\nBudget: ${budget}\n\nProject details:\n${details}`;
+    const body = `Name: ${name}\nEmail: ${email}\nWhatsApp: ${phone}\nService: ${f.service.value}\nBudget: ${budget}\n\nProject details:\n${details}`;
     window.location.href = 'mailto:noorxtk@gmail.com?subject=' + encodeURIComponent('New project inquiry — ' + (name !== '—' ? name : email)) + '&body=' + encodeURIComponent(body);
     msg.className = 'cx-msg ok'; msg.textContent = 'Opening your email app — just hit send. Thanks!';
   });
