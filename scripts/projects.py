@@ -33,15 +33,15 @@ PROJECTS = [
          tags=["E-commerce", "Beauty", "UI/UX"], url="https://nattoral-zeta.vercel.app/",
          bg="#e9e8e5", accent="#2f4f4a", year="2026", logo="NATTORAL", swatches=["#2f4f4a", "#9bc7c0", "#e9e3d6", "#111111"]),
     # Behance case studies (cover images to be added: set img="..." in assets/work/behance/)
-    dict(img="team-collabs.webp", device="full", fill="#d4e4fe", kind="behance", style="be", span=7, title="Team Collabs", sub="Website UI", tags=["Website", "UI Design"],
+    dict(full="be-team-collabs", device="frame", kind="behance", style="be", span=7, title="Team Collabs", sub="Website UI", tags=["Website", "UI Design"],
          url="https://www.behance.net/gallery/159708065/Team-Collabs-Website-UI", bg="#e9e8e5", accent="#4f46e5", year="Behance", word="Collabs"),
-    dict(img="saas-clicker.webp", device="full", fill="#d9def8", kind="behance", style="be", span=5, title="SaaS Landing Page", sub="UI/UX Design", tags=["SaaS", "Landing Page"],
+    dict(full="be-saas-clicker", device="macbook", kind="behance", style="be", span=5, title="SaaS Landing Page", sub="UI/UX Design", tags=["SaaS", "Landing Page"],
          url="https://www.behance.net/gallery/238128689/SaaS-Landing-Page-ui-ui-design-uiux-design", bg="#e9e8e5", accent="#ff5a1f", year="Behance", word="SaaS"),
-    dict(img="saas-plusfive.webp", device="full", fill="#e1e9fd", kind="behance", style="be", span=5, title="SaaS Landing Page", sub="UI/UX Design · v2", tags=["SaaS", "Landing Page"],
+    dict(full="be-saas-plusfive", device="macbook", kind="behance", style="be", span=5, title="SaaS Landing Page", sub="UI/UX Design · v2", tags=["SaaS", "Landing Page"],
          url="https://www.behance.net/gallery/172665281/Saas-Landing-Page-ui-ui-design-uiux-Design", bg="#e9e8e5", accent="#0ea5e9", year="Behance", word="SaaS"),
-    dict(img="interior-design.webp", device="full", fill="#d2f4fd", kind="behance", style="be", span=7, title="Interior Design", sub="Landing Page", tags=["Interior", "Landing Page"],
+    dict(full="be-interior", device="frame", kind="behance", style="be", span=7, title="Interior Design", sub="Landing Page", tags=["Interior", "Landing Page"],
          url="https://www.behance.net/gallery/183139315/Interior-Design-Landing-Page-ui-ui-design-uiux-design", bg="#e9e8e5", accent="#a16207", year="Behance", word="Interior"),
-    dict(img="agency.webp", device="frame", kind="behance", style="be", span=12, title="Marketing Agency", sub="Landing Page", tags=["Agency", "UI/UX Design"],
+    dict(full="be-marketing-agency", device="frame", kind="behance", style="be", span=12, title="Marketing Agency", sub="Landing Page", tags=["Agency", "UI/UX Design"],
          url="https://www.behance.net/gallery/165900155/Marketing-Agency-Landing-Page-UIUX-Design", bg="#e9e8e5", accent="#db2777", year="Behance", word="Agency"),
 ]
 
@@ -56,9 +56,10 @@ def cover(p):
     e = lambda k: html.escape(p.get(k, ""))
     st = p["style"]
     if st == "be":
-        if p.get("img"):
-            src = f'/assets/work/behance/{p["img"]}'
-            im = f'<img class="be-fill" src="{src}" alt="{e("title")} — {e("sub")} cover" loading="lazy" decoding="async">'
+        if p.get("img") or p.get("full"):
+            src = f'/assets/work/shots/{p["full"]}-full.webp' if p.get("full") else f'/assets/work/behance/{p["img"]}'
+            cls = "" if p.get("full") else ' class="be-fill"'
+            im = f'<img{cls} src="{src}" alt="{e("title")} — {e("sub")} cover" loading="lazy" decoding="async">'
             dev = p.get("device", "browser")
             if dev == "full":
                 return (f'<span class="be-fill-bg" style="background:{p.get("fill", "#e9e8e5")}"></span>'
@@ -179,6 +180,7 @@ CSS = r'''/* Work */
 .dv-frame{position:absolute;left:8%;right:8%;top:9%;bottom:-2%;padding:6px 6px 0;border-radius:14px 14px 0 0;background:#fdfdfc;box-shadow:0 0 0 1px rgba(17,17,16,.08),0 30px 60px -30px rgba(17,17,16,.35);transition:transform .9s cubic-bezier(.2,.8,.2,1)}
 .dv-frame .dv-scr{height:100%;border-radius:9px 9px 0 0}
 .pc-cover:hover .dv-frame{transform:translateY(-8px)}
+.pc.s12 .dv-frame{left:50%;right:auto;width:min(62%,680px);margin-left:calc(min(62%,680px) / -2)}
 .dv-tab{position:absolute;left:9%;right:9%;top:9%;bottom:9%;padding:2.2%;border-radius:30px;background:#141416;box-shadow:inset 0 0 0 2px #2c2c30,0 40px 70px -30px rgba(17,17,16,.55);transition:transform .9s cubic-bezier(.2,.8,.2,1)}
 .dv-tab .dv-cam{top:50%;left:1%;margin:-3px 0 0}
 .dv-tab .dv-scr{height:100%;border-radius:14px}
