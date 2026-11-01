@@ -724,13 +724,32 @@ fieldset.fld legend{margin-bottom:12px;padding:0}
 [data-theme="dark"] .tag small{color:#c9c6bf}
 .calendly-overlay .calendly-popup{border-radius:20px;overflow:hidden}
 .cx-badge{cursor:pointer}
+.bk[hidden]{display:none!important}
+.bk{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;background:rgba(10,10,9,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);opacity:0;transition:opacity .3s}
+.bk.on{opacity:1}
+.bk-box{width:min(1040px,100%);height:min(720px,calc(100dvh - 32px));display:flex;flex-direction:column;border-radius:24px;overflow:hidden;background:var(--surface);box-shadow:0 40px 100px -30px rgba(0,0,0,.6);transform:translateY(16px) scale(.98);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.bk.on .bk-box{transform:none}
+.bk-head{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 20px;border-bottom:1px solid var(--line)}
+.bk-head b{display:block;font-size:17px;letter-spacing:-.02em}
+.bk-head small{display:block;font-size:13px;color:var(--ink-3);margin-top:2px}
+.bk-x{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:var(--bg);color:var(--ink);transition:background .2s,color .2s}
+.bk-x:hover{background:var(--ink);color:var(--bg)}
+.bk-x svg{width:16px;height:16px}
+.bk-body{position:relative;flex:1}
+.bk-body iframe{position:absolute;inset:0;width:100%;height:100%;border:0;opacity:0;transition:opacity .3s}
+.bk.ready .bk-body iframe{opacity:1}
+.bk-load{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:12px;color:var(--ink-3);font-size:14px}
+.bk.ready .bk-load{display:none}
+.bk-load span{width:30px;height:30px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--accent);animation:spin .8s linear infinite}
+@media (max-width:640px){.bk{padding:0}.bk-box{height:100dvh;border-radius:0}}
+
 /* Reveal */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
 </style>
 <script>try{var t=localStorage.getItem("theme");if(!t)t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t}catch(e){}</script>
-<link rel="preconnect" href="https://assets.calendly.com">
+<link rel="preconnect" href="https://calendly.com">
 <link rel="dns-prefetch" href="https://calendly.com">
 </head>
 <body>
@@ -1221,6 +1240,13 @@ fieldset.fld legend{margin-bottom:12px;padding:0}
   <div class="ft-bar"><div class="wrap"><span>© <span id="yr">2026</span> Noor Hossain. All rights reserved.</span><span class="ft-legal"><a href="#contact">Privacy Policy</a><a href="#contact">Terms of Service</a></span></div></div>
 </footer>
 
+<div class="bk" id="book" role="dialog" aria-modal="true" aria-label="Book a 30-minute call" hidden>
+  <div class="bk-box">
+    <div class="bk-head"><div><b>Book a free 30-min call</b><small>Pick a time that suits you — shown in your local time zone.</small></div>
+      <button type="button" class="bk-x" aria-label="Close booking"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="bk-body"><div class="bk-load"><span></span>Loading calendar…</div><iframe title="Calendly booking calendar" loading="lazy" allow="payment"></iframe></div>
+  </div>
+</div>
 <script>
 (() => {
   document.querySelectorAll('.sv').forEach((c)=>c.addEventListener('pointermove',(e)=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');}));
@@ -1374,21 +1400,24 @@ fieldset.fld legend{margin-bottom:12px;padding:0}
   })();
   (() => {
     const links = document.querySelectorAll('a[data-cal]'); if (!links.length) return;
+    const modal = document.getElementById('book'), frame = modal.querySelector('iframe'), load = modal.querySelector('.bk-load');
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const url = (base) => base + (base.includes('?') ? '&' : '?') + new URLSearchParams({ hide_gdpr_banner: '1', primary_color: 'ff5a1f', text_color: '111110', background_color: document.documentElement.dataset.theme === 'dark' ? '171716' : 'ffffff', ...(document.documentElement.dataset.theme === 'dark' ? { text_color: 'f4f2ee' } : {}), timezone: tz }).toString();
-    let ready = null;
-    const load = () => ready || (ready = new Promise((res, rej) => {
-      const css = document.createElement('link'); css.rel = 'stylesheet'; css.href = 'https://assets.calendly.com/assets/external/widget.css'; document.head.appendChild(css);
-      const sc = document.createElement('script'); sc.src = 'https://assets.calendly.com/assets/external/widget.js'; sc.async = true; sc.onload = () => res(); sc.onerror = rej; document.head.appendChild(sc);
-    }));
+    let lastFocus = null;
+    const src = (base) => { const dark = document.documentElement.dataset.theme === 'dark';
+      return base + '?' + new URLSearchParams({ embed_domain: location.hostname || 'localhost', embed_type: 'Inline', hide_gdpr_banner: '1', hide_event_type_details: '0',
+        primary_color: 'ff5a1f', background_color: dark ? '171716' : 'ffffff', text_color: dark ? 'f4f2ee' : '111110', timezone: tz }).toString(); };
+    const open = (href) => { lastFocus = document.activeElement; const u = src(href);
+      if (frame.dataset.u !== u) { modal.classList.remove('ready'); frame.dataset.u = u; frame.src = u; }
+      modal.hidden = false; requestAnimationFrame(() => modal.classList.add('on')); document.documentElement.style.overflow = 'hidden'; modal.querySelector('.bk-x').focus(); };
+    const close = () => { modal.classList.remove('on'); document.documentElement.style.overflow = ''; setTimeout(() => { modal.hidden = true; }, 300); if (lastFocus) lastFocus.focus(); };
+    frame.addEventListener('load', () => modal.classList.add('ready'));
     links.forEach((a) => {
-      a.addEventListener('pointerenter', load, { once: true });
-      a.addEventListener('click', (e) => {
-        if (e.metaKey || e.ctrlKey || e.shiftKey) return;
-        e.preventDefault(); const href = url(a.getAttribute('href'));
-        load().then(() => window.Calendly ? Calendly.initPopupWidget({ url: href }) : window.open(href, '_blank', 'noopener')).catch(() => window.open(href, '_blank', 'noopener'));
-      });
+      a.addEventListener('pointerenter', () => { if (!frame.dataset.u) { frame.dataset.u = src(a.getAttribute('href')); frame.src = frame.dataset.u; } }, { once: true });
+      a.addEventListener('click', (e) => { if (e.metaKey || e.ctrlKey || e.shiftKey) return; e.preventDefault(); open(a.getAttribute('href')); });
     });
+    modal.addEventListener('click', (e) => { if (e.target === modal || e.target.closest('.bk-x')) close(); });
+    addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) close(); });
+    addEventListener('message', (e) => { if (e.origin === 'https://calendly.com' && e.data && e.data.event === 'calendly.event_scheduled') modal.classList.add('done'); });
   })();
   document.getElementById('yr').textContent = new Date().getFullYear();
   const io = new IntersectionObserver((entries) => {
