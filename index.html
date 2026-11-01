@@ -10,7 +10,7 @@
 <meta property="og:description" content="High-converting websites, product UI and design systems.">
 <meta property="og:image" content="/assets/noor-hossain.webp">
 <meta property="og:type" content="website">
-<link rel="icon" href="/assets/noor-hossain-sm.webp">
+<link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -56,7 +56,9 @@ section{padding:clamp(72px,10vw,128px) 0}
 /* Nav */
 .nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:50;width:min(calc(100% - 32px),760px);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 8px 8px 10px;background:rgba(255,255,255,.72);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);border:1px solid var(--line);border-radius:var(--pill);box-shadow:var(--shadow)}
 .brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px}
-.brand img{width:36px;height:36px;border-radius:50%;background:var(--surface-2);object-fit:cover;object-position:top}
+.logo{position:relative;width:36px;height:36px;border-radius:11px;display:grid;place-items:center;flex:none;color:#fff;font:700 14px/1 var(--sans);letter-spacing:-.04em;background:linear-gradient(135deg,#ff8a4c,#e8460f);box-shadow:0 6px 14px -6px rgba(232,70,15,.7),inset 0 1px 0 rgba(255,255,255,.35);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.logo::before{content:"";position:absolute;inset:3px;border-radius:8px;border:1.5px solid rgba(255,255,255,.3)}
+.brand:hover .logo{transform:rotate(-8deg) scale(1.05)}
 .nav ul{list-style:none;display:flex;gap:4px}
 .nav ul a{display:block;padding:8px 14px;border-radius:var(--pill);font-size:14px;font-weight:500;color:var(--ink-2);transition:background .2s,color .2s}
 .nav ul a:hover{background:var(--surface-2);color:var(--ink)}
@@ -385,7 +387,7 @@ footer{padding:48px 0 40px}
 <body>
 
 <nav class="nav" aria-label="Primary">
-  <a href="#top" class="brand"><img src="/assets/noor-hossain-sm.webp" alt="" width="36" height="36">Noor Hossain</a>
+  <a href="#top" class="brand" aria-label="Noor Hossain — home"><span class="logo" aria-hidden="true">NH</span>Noor Hossain</a>
   <ul>
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
