@@ -262,3 +262,5 @@ if __name__ == '__main__':
         s = s.replace("  document.getElementById('yr').textContent", JS + "  document.getElementById('yr').textContent", 1)
     open(path, 'w', encoding='utf-8').write(s)
     print('cards', s.count('<article class="pc '))
+    import subprocess, os
+    subprocess.run(['python3', os.path.join(os.path.dirname(os.path.abspath(__file__)), 'csp.py')], check=True)

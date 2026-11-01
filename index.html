@@ -897,6 +897,7 @@ fieldset.fld legend{margin-bottom:12px;padding:0}
 
 .stat{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 @media (min-width:1024px){.stats{max-width:1040px;margin-left:auto;margin-right:auto;gap:20px}}
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
 /* Reveal */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
@@ -1327,15 +1328,15 @@ fieldset.fld legend{margin-bottom:12px;padding:0}
             </div>
           </div>
         </div>
-        <form class="cx-form" id="inquiry" novalidate>
-          <label class="fld"><span>Full name <em>*</em></span><input name="name" autocomplete="name" placeholder="John Doe" required></label>
-          <label class="fld half"><span>Your email <em>*</em></span><input name="email" type="email" autocomplete="email" placeholder="yourmail@gmail.com" required></label>
+        <form class="cx-form" id="inquiry" action="#" autocomplete="on" novalidate><div class="hp" aria-hidden="true"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
+          <label class="fld"><span>Full name <em>*</em></span><input name="name" autocomplete="name" placeholder="John Doe" maxlength="80" required></label>
+          <label class="fld half"><span>Your email <em>*</em></span><input name="email" type="email" autocomplete="email" placeholder="yourmail@gmail.com" maxlength="120" required></label>
           <label class="fld half"><span>WhatsApp number</span>
-            <div class="tel"><select name="cc" aria-label="Country code"><option value="+1" selected>🇺🇸 +1</option><option value="+880">🇧🇩 +880</option><option value="+44">🇬🇧 +44</option><option value="+971">🇦🇪 +971</option><option value="+966">🇸🇦 +966</option><option value="+91">🇮🇳 +91</option><option value="+61">🇦🇺 +61</option></select><input name="phone" type="tel" autocomplete="tel-national" placeholder="(555) 123-4567"></div>
+            <div class="tel"><select name="cc" aria-label="Country code"><option value="+1" selected>🇺🇸 +1</option><option value="+880">🇧🇩 +880</option><option value="+44">🇬🇧 +44</option><option value="+971">🇦🇪 +971</option><option value="+966">🇸🇦 +966</option><option value="+91">🇮🇳 +91</option><option value="+61">🇦🇺 +61</option></select><input name="phone" type="tel" autocomplete="tel-national" inputmode="tel" placeholder="(555) 123-4567" maxlength="20" pattern="[0-9 ()+\-.]{4,20}"></div>
           </label>
           <label class="fld"><span>Service required <em>*</em></span><div class="sel dd"><select name="service" required class="dd-native" tabindex="-1" aria-hidden="true"><option value="" selected disabled>Select your service</option><option>UI/UX Design</option><option>SaaS Design</option><option>Webflow</option><option>Web Design</option><option>WordPress</option><option>Framer</option><option>MVP Development</option><option>Brand Identity</option></select><button type="button" class="dd-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Service required"><span class="dd-val ph">Select your service</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><ul class="dd-list" role="listbox" tabindex="-1"></ul></div></label>
           <fieldset class="fld" id="budget-fs"><legend>Project budget <em>*</em></legend><div class="budgets"><label><input type="radio" name="budget" value="Less than $1K"><span>Less than $1K</span></label><label><input type="radio" name="budget" value="$1K – $3K"><span>$1K – $3K</span></label><label><input type="radio" name="budget" value="$3K – $5K"><span>$3K – $5K</span></label><label><input type="radio" name="budget" value="$5K – $10K"><span>$5K – $10K</span></label><label><input type="radio" name="budget" value="$10K – $20K"><span>$10K – $20K</span></label><label><input type="radio" name="budget" value="$20K – $50K"><span>$20K – $50K</span></label><label><input type="radio" name="budget" value="More than $50K"><span>More than $50K</span></label></div></fieldset>
-          <label class="fld"><span>Project details <em>*</em></span><textarea name="details" rows="3" placeholder="I want to redesign my website…" required></textarea></label>
+          <label class="fld"><span>Project details <em>*</em></span><textarea name="details" rows="3" placeholder="I want to redesign my website…" maxlength="1500" required></textarea></label>
           <div class="cx-send"><button type="submit">Send inquiry <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><span class="cx-msg" role="status" aria-live="polite"></span></div>
         </form>
       </div>
@@ -1373,7 +1374,7 @@ fieldset.fld legend{margin-bottom:12px;padding:0}
   <div class="bk-box">
     <div class="bk-head"><div><b>Book a free 30-min call</b><small>Pick a time that suits you — shown in your local time zone.</small></div>
       <button type="button" class="bk-x" aria-label="Close booking"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
-    <div class="bk-body"><div class="bk-load"><span></span>Loading calendar…</div><iframe title="Calendly booking calendar" loading="lazy" allow="payment"></iframe></div>
+    <div class="bk-body"><div class="bk-load"><span></span>Loading calendar…</div><iframe title="Calendly booking calendar" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
   </div>
 </div>
 <script>
@@ -1382,7 +1383,7 @@ fieldset.fld legend{margin-bottom:12px;padding:0}
   document.querySelectorAll('.dd').forEach((dd) => {
     const sel = dd.querySelector('select'), btn = dd.querySelector('.dd-btn'), list = dd.querySelector('.dd-list'), val = dd.querySelector('.dd-val');
     const opts = [...sel.options].filter((o) => o.value !== '' && !o.disabled);
-    list.innerHTML = opts.map((o, i) => `<li role="option" id="dd-${i}" aria-selected="false" data-v="${o.value}">${o.textContent}</li>`).join('');
+    list.replaceChildren(...opts.map((o, i) => { const li = document.createElement('li'); li.setAttribute('role', 'option'); li.id = 'dd-' + i; li.setAttribute('aria-selected', 'false'); li.dataset.v = o.value; li.textContent = o.textContent; return li; }));
     const items = [...list.children]; let act = -1;
     const mark = (i) => { items.forEach((li, k) => li.classList.toggle('act', k === i)); act = i; if (i > -1) { btn.setAttribute('aria-activedescendant', items[i].id); items[i].scrollIntoView({ block: 'nearest' }); } };
     const open = (o) => { dd.classList.toggle('open', o); btn.setAttribute('aria-expanded', o); if (o) mark(Math.max(0, items.findIndex((li) => li.getAttribute('aria-selected') === 'true'))); };
@@ -1403,6 +1404,8 @@ fieldset.fld legend{margin-bottom:12px;padding:0}
   if (form) form.addEventListener('submit', (e) => {
     e.preventDefault();
     const f = form.elements, msg = form.querySelector('.cx-msg');
+    if (f.website && f.website.value) return; // honeypot: bots fill hidden fields
+    const now = Date.now(); if (now - (form._t || 0) < 4000) { msg.className = 'cx-msg err'; msg.textContent = 'Please wait a moment before sending again.'; return; } form._t = now;
     const email = f.email.value.trim(), details = f.details.value.trim();
     const nameV = f.name.value.trim(), budgetEl = form.querySelector('input[name=budget]:checked'), fs = document.getElementById('budget-fs');
     [f.name, f.email, f.details].forEach((el) => el.classList.remove('bad')); fs.classList.remove('bad');
@@ -1413,9 +1416,10 @@ fieldset.fld legend{margin-bottom:12px;padding:0}
     if (!details) f.details.classList.add('bad');
     if (!nameV || !okEmail || !okService || !budgetEl || !details) { msg.className = 'cx-msg err'; msg.textContent = 'Please fill in all required fields marked *.'; (!nameV ? f.name : !okEmail ? f.email : !okService ? selBox.querySelector('.dd-btn') : !budgetEl ? fs.querySelector('input') : f.details).focus(); return; }
     const budget = budgetEl.value;
-    const phone = f.phone.value.trim() ? f.cc.value + ' ' + f.phone.value.trim() : '—';
-    const name = nameV;
-    const body = `Name: ${name}\nEmail: ${email}\nWhatsApp: ${phone}\nService: ${f.service.value}\nBudget: ${budget}\n\nProject details:\n${details}`;
+    const clean = (v, n) => v.replace(/[\u0000-\u0008\u000B-\u001F\u007F]/g, '').slice(0, n);
+    const phone = f.phone.value.trim() ? f.cc.value + ' ' + clean(f.phone.value.trim().replace(/[^0-9 ()+\-.]/g, ''), 20) : '—';
+    const name = clean(nameV.replace(/[\r\n]+/g, ' '), 80);
+    const body = `Name: ${name}\nEmail: ${clean(email, 120)}\nWhatsApp: ${phone}\nService: ${f.service.value}\nBudget: ${budget}\n\nProject details:\n${clean(details, 1500)}`;
     window.location.href = 'mailto:noorxtk@gmail.com?subject=' + encodeURIComponent('New project inquiry — ' + name) + '&body=' + encodeURIComponent(body);
     msg.className = 'cx-msg ok'; msg.textContent = 'Opening your email app — just hit send. Thanks!';
   });
