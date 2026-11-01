@@ -63,6 +63,10 @@ section{padding:clamp(72px,10vw,128px) 0}
 .nav ul a{display:block;padding:8px 14px;border-radius:var(--pill);font-size:14px;font-weight:500;color:var(--ink-2);transition:background .2s,color .2s}
 .nav ul a:hover{background:var(--surface-2);color:var(--ink)}
 .nav .btn{height:40px;padding:0 18px;font-size:14px}
+.nav-act{display:flex;align-items:center;gap:8px}
+.nav-gh{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:var(--ink);background:var(--surface);border:1px solid var(--line);transition:background .25s,color .25s,transform .25s}
+.nav-gh svg{width:19px;height:19px}
+.nav-gh:hover{background:var(--ink);color:#fff;transform:translateY(-1px)}
 @media (max-width:760px){.nav ul{display:none}}
 
 /* Hero */
@@ -678,7 +682,7 @@ fieldset.fld legend{margin-bottom:12px;padding:0}
     <li><a href="#work">Work</a></li>
     <li><a href="#pricing">Pricing</a></li>
   </ul>
-  <a href="#contact" class="btn btn-dark">Let's talk</a>
+  <div class="nav-act"><a href="https://github.com/nooruiux" target="_blank" rel="noopener" class="nav-gh" aria-label="GitHub profile"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-4.9 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.6.6.7 1 1.6 1 2.7 0 3.8-2.3 4.7-4.6 4.9.4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg></a><a href="#contact" class="btn btn-dark">Let's talk</a></div>
 </nav>
 
 <main id="top">
