@@ -449,12 +449,22 @@ section{padding:clamp(72px,10vw,128px) 0}
 .tel select option{color:#111}
 .tel input{border:0!important}
 .sel{position:relative;border-bottom:1px solid rgba(255,255,255,.18);transition:border-color .3s}
-.sel:focus-within{border-color:var(--accent)}
-.sel select{appearance:none;-webkit-appearance:none;width:100%;font:inherit;font-size:15px;color:#fff;background:transparent;border:0;outline:none;padding:6px 32px 14px 0;cursor:pointer}
-.sel select:invalid{color:#77746d}
-.sel select option{color:#111;background:#fff}
-.sel svg{position:absolute;right:2px;top:8px;width:18px;height:18px;color:#a8a59e;pointer-events:none;transition:transform .3s}
-.sel:focus-within svg{transform:rotate(180deg);color:var(--accent)}
+.sel:focus-within,.dd.open{border-color:var(--accent)}
+.dd-native{position:absolute;left:0;bottom:0;width:1px;height:1px;opacity:0;pointer-events:none}
+.dd-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;font:inherit;font-size:15px;color:#fff;text-align:left;padding:6px 0 14px}
+.dd-btn:focus-visible{outline:none}
+.dd-val.ph{color:#77746d}
+.dd-btn svg{width:18px;height:18px;flex:none;color:#a8a59e;transition:transform .3s,color .3s}
+.dd.open .dd-btn svg{transform:rotate(180deg);color:var(--accent)}
+.dd-list{position:absolute;left:0;right:0;top:calc(100% + 10px);z-index:30;list-style:none;margin:0;padding:8px;border-radius:18px;
+  background:linear-gradient(160deg,rgba(58,52,48,.62),rgba(22,21,20,.72));-webkit-backdrop-filter:blur(24px) saturate(1.6);backdrop-filter:blur(24px) saturate(1.6);
+  border:1px solid rgba(255,255,255,.16);box-shadow:0 30px 60px -24px rgba(0,0,0,.75),inset 0 1px 0 rgba(255,255,255,.12);
+  opacity:0;transform:translateY(-8px) scale(.98);transform-origin:top;pointer-events:none;transition:opacity .25s,transform .3s cubic-bezier(.2,.8,.2,1)}
+.dd.open .dd-list{opacity:1;transform:none;pointer-events:auto}
+.dd-list li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 14px 11px 16px;border-radius:11px;font-size:15px;color:#e7e4de;cursor:pointer;transition:background .2s,color .2s,padding .2s}
+.dd-list li:hover,.dd-list li.act{background:rgba(255,255,255,.09);color:#fff;padding-left:20px}
+.dd-list li[aria-selected="true"]{background:rgba(255,90,31,.22);color:#fff}
+.dd-list li[aria-selected="true"]::after{content:"";width:16px;height:16px;flex:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff8a5c' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/contain no-repeat}
 .sel.bad{border-color:#f87171}
 fieldset.fld{border:0;padding:0;margin:0;min-width:0}
 fieldset.fld legend{margin-bottom:12px;padding:0}
@@ -846,7 +856,7 @@ footer{padding:48px 0 40px}
           <label class="fld half"><span>WhatsApp number</span>
             <div class="tel"><select name="cc" aria-label="Country code"><option value="+880">🇧🇩 +880</option><option value="+1">🇺🇸 +1</option><option value="+44">🇬🇧 +44</option><option value="+971">🇦🇪 +971</option><option value="+966">🇸🇦 +966</option><option value="+91">🇮🇳 +91</option><option value="+61">🇦🇺 +61</option></select><input name="phone" type="tel" autocomplete="tel-national" placeholder="1XXX XXXXXX"></div>
           </label>
-          <label class="fld"><span>Service required <em>*</em></span><div class="sel"><select name="service" required><option value="" selected disabled>Select your service</option><option>UI/UX Design</option><option>SaaS Design</option><option>Webflow</option><option>Web Design</option><option>WordPress</option><option>Framer</option><option>MVP Development</option><option>Brand Identity</option></select><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></div></label>
+          <label class="fld"><span>Service required <em>*</em></span><div class="sel dd"><select name="service" required class="dd-native" tabindex="-1" aria-hidden="true"><option value="" selected disabled>Select your service</option><option>UI/UX Design</option><option>SaaS Design</option><option>Webflow</option><option>Web Design</option><option>WordPress</option><option>Framer</option><option>MVP Development</option><option>Brand Identity</option></select><button type="button" class="dd-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Service required"><span class="dd-val ph">Select your service</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><ul class="dd-list" role="listbox" tabindex="-1"></ul></div></label>
           <fieldset class="fld"><legend>Project budget</legend><div class="budgets"><label><input type="radio" name="budget" value="Less than $1K"><span>Less than $1K</span></label><label><input type="radio" name="budget" value="$1K – $3K"><span>$1K – $3K</span></label><label><input type="radio" name="budget" value="$3K – $5K"><span>$3K – $5K</span></label><label><input type="radio" name="budget" value="$5K – $10K"><span>$5K – $10K</span></label><label><input type="radio" name="budget" value="$10K – $20K"><span>$10K – $20K</span></label><label><input type="radio" name="budget" value="$20K – $50K"><span>$20K – $50K</span></label><label><input type="radio" name="budget" value="More than $50K"><span>More than $50K</span></label></div></fieldset>
           <label class="fld"><span>Project details <em>*</em></span><textarea name="details" rows="3" placeholder="I want to redesign my website…" required></textarea></label>
           <div class="cx-send"><button type="submit">Send inquiry <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><span class="cx-msg" role="status" aria-live="polite"></span></div>
@@ -870,6 +880,25 @@ footer{padding:48px 0 40px}
 <script>
 (() => {
   document.querySelectorAll('.sv').forEach((c)=>c.addEventListener('pointermove',(e)=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');}));
+  document.querySelectorAll('.dd').forEach((dd) => {
+    const sel = dd.querySelector('select'), btn = dd.querySelector('.dd-btn'), list = dd.querySelector('.dd-list'), val = dd.querySelector('.dd-val');
+    const opts = [...sel.options].filter((o) => o.value !== '' && !o.disabled);
+    list.innerHTML = opts.map((o, i) => `<li role="option" id="dd-${i}" aria-selected="false" data-v="${o.value}">${o.textContent}</li>`).join('');
+    const items = [...list.children]; let act = -1;
+    const mark = (i) => { items.forEach((li, k) => li.classList.toggle('act', k === i)); act = i; if (i > -1) { btn.setAttribute('aria-activedescendant', items[i].id); items[i].scrollIntoView({ block: 'nearest' }); } };
+    const open = (o) => { dd.classList.toggle('open', o); btn.setAttribute('aria-expanded', o); if (o) mark(Math.max(0, items.findIndex((li) => li.getAttribute('aria-selected') === 'true'))); };
+    const pick = (i) => { sel.value = items[i].dataset.v; val.textContent = items[i].textContent; val.classList.remove('ph'); items.forEach((li, k) => li.setAttribute('aria-selected', k === i)); dd.classList.remove('bad'); open(false); btn.focus(); };
+    btn.addEventListener('click', () => open(!dd.classList.contains('open')));
+    items.forEach((li, i) => { li.addEventListener('click', () => pick(i)); li.addEventListener('mousemove', () => mark(i)); });
+    btn.addEventListener('keydown', (e) => {
+      const isOpen = dd.classList.contains('open');
+      if (['ArrowDown', 'ArrowUp'].includes(e.key)) { e.preventDefault(); if (!isOpen) return open(true); mark((act + (e.key === 'ArrowDown' ? 1 : items.length - 1)) % items.length); }
+      else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); isOpen && act > -1 ? pick(act) : open(true); }
+      else if (e.key === 'Escape' || e.key === 'Tab') open(false);
+    });
+    document.addEventListener('click', (e) => { if (!dd.contains(e.target)) open(false); });
+    sel.closest('form').addEventListener('reset', () => { val.textContent = 'Select your service'; val.classList.add('ph'); items.forEach((li) => li.setAttribute('aria-selected', false)); });
+  });
   const form = document.getElementById('inquiry');
   if (form) form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -880,7 +909,7 @@ footer{padding:48px 0 40px}
     const okEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     if (!okEmail) f.email.classList.add('bad');
     if (!details) f.details.classList.add('bad');
-    if (!okEmail || !details || !okService) { msg.className = 'cx-msg err'; msg.textContent = 'Please add a valid email, choose a service and describe your project.'; (!okEmail ? f.email : !okService ? f.service : f.details).focus(); return; }
+    if (!okEmail || !details || !okService) { msg.className = 'cx-msg err'; msg.textContent = 'Please add a valid email, choose a service and describe your project.'; (!okEmail ? f.email : !okService ? selBox.querySelector('.dd-btn') : f.details).focus(); return; }
     const budget = (form.querySelector('input[name=budget]:checked') || {}).value || 'Not specified';
     const phone = f.phone.value.trim() ? f.cc.value + ' ' + f.phone.value.trim() : '—';
     const name = f.name.value.trim() || '—';
