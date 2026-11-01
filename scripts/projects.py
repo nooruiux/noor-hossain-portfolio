@@ -33,15 +33,15 @@ PROJECTS = [
          tags=["E-commerce", "Beauty", "UI/UX"], url="https://nattoral-zeta.vercel.app/",
          bg="#e9e8e5", accent="#2f4f4a", year="2026", logo="NATTORAL", swatches=["#2f4f4a", "#9bc7c0", "#e9e3d6", "#111111"]),
     # Behance case studies (cover images to be added: set img="..." in assets/work/behance/)
-    dict(kind="behance", style="be", span=7, title="Team Collabs", sub="Website UI", tags=["Website", "UI Design"],
+    dict(img="collabs.webp", kind="behance", style="be", span=7, title="Team Collabs", sub="Website UI", tags=["Website", "UI Design"],
          url="https://www.behance.net/gallery/159708065/Team-Collabs-Website-UI", bg="#e9e8e5", accent="#4f46e5", year="Behance", word="Collabs"),
-    dict(kind="behance", style="be", span=5, title="SaaS Landing Page", sub="UI/UX Design", tags=["SaaS", "Landing Page"],
+    dict(img="saas1.webp", kind="behance", style="be", span=5, title="SaaS Landing Page", sub="UI/UX Design", tags=["SaaS", "Landing Page"],
          url="https://www.behance.net/gallery/238128689/SaaS-Landing-Page-ui-ui-design-uiux-design", bg="#e9e8e5", accent="#ff5a1f", year="Behance", word="SaaS"),
-    dict(kind="behance", style="be", span=5, title="SaaS Landing Page", sub="UI/UX Design · v2", tags=["SaaS", "Landing Page"],
+    dict(img="saas2.webp", kind="behance", style="be", span=5, title="SaaS Landing Page", sub="UI/UX Design · v2", tags=["SaaS", "Landing Page"],
          url="https://www.behance.net/gallery/172665281/Saas-Landing-Page-ui-ui-design-uiux-Design", bg="#e9e8e5", accent="#0ea5e9", year="Behance", word="SaaS"),
-    dict(kind="behance", style="be", span=7, title="Interior Design", sub="Landing Page", tags=["Interior", "Landing Page"],
+    dict(img="interior.webp", kind="behance", style="be", span=7, title="Interior Design", sub="Landing Page", tags=["Interior", "Landing Page"],
          url="https://www.behance.net/gallery/183139315/Interior-Design-Landing-Page-ui-ui-design-uiux-design", bg="#e9e8e5", accent="#a16207", year="Behance", word="Interior"),
-    dict(kind="behance", style="be", span=12, title="Marketing Agency", sub="Landing Page", tags=["Agency", "UI/UX Design"],
+    dict(img="agency.webp", kind="behance", style="be", span=12, title="Marketing Agency", sub="Landing Page", tags=["Agency", "UI/UX Design"],
          url="https://www.behance.net/gallery/165900155/Marketing-Agency-Landing-Page-UIUX-Design", bg="#e9e8e5", accent="#db2777", year="Behance", word="Agency"),
 ]
 
