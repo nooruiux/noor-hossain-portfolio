@@ -18,3 +18,8 @@ Project cards are generated from the `PROJECTS` list in `scripts/projects.py`
 ```bash
 python3 scripts/projects.py index.html
 ```
+
+## Testimonial photos
+Client avatars live in `assets/clients/`. To use a real photo, add e.g.
+`assets/clients/sarah-k.jpg` and change that client's `"img"` path in the
+`<script id="ts-data">` JSON inside `index.html`.
