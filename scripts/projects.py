@@ -18,15 +18,7 @@ PROJECTS = [
          head="Drive your dream car", stat="4.9★ rated", a="#ff5a1f", b="#ffb347", bg1="#1a0f0a", bg2="#ff5a1f"),
     dict(img="nattoral", title="Nattoral — Skincare E-commerce", cat="Web Design · E-commerce", url="https://nattoral-zeta.vercel.app/", emoji="🌿",
          head="Pure. Natural. Yours.", stat="100% natural", a="#16a34a", b="#bef264", bg1="#06180d", bg2="#16a34a"),
-    # Behance case studies
-    dict(title="Gym Landing Page", cat="Landing Page · Fitness", url="https://www.behance.net/gallery/186135665/Gym-Landing-Page-ui-ui-design-uiux-design", emoji="💪",
-         head="Build your best body", stat="Behance", a="#e11d48", b="#fda4af", bg1="#170710", bg2="#be123c"),
-    dict(title="Bitcoin Mining Landing Page", cat="Landing Page · Crypto", url="https://www.behance.net/gallery/182492455/Bitcoin-Mining-Landing-Page-UI-Design-UIUX-Design", emoji="⛏️",
-         head="Mine Bitcoin smarter", stat="+12% yield", a="#d97706", b="#fcd34d", bg1="#120d05", bg2="#b45309"),
-    dict(title="Storage Management Dashboard", cat="Dashboard · SaaS", url="https://www.behance.net/gallery/168541189/Storage-Management-Dashboard-ui-ui-Design-uiux-Design", emoji="🗂️",
-         head="All your files, organized", stat="1.2 TB used", a="#4f46e5", b="#38bdf8", bg1="#0a0c1f", bg2="#4f46e5"),
-    dict(title="Cloud Storage Dashboard", cat="Dashboard · SaaS", url="https://www.behance.net/gallery/165367125/Cloud-Storage-Dashboard-UIUX-and-UI-Design", emoji="☁️",
-         head="Your cloud, simplified", stat="99.9% uptime", a="#0ea5e9", b="#22d3ee", bg1="#04131c", bg2="#0284c7"),
+
 ]
 
 ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>'
