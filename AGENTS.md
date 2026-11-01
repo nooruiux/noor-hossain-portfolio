@@ -21,3 +21,8 @@ The owner (Noor) has asked for this repeatedly — a task is not done until it i
   frame/macbook/imac/tablet/browser/angle, full-page screenshots that scroll on hover). Run `python3 scripts/projects.py index.html` (it also re-runs csp.py); full-page screenshots live in `assets/work/shots/<slug>-full.webp`. Do not move the section.
 - Section spacing: every section uses the standard `section` padding; only add
   `padding-top:0` when the previous section is a plain (non-card) section, so gaps stay consistent.
+
+## Git rules (mandatory)
+- Every commit is authored only by Noor Hossain <noorxtk@gmail.com>.
+- Never add "Co-Authored-By", session links or any AI attribution line to commit messages or PRs.
+- Never mention any AI assistant by name in code, docs, commit messages or the site.
