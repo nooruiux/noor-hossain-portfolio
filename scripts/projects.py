@@ -33,7 +33,7 @@ PROJECTS = [
          tags=["E-commerce", "Beauty", "UI/UX"], url="https://nattoral-zeta.vercel.app/",
          bg="#e9e8e5", accent="#2f4f4a", year="2026", logo="NATTORAL", swatches=["#2f4f4a", "#9bc7c0", "#e9e3d6", "#111111"]),
     # Behance case studies (cover images to be added: set img="..." in assets/work/behance/)
-    dict(img="collabs.webp", device="frame", kind="behance", style="be", span=7, title="Team Collabs", sub="Website UI", tags=["Website", "UI Design"],
+    dict(img="team-collabs.webp", device="full", kind="behance", style="be", span=7, title="Team Collabs", sub="Website UI", tags=["Website", "UI Design"],
          url="https://www.behance.net/gallery/159708065/Team-Collabs-Website-UI", bg="#e9e8e5", accent="#4f46e5", year="Behance", word="Collabs"),
     dict(img="saas1.webp", device="frame", kind="behance", style="be", span=5, title="SaaS Landing Page", sub="UI/UX Design", tags=["SaaS", "Landing Page"],
          url="https://www.behance.net/gallery/238128689/SaaS-Landing-Page-ui-ui-design-uiux-design", bg="#e9e8e5", accent="#ff5a1f", year="Behance", word="SaaS"),
@@ -60,6 +60,8 @@ def cover(p):
             src = f'/assets/work/behance/{p["img"]}'
             im = f'<img class="be-fill" src="{src}" alt="{e("title")} — {e("sub")} cover" loading="lazy" decoding="async">'
             dev = p.get("device", "browser")
+            if dev == "full":
+                return f'<img class="be-img" src="{src}" alt="{e("title")} — {e("sub")} design" loading="lazy" decoding="async">'
             if dev == "browser":
                 return f'<div class="dv-win"><div class="dv-bar"><i></i><i></i><i></i><span>behance.net</span></div><div class="dv-scr">{im}</div></div>'
             if dev == "frame":
