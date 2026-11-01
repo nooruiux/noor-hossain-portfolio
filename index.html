@@ -468,6 +468,8 @@ section{padding:clamp(72px,10vw,128px) 0}
 .sel.bad{border-color:#f87171}
 fieldset.fld{border:0;padding:0;margin:0;min-width:0}
 fieldset.fld legend{margin-bottom:12px;padding:0}
+#budget-fs.bad .budgets span{border-color:rgba(248,113,113,.7)}
+#budget-fs.bad legend{color:#fca5a5}
 .budgets{display:flex;flex-wrap:wrap;gap:10px}
 .budgets label{position:relative;cursor:pointer}
 .budgets input{position:absolute;opacity:0;pointer-events:none}
@@ -851,13 +853,13 @@ footer{padding:48px 0 40px}
           </div>
         </div>
         <form class="cx-form" id="inquiry" novalidate>
-          <label class="fld"><span>Full name</span><input name="name" autocomplete="name" placeholder="John Doe"></label>
+          <label class="fld"><span>Full name <em>*</em></span><input name="name" autocomplete="name" placeholder="John Doe" required></label>
           <label class="fld half"><span>Your email <em>*</em></span><input name="email" type="email" autocomplete="email" placeholder="yourmail@gmail.com" required></label>
           <label class="fld half"><span>WhatsApp number</span>
             <div class="tel"><select name="cc" aria-label="Country code"><option value="+1" selected>🇺🇸 +1</option><option value="+880">🇧🇩 +880</option><option value="+44">🇬🇧 +44</option><option value="+971">🇦🇪 +971</option><option value="+966">🇸🇦 +966</option><option value="+91">🇮🇳 +91</option><option value="+61">🇦🇺 +61</option></select><input name="phone" type="tel" autocomplete="tel-national" placeholder="(555) 123-4567"></div>
           </label>
           <label class="fld"><span>Service required <em>*</em></span><div class="sel dd"><select name="service" required class="dd-native" tabindex="-1" aria-hidden="true"><option value="" selected disabled>Select your service</option><option>UI/UX Design</option><option>SaaS Design</option><option>Webflow</option><option>Web Design</option><option>WordPress</option><option>Framer</option><option>MVP Development</option><option>Brand Identity</option></select><button type="button" class="dd-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Service required"><span class="dd-val ph">Select your service</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button><ul class="dd-list" role="listbox" tabindex="-1"></ul></div></label>
-          <fieldset class="fld"><legend>Project budget</legend><div class="budgets"><label><input type="radio" name="budget" value="Less than $1K"><span>Less than $1K</span></label><label><input type="radio" name="budget" value="$1K – $3K"><span>$1K – $3K</span></label><label><input type="radio" name="budget" value="$3K – $5K"><span>$3K – $5K</span></label><label><input type="radio" name="budget" value="$5K – $10K"><span>$5K – $10K</span></label><label><input type="radio" name="budget" value="$10K – $20K"><span>$10K – $20K</span></label><label><input type="radio" name="budget" value="$20K – $50K"><span>$20K – $50K</span></label><label><input type="radio" name="budget" value="More than $50K"><span>More than $50K</span></label></div></fieldset>
+          <fieldset class="fld" id="budget-fs"><legend>Project budget <em>*</em></legend><div class="budgets"><label><input type="radio" name="budget" value="Less than $1K"><span>Less than $1K</span></label><label><input type="radio" name="budget" value="$1K – $3K"><span>$1K – $3K</span></label><label><input type="radio" name="budget" value="$3K – $5K"><span>$3K – $5K</span></label><label><input type="radio" name="budget" value="$5K – $10K"><span>$5K – $10K</span></label><label><input type="radio" name="budget" value="$10K – $20K"><span>$10K – $20K</span></label><label><input type="radio" name="budget" value="$20K – $50K"><span>$20K – $50K</span></label><label><input type="radio" name="budget" value="More than $50K"><span>More than $50K</span></label></div></fieldset>
           <label class="fld"><span>Project details <em>*</em></span><textarea name="details" rows="3" placeholder="I want to redesign my website…" required></textarea></label>
           <div class="cx-send"><button type="submit">Send inquiry <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><span class="cx-msg" role="status" aria-live="polite"></span></div>
         </form>
@@ -899,22 +901,25 @@ footer{padding:48px 0 40px}
     document.addEventListener('click', (e) => { if (!dd.contains(e.target)) open(false); });
     sel.closest('form').addEventListener('reset', () => { val.textContent = 'Select your service'; val.classList.add('ph'); items.forEach((li) => li.setAttribute('aria-selected', false)); });
   });
+  document.querySelectorAll('input[name=budget]').forEach((r) => r.addEventListener('change', () => document.getElementById('budget-fs').classList.remove('bad')));
   const form = document.getElementById('inquiry');
   if (form) form.addEventListener('submit', (e) => {
     e.preventDefault();
     const f = form.elements, msg = form.querySelector('.cx-msg');
     const email = f.email.value.trim(), details = f.details.value.trim();
-    [f.email, f.details].forEach((el) => el.classList.remove('bad')); const selBox = f.service.parentElement; selBox.classList.remove('bad');
+    const nameV = f.name.value.trim(), budgetEl = form.querySelector('input[name=budget]:checked'), fs = document.getElementById('budget-fs');
+    [f.name, f.email, f.details].forEach((el) => el.classList.remove('bad')); fs.classList.remove('bad');
+    if (!nameV) f.name.classList.add('bad'); if (!budgetEl) fs.classList.add('bad'); const selBox = f.service.parentElement; selBox.classList.remove('bad');
     const okService = !!f.service.value; if (!okService) selBox.classList.add('bad');
     const okEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     if (!okEmail) f.email.classList.add('bad');
     if (!details) f.details.classList.add('bad');
-    if (!okEmail || !details || !okService) { msg.className = 'cx-msg err'; msg.textContent = 'Please add a valid email, choose a service and describe your project.'; (!okEmail ? f.email : !okService ? selBox.querySelector('.dd-btn') : f.details).focus(); return; }
-    const budget = (form.querySelector('input[name=budget]:checked') || {}).value || 'Not specified';
+    if (!nameV || !okEmail || !okService || !budgetEl || !details) { msg.className = 'cx-msg err'; msg.textContent = 'Please fill in all required fields marked *.'; (!nameV ? f.name : !okEmail ? f.email : !okService ? selBox.querySelector('.dd-btn') : !budgetEl ? fs.querySelector('input') : f.details).focus(); return; }
+    const budget = budgetEl.value;
     const phone = f.phone.value.trim() ? f.cc.value + ' ' + f.phone.value.trim() : '—';
-    const name = f.name.value.trim() || '—';
+    const name = nameV;
     const body = `Name: ${name}\nEmail: ${email}\nWhatsApp: ${phone}\nService: ${f.service.value}\nBudget: ${budget}\n\nProject details:\n${details}`;
-    window.location.href = 'mailto:noorxtk@gmail.com?subject=' + encodeURIComponent('New project inquiry — ' + (name !== '—' ? name : email)) + '&body=' + encodeURIComponent(body);
+    window.location.href = 'mailto:noorxtk@gmail.com?subject=' + encodeURIComponent('New project inquiry — ' + name) + '&body=' + encodeURIComponent(body);
     msg.className = 'cx-msg ok'; msg.textContent = 'Opening your email app — just hit send. Thanks!';
   });
   (() => {
