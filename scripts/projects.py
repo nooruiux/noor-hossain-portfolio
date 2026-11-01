@@ -20,18 +20,18 @@ PROJECTS = [
     dict(slug="project-management-saas-website", style="float", span=5, title="WorkUp", sub="Project Management SaaS",
          tags=["SaaS", "UI/UX", "Dashboard"], url="https://project-management-saa-s-website.vercel.app/",
          bg="#5b3df5", accent="#c4b5fd", year="2026", chips=["+ Add task", "Sprint 12 · 75%"]),
-    dict(slug="fitness-training-website", style="bleed", span=5, title="Gymnastic", sub="Fitness Training Website",
+    dict(slug="fitness-training-website", style="rise", span=5, title="Gymnastic", sub="Fitness Training Website",
          tags=["Fitness", "Web Design"], url="https://fitness-training-website-bay.vercel.app/",
-         bg="#06171a", accent="#22d3ee", year="2026", word="GYMNASTIC"),
+         bg="#061a1d", accent="#22d3ee", year="2026", logo="GYMNASTIC", cta="Be a Member"),
     dict(slug="cryptocurrency-website", style="phone", span=7, title="Lumino", sub="Bitcoin Mining Platform",
          tags=["Crypto", "Fintech", "Web Design"], url="https://cryptocurrency-website-development.vercel.app/",
          bg="#0a0b2e", accent="#7c5cff", year="2026", chips=["Total deposits $8M+", "Active users 125k+"]),
-    dict(slug="rent-a-car-website", style="browser", span=7, title="Rent", sub="Car Rental Website · Dubai",
+    dict(slug="rent-a-car-website", style="showcase", span=7, title="Rent", sub="Car Rental Website · Dubai",
          tags=["Car Rental", "Booking UX", "Next.js"], url="https://rent-a-car-website-eight.vercel.app/",
-         bg="#ffe8d6", accent="#ff7a1a", year="2026", word="Rent"),
-    dict(slug="nattoral", style="split", span=5, title="Nattoral", sub="Skincare E-commerce Store",
+         bg="#ff8a3d", accent="#1d72e8", year="2026", logo="Rent", cta="Book in 60 sec"),
+    dict(slug="nattoral", style="bento", span=5, title="Nattoral", sub="Skincare E-commerce Store",
          tags=["E-commerce", "Beauty", "UI/UX"], url="https://nattoral-zeta.vercel.app/",
-         bg="#dfe9e5", accent="#2f4f4a", year="2026", swatches=["#2f4f4a", "#9bc7c0", "#e9e3d6", "#111111"]),
+         bg="#dfe9e5", accent="#2f4f4a", year="2026", logo="NATTORAL", swatches=["#2f4f4a", "#9bc7c0", "#e9e3d6", "#111111"]),
 ]
 
 ARR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>'
@@ -63,6 +63,24 @@ def cover(p):
         sw = ''.join(f'<i style="background:{c}"></i>' for c in p["swatches"])
         return (f'<div class="cv-sframe">{shot(p, "d", "", e("title") + " store")}</div>'
                 f'<div class="cv-guide"><small>Colors</small><div class="cv-sw">{sw}</div><small>Type</small><b>Aa</b><span>Elegant Serif · Inter</span></div>')
+    if st == "rise":
+        return (f'<div class="cv-halo"></div><span class="cv-logo" data-d="-0.4">{e("logo")}</span>'
+                f'<div class="cv-rise" data-d="0.4">{shot(p, "d", "", e("title") + " website")}</div>'
+                f'<div class="cv-rphone" data-d="1">{shot(p, "m", "")}</div>'
+                f'<span class="cv-pill" data-d="1.4">{e("cta")} ↗</span>')
+    if st == "showcase":
+        return (f'<span class="cv-logo dark" data-d="-0.4">{e("logo")}</span>'
+                f'<div class="cv-back" data-d="0.3">{shot(p, "d", "", e("title") + " website")}</div>'
+                f'<div class="cv-car" data-d="1.2"><img src="/assets/work/shots/{p["slug"]}-car.webp" alt="" loading="lazy"></div>'
+                f'<div class="cv-search" data-d="0.8"><img src="/assets/work/shots/{p["slug"]}-search.webp" alt="" loading="lazy"></div>'
+                f'<div class="cv-sphone" data-d="1.6">{shot(p, "m", "")}</div>')
+    if st == "bento":
+        sw = ''.join(f'<i style="background:{c}"></i>' for c in p["swatches"])
+        return (f'<div class="cv-bento">'
+                f'<div class="bt a" data-d="0.5"><img src="/assets/work/shots/{p["slug"]}-product.webp" alt="{e("title")} products" loading="lazy"></div>'
+                f'<div class="bt b" data-d="0.9"><img src="/assets/work/shots/{p["slug"]}-hero.webp" alt="" loading="lazy"></div>'
+                f'<div class="bt c" data-d="1.2"><span class="bl">{e("logo")}</span><div class="cv-sw">{sw}</div></div>'
+                f'<div class="bt d" data-d="1.5">{shot(p, "m", "")}</div></div>')
     raise ValueError(st)
 
 
@@ -134,15 +152,6 @@ CSS = r'''/* Work */
 .pc-cover.is-float:hover .cv-screen{transform:rotateX(10deg) rotateY(-6deg) rotateZ(2deg) translateY(-10px)}
 .cv-chip{position:absolute;padding:10px 14px;border-radius:14px;font:600 13px/1 var(--sans);color:#1b1446;background:#fff;box-shadow:0 18px 30px -14px rgba(10,5,40,.6);animation:bob 5s ease-in-out infinite}
 .cv-chip.c0{left:8%;top:12%}.cv-chip.c1{left:14%;bottom:12%;animation-delay:-2.5s;background:#1b1446;color:#fff}
-/* cover: bleed */
-.is-bleed .cv-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left top;filter:saturate(1.1)}
-.is-bleed::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,transparent 30%,rgba(3,12,14,.85))}
-.is-bleed:hover .cv-bg{transform:scale(1.07)}
-.cv-word{position:absolute;z-index:2;left:18px;bottom:6px;font:800 clamp(38px,4.6vw,66px)/1 var(--sans);letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.7);white-space:nowrap}
-.is-bleed:hover .cv-word{transform:translateX(10px)}
-.cv-peek{position:absolute;z-index:3;right:8%;bottom:-30%;width:30%;border-radius:22px;overflow:hidden;border:5px solid #111;box-shadow:0 30px 60px -20px rgba(0,0,0,.7);transform:rotate(-6deg)}
-.cv-peek img{display:block;width:100%}
-.pc-cover.is-bleed:hover .cv-peek{transform:rotate(-2deg) translateY(-14%)}
 /* cover: phone */
 .cv-glow{position:absolute;inset:0;background:radial-gradient(40% 55% at 50% 55%,var(--ac),transparent 70%),repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 46px),repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 1px,transparent 1px 46px);opacity:.9}
 .cv-phone{position:absolute;left:50%;top:12%;width:min(34%,230px);margin-left:calc(min(34%,230px) / -2);border-radius:36px;padding:9px;background:#111;box-shadow:0 0 0 2px #2a2a2e inset,0 50px 90px -30px rgba(0,0,0,.85);transform:rotate(-4deg)}
@@ -151,28 +160,47 @@ CSS = r'''/* Work */
 .pc-cover.is-phone:hover .cv-phone{transform:rotate(0) translateY(-14px) scale(1.03)}
 .cv-stat{position:absolute;z-index:3;padding:12px 16px;border-radius:16px;font:600 13px/1.25 var(--sans);color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);animation:bob 6s ease-in-out infinite}
 .cv-stat.s0{left:8%;top:22%}.cv-stat.s1{right:8%;bottom:20%;animation-delay:-3s}
-/* cover: browser */
-.cv-mark{position:absolute;right:-2%;bottom:-8%;font:800 clamp(120px,15vw,220px)/1 var(--serif);font-style:italic;color:var(--ac);opacity:.18;letter-spacing:-.04em}
-.cv-win{position:absolute;left:8%;top:12%;width:84%;height:100%;border-radius:16px 16px 0 0;overflow:hidden;background:#fff;box-shadow:0 40px 80px -30px rgba(120,50,0,.45)}
-.cv-bar{height:34px;display:flex;align-items:center;gap:6px;padding:0 14px;background:#f4f2ee;border-bottom:1px solid #eae6df}
-.cv-bar i{width:9px;height:9px;border-radius:50%;background:#ff5f57}.cv-bar i:nth-child(2){background:#febc2e}.cv-bar i:nth-child(3){background:#28c840}
-.cv-bar span{margin:0 auto;font:500 11.5px/1 var(--sans);color:#8c8a84;padding:6px 40px;border-radius:8px;background:#fff}
-.cv-view{position:relative;height:calc(100% - 34px);overflow:hidden}
-.cv-view img{display:block;width:100%;transition:transform 2.4s cubic-bezier(.45,0,.2,1)}
-.pc-cover.is-browser:hover .cv-view img{transform:translateY(-22%)}
-.pc-cover.is-browser:hover .cv-win{transform:translateY(-12px)}
-/* cover: split */
-.cv-sframe{position:absolute;left:7%;top:12%;width:66%;bottom:12%;border-radius:16px;overflow:hidden;box-shadow:0 30px 60px -28px rgba(20,40,36,.5);background:#fff}
-.cv-sframe img{width:100%;height:100%;object-fit:cover;object-position:left top}
-.cv-guide{position:absolute;right:6%;top:16%;bottom:16%;width:20%;min-width:96px;padding:16px 14px;border-radius:16px;background:#fff;display:flex;flex-direction:column;gap:8px;box-shadow:0 24px 40px -24px rgba(20,40,36,.5)}
-.cv-guide small{font:600 10px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:#8c8a84}
-.cv-sw{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px}
-.cv-sw i{aspect-ratio:1;border-radius:8px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
-.pc-cover.is-split:hover .cv-sw i{transform:scale(1.12) rotate(-6deg)}
-.pc-cover.is-split:hover .cv-sw i:nth-child(2){transition-delay:.05s}.pc-cover.is-split:hover .cv-sw i:nth-child(3){transition-delay:.1s}.pc-cover.is-split:hover .cv-sw i:nth-child(4){transition-delay:.15s}
-.cv-guide b{font:500 clamp(30px,3vw,42px)/1 Georgia,var(--serif);color:var(--ac)}
-.cv-guide span{font-size:11px;color:#55534e}
-.pc-cover.is-split:hover .cv-sframe{transform:translateY(-8px)}
+/* cover: rise (Gymnastic) */
+.cv-halo{position:absolute;inset:0;background:radial-gradient(55% 60% at 50% 100%,rgba(34,211,238,.55),transparent 70%),radial-gradient(40% 40% at 85% 10%,rgba(34,211,238,.25),transparent 70%),repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0 1px,transparent 1px 40px),repeating-linear-gradient(0deg,rgba(255,255,255,.04) 0 1px,transparent 1px 40px)}
+.cv-logo{position:absolute;z-index:4;left:50%;top:7%;transform:translateX(-50%);padding:9px 16px;border-radius:999px;font:800 13px/1 var(--sans);letter-spacing:.14em;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);white-space:nowrap}
+.cv-logo.dark{left:7%;transform:none;color:#1a1208;background:rgba(255,255,255,.55);border-color:rgba(255,255,255,.7);letter-spacing:.02em;font-size:15px}
+.cv-rise{position:absolute;left:9%;right:9%;top:22%;bottom:-6%;border-radius:18px 18px 0 0;overflow:hidden;border:6px solid rgba(255,255,255,.12);border-bottom:0;box-shadow:0 -20px 60px -10px rgba(34,211,238,.45)}
+.cv-rise{background:#121212}
+.cv-rise img{width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
+.cv-rphone{position:absolute;z-index:3;right:5%;bottom:-16%;width:25%;border-radius:24px;overflow:hidden;border:5px solid #0b0b0c;box-shadow:0 30px 60px -20px rgba(0,0,0,.8)}
+.cv-rphone img{width:100%;display:block}
+.cv-pill{position:absolute;z-index:4;left:6%;bottom:12%;padding:12px 18px;border-radius:999px;font:700 13px/1 var(--sans);color:#06292e;background:#22d3ee;box-shadow:0 14px 30px -10px rgba(34,211,238,.8)}
+/* cover: showcase (Rent) */
+.is-showcase{background:linear-gradient(140deg,#ffb37a 0%,#ff8a3d 45%,#f26b1d 100%)!important}
+.is-showcase::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 60% at 75% 30%,rgba(255,255,255,.45),transparent 70%)}
+.cv-back{position:absolute;left:7%;top:20%;width:62%;border-radius:14px;overflow:hidden;box-shadow:0 30px 60px -24px rgba(120,40,0,.55);border:5px solid rgba(255,255,255,.7)}
+.cv-back img{width:100%;display:block}
+.cv-car{position:absolute;z-index:2;right:6%;top:13%;width:44%;border-radius:22px;overflow:hidden;background:#f3f4f8;box-shadow:0 30px 60px -20px rgba(120,40,0,.6)}
+.cv-car img{width:100%;display:block}
+.cv-search{position:absolute;z-index:3;left:9%;right:27%;bottom:9%;border-radius:14px;overflow:hidden;box-shadow:0 26px 50px -16px rgba(80,25,0,.55)}
+.cv-search img{width:100%;display:block}
+.cv-sphone{position:absolute;z-index:4;right:6%;bottom:-18%;width:19%;border-radius:22px;overflow:hidden;border:5px solid #111;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+.cv-sphone img{width:100%;display:block}
+/* cover: bento (Nattoral) */
+.cv-bento{position:absolute;inset:6%;display:grid;grid-template-columns:1.05fr 1fr .7fr;grid-template-rows:1fr 1fr;gap:10px}
+.bt{border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 18px 36px -24px rgba(20,40,36,.55)}
+.bt img{width:100%;height:100%;object-fit:cover;display:block}
+.bt.a{grid-row:span 2}
+.bt.b{grid-column:span 2}
+.bt.b img{object-position:85% center}
+.bt.c{display:flex;flex-direction:column;justify-content:space-between;padding:14px;background:#2f4f4a;color:#e9e3d6}
+.bl{font:500 15px/1 Georgia,var(--serif);letter-spacing:.18em}
+.bt.c .cv-sw{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.bt.c .cv-sw i{aspect-ratio:1;border-radius:8px;box-shadow:0 0 0 1px rgba(255,255,255,.25)}
+.bt.d{position:relative;background:#111;padding:4px}
+.bt.d img{border-radius:12px;object-position:top}
+/* parallax layers */
+.pc-cover [data-d]{transition:transform .7s cubic-bezier(.2,.8,.2,1);transform:translate(calc(var(--px,0) * var(--dd,0) * 10px),calc(var(--py,0) * var(--dd,0) * 10px))}
+.cv-logo[data-d]{transform:translate(calc(-50% + var(--px,0) * var(--dd,0) * 10px),calc(var(--py,0) * var(--dd,0) * 10px))}
+.cv-logo.dark[data-d]{transform:translate(calc(var(--px,0) * var(--dd,0) * 10px),calc(var(--py,0) * var(--dd,0) * 10px))}
+.pc-cover:hover .cv-rise{bottom:-2%}
+.pc-cover:hover .cv-rphone,.pc-cover:hover .cv-sphone{bottom:-10%}
+.pc-cover:hover .bt{box-shadow:0 26px 44px -22px rgba(20,40,36,.6)}
 
 /* cursor bubble */
 .pc-cursor{position:fixed;left:0;top:0;z-index:60;width:104px;height:104px;margin:-52px 0 0 -52px;border-radius:50%;display:grid;place-items:center;align-content:center;gap:2px;pointer-events:none;
@@ -182,13 +210,18 @@ CSS = r'''/* Work */
 @media (hover:none),(pointer:coarse){.pc-cursor{display:none}}
 
 @media (max-width:880px){.pc.s7,.pc.s5{grid-column:span 12}.pc-cover{height:clamp(280px,64vw,420px)}}
-@media (max-width:560px){.cv-guide{display:none}.cv-sframe{width:86%}.cv-chip{font-size:11px}.cv-stat{font-size:11px;padding:9px 12px}}
+@media (max-width:560px){.cv-bento{grid-template-columns:1fr 1fr}.bt.c{display:none}.cv-rphone{width:30%}.cv-sphone{width:24%}.cv-pill{font-size:11px;padding:9px 13px}.cv-chip{font-size:11px}.cv-stat{font-size:11px;padding:9px 12px}}
 @media (prefers-reduced-motion:reduce){.pc-cover{clip-path:none!important;transition:none}.pc-cover>*,.pc-cover *{transition:none!important;animation:none!important;transform:none!important}}
 
 '''
 
 JS = r'''  (() => {
     const cur = document.querySelector('.pc-cursor'); if (!cur || matchMedia('(hover: none)').matches) return;
+    document.querySelectorAll('.pc-cover [data-d]').forEach((el) => el.style.setProperty('--dd', el.dataset.d));
+    document.querySelectorAll('.pc-cover').forEach((c) => {
+      c.addEventListener('pointermove', (e) => { const r = c.getBoundingClientRect(); c.style.setProperty('--px', ((e.clientX - r.left) / r.width - .5) * 2); c.style.setProperty('--py', ((e.clientY - r.top) / r.height - .5) * 2); });
+      c.addEventListener('pointerleave', () => { c.style.setProperty('--px', 0); c.style.setProperty('--py', 0); });
+    });
     document.querySelectorAll('.pc-cover').forEach((c) => {
       c.addEventListener('pointerenter', () => cur.classList.add('on'));
       c.addEventListener('pointerleave', () => cur.classList.remove('on'));
@@ -203,7 +236,8 @@ if __name__ == '__main__':
     # replace the WORK section in place
     s = re.sub(r'  <!-- WORK -->.*?(?=  <!-- [A-Z]+ -->)', lambda _: section(), s, count=1, flags=re.S)
     s = re.sub(r'/\* Work \*/.*?(?=/\* Process \*/)', lambda _: CSS, s, count=1, flags=re.S)
-    if "querySelector('.pc-cursor')" not in s:
+    s = re.sub(r"  \(\(\) => \{\n    const cur = document\.querySelector\('\.pc-cursor'\).*?\n  \}\)\(\);\n", "", s, count=1, flags=re.S)
+    if True:
         s = s.replace("  document.getElementById('yr').textContent", JS + "  document.getElementById('yr').textContent", 1)
     open(path, 'w', encoding='utf-8').write(s)
     print('cards', s.count('<article class="pc '))
