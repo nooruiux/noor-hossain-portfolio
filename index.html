@@ -361,14 +361,65 @@ section{padding:clamp(72px,10vw,128px) 0}
 @media (max-width:880px){.faq-grid{grid-template-columns:1fr;gap:16px}}
 
 /* CTA */
-.cta{position:relative;overflow:hidden;text-align:center;border-radius:var(--r-lg);background:var(--accent);color:#fff;padding:clamp(56px,8vw,104px) var(--gutter)}
-.cta::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 50% 120%,rgba(255,255,255,.35),transparent 70%)}
-.cta>*{position:relative}
-.cta .face{width:84px;height:84px;border-radius:50%;margin:0 auto 26px;background:#ffd2bd;object-fit:cover;object-position:top;border:4px solid rgba(255,255,255,.5)}
-.cta h2{font-size:clamp(40px,7vw,92px);line-height:.98;letter-spacing:-.05em;font-weight:600;max-width:900px;margin:0 auto}
-.cta p{margin:22px auto 34px;max-width:480px;opacity:.9}
-.cta .btn-dark{background:#111;color:#fff}
-.mail{display:inline-block;margin-top:22px;font-weight:600;border-bottom:1px solid rgba(255,255,255,.5)}
+.cx{position:relative;overflow:hidden;isolation:isolate;border-radius:var(--r-lg);background:#0b0b0a;color:#f4f2ee;padding:clamp(28px,5vw,64px);display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(32px,5vw,72px)}
+.cx::before,.cx::after{content:"";position:absolute;z-index:-1;border-radius:50%;filter:blur(90px);pointer-events:none}
+.cx::before{width:520px;height:420px;right:-140px;top:-160px;background:rgba(255,90,31,.42);animation:cxGlow 12s ease-in-out infinite alternate}
+.cx::after{width:360px;height:300px;left:-120px;bottom:-160px;background:rgba(255,180,143,.22);animation:cxGlow 14s ease-in-out -4s infinite alternate}
+@keyframes cxGlow{to{transform:translate(-60px,40px) scale(1.15)}}
+.cx-badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#86efac;border:1px solid rgba(134,239,172,.35);background:rgba(34,197,94,.08);padding:7px 14px;border-radius:999px}
+.cx-badge i{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.6);animation:pulse 2s infinite}
+.cx h2{font-size:clamp(34px,4.4vw,56px);line-height:1.02;letter-spacing:-.04em;font-weight:600;margin:20px 0 22px}
+.cx h2 .serif{color:var(--accent)}
+.cx-list{list-style:none;display:grid;gap:12px;margin-bottom:36px}
+.cx-list li{display:flex;gap:12px;align-items:flex-start;color:#d6d3cc;font-size:15.5px}
+.cx-list svg{flex:none;width:20px;height:20px;margin-top:1px;color:var(--accent)}
+.cx-me{display:flex;gap:18px;align-items:flex-end;flex-wrap:wrap}
+.cx-photo{width:150px;aspect-ratio:1;border-radius:22px;overflow:hidden;position:relative;background:radial-gradient(120% 90% at 50% 100%,#ffb48f,#ff7a45 45%,#ff5a1f 80%)}
+.cx-photo::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.1) 0 1px,transparent 1px 22px),repeating-linear-gradient(0deg,rgba(255,255,255,.1) 0 1px,transparent 1px 22px)}
+.cx-photo img{position:absolute;left:50%;bottom:0;width:118%;max-width:none;transform:translateX(-50%)}
+.cx-me b{display:block;font-size:20px;letter-spacing:-.02em;font-weight:600}
+.cx-me small{display:block;color:#a8a59e;font-size:14px;margin-top:4px}
+.cx-links{display:grid;gap:8px;margin-top:14px;font-size:14.5px}
+.cx-links a{display:inline-flex;align-items:center;gap:8px;color:#e7e4de}
+.cx-links a svg{width:17px;height:17px}
+.cx-links a.book{color:var(--accent);font-weight:600}
+.cx-links a:hover{text-decoration:underline;text-underline-offset:3px}
+
+.cx-form{display:grid;grid-template-columns:1fr 1fr;gap:28px 24px;align-content:start}
+.fld{grid-column:1/-1;display:flex;flex-direction:column;gap:10px}
+.fld.half{grid-column:auto}
+.fld>span,.fld legend{font-size:15px;font-weight:600;color:#fff}
+.fld>span em,.fld legend em{font-style:normal;color:var(--accent)}
+.cx-form input,.cx-form textarea{font:inherit;font-size:15px;color:#fff;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.18);padding:6px 0 14px;outline:none;transition:border-color .3s;width:100%;resize:none}
+.cx-form input::placeholder,.cx-form textarea::placeholder{color:#77746d}
+.cx-form input:focus,.cx-form textarea:focus{border-color:var(--accent)}
+.cx-form .bad{border-color:#f87171!important}
+.tel{display:flex;align-items:flex-end;gap:10px;border-bottom:1px solid rgba(255,255,255,.18);transition:border-color .3s}
+.tel:focus-within{border-color:var(--accent)}
+.tel select{font:inherit;font-size:14px;color:#fff;background:transparent;border:0;outline:none;padding:6px 0 14px;cursor:pointer}
+.tel select option{color:#111}
+.tel input{border:0!important}
+fieldset.fld{border:0;padding:0;margin:0;min-width:0}
+fieldset.fld legend{margin-bottom:12px;padding:0}
+.budgets{display:flex;flex-wrap:wrap;gap:10px}
+.budgets label{position:relative;cursor:pointer}
+.budgets input{position:absolute;opacity:0;pointer-events:none}
+.budgets span{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.18);color:#d6d3cc;font-size:14.5px;transition:background .25s,border-color .25s,color .25s,transform .25s}
+.budgets span::before{content:"";width:0;height:14px;border-radius:50%;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ff5a1f' stroke-width='4'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/9px no-repeat;transition:width .25s;margin-right:-8px}
+.budgets label:hover span{border-color:rgba(255,255,255,.4);color:#fff}
+.budgets input:checked+span{background:var(--accent);border-color:var(--accent);color:#fff;transform:translateY(-1px);box-shadow:0 10px 24px -10px rgba(255,90,31,.8)}
+.budgets input:checked+span::before{width:14px;margin-right:0}
+.budgets input:focus-visible+span{outline:2px solid #fff;outline-offset:2px}
+.cx-send{grid-column:1/-1;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.cx-send button{display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 26px;border-radius:14px;font-weight:600;font-size:15px;color:#fff;background:linear-gradient(135deg,#ff7a45,#e8460f);box-shadow:0 14px 30px -12px rgba(255,90,31,.8);transition:transform .25s,box-shadow .25s}
+.cx-send button:hover{transform:translateY(-2px);box-shadow:0 18px 36px -12px rgba(255,90,31,.9)}
+.cx-send button svg{width:18px;height:18px;transition:transform .3s}
+.cx-send button:hover svg{transform:translateX(4px)}
+.cx-msg{font-size:14px;color:#a8a59e}
+.cx-msg.ok{color:#86efac}.cx-msg.err{color:#fca5a5}
+@media (max-width:980px){.cx{grid-template-columns:1fr}}
+@media (max-width:560px){.cx-form{grid-template-columns:1fr}.fld.half{grid-column:1/-1}.cx-photo{width:120px}}
+@media (prefers-reduced-motion:reduce){.cx::before,.cx::after{animation:none}}
 
 /* Footer */
 footer{padding:48px 0 40px}
@@ -689,12 +740,36 @@ footer{padding:48px 0 40px}
   <!-- CTA -->
   <section id="contact" style="padding-top:0">
     <div class="wrap">
-      <div class="cta rv">
-        <img class="face" src="/assets/noor-hossain-sm.webp" alt="Noor Hossain" width="84" height="84">
-        <h2>Let's build something <span class="serif">great</span> together.</h2>
-        <p>Have a project in mind? Tell me about it — I reply within 24 hours.</p>
-        <a href="mailto:noorxtk@gmail.com?subject=New%20project%20inquiry" class="btn btn-dark">Start a project <span class="arr" style="background:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-        <br><a class="mail" href="mailto:noorxtk@gmail.com">noorxtk@gmail.com</a>
+      <div class="cx rv">
+        <div class="cx-left">
+          <span class="cx-badge"><i></i>Free 30-min strategy call — on me</span>
+          <h2>Let's grow your brand, <span class="serif">starting today.</span></h2>
+          <ul class="cx-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>I reply to every inquiry within 24 hours</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>Happy to sign an NDA before we talk details</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>You work directly with me — no hand-offs, no middlemen</li>
+          </ul>
+          <div class="cx-me">
+            <div class="cx-photo"><img src="/assets/noor-hossain.webp" alt="Noor Hossain" width="900" height="900" loading="lazy"></div>
+            <div>
+              <b>Noor Hossain</b><small>UI/UX Designer &amp; Web Developer</small>
+              <div class="cx-links">
+                <a href="mailto:noorxtk@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>noorxtk@gmail.com</a>
+                <a class="book" href="mailto:noorxtk@gmail.com?subject=Book%20a%20call">Book a call directly →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <form class="cx-form" id="inquiry" novalidate>
+          <label class="fld"><span>Full name</span><input name="name" autocomplete="name" placeholder="John Doe"></label>
+          <label class="fld half"><span>Your email <em>*</em></span><input name="email" type="email" autocomplete="email" placeholder="yourmail@gmail.com" required></label>
+          <label class="fld half"><span>WhatsApp number</span>
+            <div class="tel"><select name="cc" aria-label="Country code"><option value="+880">🇧🇩 +880</option><option value="+1">🇺🇸 +1</option><option value="+44">🇬🇧 +44</option><option value="+971">🇦🇪 +971</option><option value="+966">🇸🇦 +966</option><option value="+91">🇮🇳 +91</option><option value="+61">🇦🇺 +61</option></select><input name="phone" type="tel" autocomplete="tel-national" placeholder="1XXX XXXXXX"></div>
+          </label>
+          <fieldset class="fld"><legend>Project budget</legend><div class="budgets"><label><input type="radio" name="budget" value="Less than $1K"><span>Less than $1K</span></label><label><input type="radio" name="budget" value="$1K – $3K"><span>$1K – $3K</span></label><label><input type="radio" name="budget" value="$3K – $5K"><span>$3K – $5K</span></label><label><input type="radio" name="budget" value="$5K – $10K"><span>$5K – $10K</span></label><label><input type="radio" name="budget" value="$10K – $20K"><span>$10K – $20K</span></label><label><input type="radio" name="budget" value="$20K – $50K"><span>$20K – $50K</span></label><label><input type="radio" name="budget" value="More than $50K"><span>More than $50K</span></label></div></fieldset>
+          <label class="fld"><span>Project details <em>*</em></span><textarea name="details" rows="3" placeholder="I want to redesign my website…" required></textarea></label>
+          <div class="cx-send"><button type="submit">Send inquiry <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><span class="cx-msg" role="status" aria-live="polite"></span></div>
+        </form>
       </div>
     </div>
   </section>
@@ -714,6 +789,23 @@ footer{padding:48px 0 40px}
 <script>
 (() => {
   document.querySelectorAll('.sv').forEach((c)=>c.addEventListener('pointermove',(e)=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');}));
+  const form = document.getElementById('inquiry');
+  if (form) form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const f = form.elements, msg = form.querySelector('.cx-msg');
+    const email = f.email.value.trim(), details = f.details.value.trim();
+    [f.email, f.details].forEach((el) => el.classList.remove('bad'));
+    const okEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!okEmail) f.email.classList.add('bad');
+    if (!details) f.details.classList.add('bad');
+    if (!okEmail || !details) { msg.className = 'cx-msg err'; msg.textContent = 'Please add a valid email and your project details.'; (okEmail ? f.details : f.email).focus(); return; }
+    const budget = (form.querySelector('input[name=budget]:checked') || {}).value || 'Not specified';
+    const phone = f.phone.value.trim() ? f.cc.value + ' ' + f.phone.value.trim() : '—';
+    const name = f.name.value.trim() || '—';
+    const body = `Name: ${name}\nEmail: ${email}\nWhatsApp: ${phone}\nBudget: ${budget}\n\nProject details:\n${details}`;
+    window.location.href = 'mailto:noorxtk@gmail.com?subject=' + encodeURIComponent('New project inquiry — ' + (name !== '—' ? name : email)) + '&body=' + encodeURIComponent(body);
+    msg.className = 'cx-msg ok'; msg.textContent = 'Opening your email app — just hit send. Thanks!';
+  });
   document.getElementById('yr').textContent = new Date().getFullYear();
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
