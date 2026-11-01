@@ -186,6 +186,69 @@ body{transition:background-color .4s,color .4s}
 @media (max-width:560px){.ab-bento{grid-template-columns:1fr}.ab-me,.ab-stack,.ab-soc,.ab-skill,.ab-status,.ab-val{grid-column:auto}.ab-me{min-height:380px}}
 @media (prefers-reduced-motion:reduce){.ab-say .w,.ab-pill{--o:1!important}.ab-row{animation:none}.sk-bar i{transform:none;transition:none}}
 
+/* About v2 cards */
+.ab-bento{grid-template-columns:repeat(4,minmax(0,1fr))}
+.ab-d2c{grid-column:span 2;grid-row:span 2;display:flex;flex-direction:column;gap:16px;min-height:420px}
+.d2c-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.d2c-top h4{margin:0}
+.d2c-pill{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;background:var(--bg);border:1px solid var(--line);color:var(--ink-2)}
+.d2c-pill i{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.d2c-stage{--pos:50%;position:relative;flex:1;min-height:260px;border-radius:18px;overflow:hidden;background:#0f0f0e;border:1px solid var(--line)}
+.d2c-bar{height:30px;display:flex;align-items:center;gap:6px;padding:0 12px;background:#1a1a19;border-bottom:1px solid rgba(255,255,255,.06)}
+.d2c-bar i{width:8px;height:8px;border-radius:50%;background:#ff5f57}.d2c-bar i:nth-child(2){background:#febc2e}.d2c-bar i:nth-child(3){background:#28c840}
+.d2c-bar span{margin-left:8px;font:500 11px/1 ui-monospace,Menlo,monospace;color:#85827b}
+.d2c-bar.light{background:#f1efeb;border-color:#e6e2da}.d2c-bar.light span{color:#8c8a84;font-family:var(--sans)}
+.d2c-code,.d2c-design{position:absolute;inset:0}
+.d2c-code pre{margin:0;padding:16px 18px;font:500 clamp(10.5px,1vw,12.5px)/1.7 ui-monospace,SFMono-Regular,Menlo,monospace;color:#e7e4de;white-space:pre}
+.d2c-code .k{color:#ff8a5c}.d2c-code .f{color:#93c5fd}.d2c-code .t{color:#86efac}.d2c-code .a{color:#c4b5fd}.d2c-code .s{color:#fcd34d}
+.d2c-design{background:#fff;clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
+.d2c-ui{position:relative;padding:22px 24px;color:#111}
+.d2c-ui .d2c-tag{display:inline-block;font:600 10px/1 var(--sans);padding:5px 8px;border-radius:999px;background:#fff1ea;color:var(--accent)}
+.d2c-ui b{display:block;margin-top:12px;font-size:clamp(20px,2.2vw,28px);letter-spacing:-.03em;line-height:1.05}
+.d2c-ui small{display:block;margin-top:6px;font-size:12.5px;color:#55534e}
+.d2c-ui em{display:inline-block;margin-top:14px;font:600 12px/1 var(--sans);font-style:normal;color:#fff;background:#111;padding:9px 14px;border-radius:999px}
+.d2c-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
+.d2c-cards i{height:44px;border-radius:10px;background:#f4f2ee}
+.d2c-cards i:first-child{background:#ffe4d6}
+.d2c-sel{position:absolute;left:18px;top:47px;width:min(270px,78%);height:40px;border:1.5px solid #0d99ff;pointer-events:none}
+.d2c-sel i{position:absolute;width:7px;height:7px;background:#fff;border:1.5px solid #0d99ff}
+.d2c-sel i:nth-child(1){left:-4px;top:-4px}.d2c-sel i:nth-child(2){right:-4px;top:-4px}.d2c-sel i:nth-child(3){left:-4px;bottom:-4px}.d2c-sel i:nth-child(4){right:-4px;bottom:-4px}
+.d2c-handle{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;margin-left:-1px;background:var(--accent);box-shadow:0 0 18px rgba(255,90,31,.7)}
+.d2c-handle span{position:absolute;top:50%;left:50%;width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:#fff;box-shadow:0 8px 20px -6px rgba(255,90,31,.8)}
+.d2c-handle span svg{width:18px;height:18px}
+.d2c-stage{cursor:ew-resize}
+.d2c-cap{font-size:14.5px;color:var(--ink-2)}
+
+.ab-rings{grid-column:span 1}
+.ab-rings ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:16px 10px;margin-top:6px}
+.ab-rings li{position:relative;display:grid;justify-items:center;text-align:center;gap:6px}
+.ab-rings svg{width:64px;height:64px;transform:rotate(-90deg)}
+.ab-rings circle{fill:none;stroke-width:4}
+.ab-rings .bg{stroke:var(--surface-2)}
+.ab-rings .fg{stroke:var(--accent);stroke-linecap:round;stroke-dasharray:113.1;stroke-dashoffset:113.1;transition:stroke-dashoffset 1.6s cubic-bezier(.2,.8,.2,1)}
+.ab-rings.in .fg{stroke-dashoffset:calc(113.1 - 113.1 * var(--v) / 100)}
+.ab-rings li:nth-child(2) .fg{transition-delay:.12s}.ab-rings li:nth-child(3) .fg{transition-delay:.24s}.ab-rings li:nth-child(4) .fg{transition-delay:.36s}
+.ab-rings b{position:absolute;top:21px;left:0;right:0;font-size:14px;font-variant-numeric:tabular-nums}
+.ab-rings b::after{content:"%";font-size:10px;color:var(--ink-3)}
+.ab-rings span{font-size:12px;font-weight:600;line-height:1.2;color:var(--ink-2)}
+
+.ab-world{grid-column:span 2;display:grid;grid-template-columns:1fr 150px;gap:16px;align-items:center;overflow:hidden}
+.aw-txt p{font-size:14.5px;color:var(--ink-2);margin-top:-4px}
+.aw-zones{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.aw-zones span{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:6px 10px;border-radius:999px;background:var(--bg);border:1px solid var(--line)}
+.aw-zones i{width:6px;height:6px;border-radius:50%;background:#22c55e}
+.aw-globe{position:relative;width:150px;height:150px;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 35% 30%,rgba(255,90,31,.18),transparent 60%),var(--bg);box-shadow:inset -14px -10px 30px rgba(0,0,0,.25),0 0 0 1px var(--line)}
+.aw-dots{position:absolute;inset:0;width:300%;background-image:radial-gradient(var(--ink-3) 1.2px,transparent 1.4px);background-size:9px 9px;opacity:.55;-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 60%,transparent 72%);animation:awSpin 24s linear infinite}
+@keyframes awSpin{to{transform:translateX(-66.66%)}}
+.aw-ring{position:absolute;inset:-14px;border-radius:50%;border:1px dashed var(--line)}
+.aw-pin{position:absolute;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.6);animation:pulse 2.4s infinite}
+.aw-pin.p1{left:26%;top:38%}.aw-pin.p2{left:47%;top:30%;animation-delay:-.8s}.aw-pin.p3{left:54%;top:36%;animation-delay:-1.6s}
+.aw-pin.home{left:70%;top:46%;background:var(--accent);box-shadow:0 0 0 0 rgba(255,90,31,.6)}
+
+@media (max-width:980px){.ab-bento{grid-template-columns:repeat(2,minmax(0,1fr))}.ab-d2c,.ab-world{grid-column:span 2}.ab-d2c{grid-row:auto}}
+@media (max-width:560px){.ab-bento{grid-template-columns:1fr}.ab-d2c,.ab-world,.ab-rings,.ab-status{grid-column:auto}.ab-world{grid-template-columns:1fr 110px}.aw-globe{width:110px;height:110px}.d2c-code pre{font-size:10px}}
+@media (prefers-reduced-motion:reduce){.aw-dots,.aw-pin{animation:none}.ab-rings .fg{transition:none}}
+
 /* Services */
 .sv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .sv{--mx:50%;--my:50%;position:relative;display:flex;flex-direction:column;border-radius:var(--r-lg);background:var(--surface);border:1px solid var(--line);overflow:hidden;isolation:isolate;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s,border-color .4s}
@@ -834,31 +897,45 @@ fieldset.fld legend{margin-bottom:12px;padding:0}
       </div>
 
       <div class="ab-bento">
-        <article class="ab-c ab-me rv" style="--d:0">
-          <img src="/assets/noor-hossain.webp" alt="Noor Hossain" width="900" height="900" loading="lazy">
-          <div class="meta"><b>Noor Hossain</b><small>UI/UX Designer &amp; Web Developer</small>
-            <div class="ab-tags"><span>Product thinking</span><span>Design systems</span><span>No-code &amp; code</span></div></div>
+        <article class="ab-c ab-d2c rv" style="--d:0" aria-label="From Figma design to production code">
+          <div class="d2c-top"><h4>Design → Code</h4><span class="d2c-pill"><i></i>One person, zero hand-off</span></div>
+          <div class="d2c-stage" aria-hidden="true">
+            <div class="d2c-code"><div class="d2c-bar"><i></i><i></i><i></i><span>hero.tsx</span></div>
+              <pre><span class="k">export function</span> <span class="f">Hero</span>() {
+  <span class="k">return</span> (
+    &lt;<span class="t">section</span> <span class="a">className</span>=<span class="s">"hero"</span>&gt;
+      &lt;<span class="t">h1</span>&gt;Design that converts&lt;/<span class="t">h1</span>&gt;
+      &lt;<span class="t">p</span>&gt;Fast, accessible, on-brand.&lt;/<span class="t">p</span>&gt;
+      &lt;<span class="t">Button</span> <span class="a">variant</span>=<span class="s">"primary"</span>&gt;
+        Get started
+      &lt;/<span class="t">Button</span>&gt;
+    &lt;/<span class="t">section</span>&gt;
+  )
+}</pre></div>
+            <div class="d2c-design"><div class="d2c-bar light"><i></i><i></i><i></i><span>Figma — Hero</span></div>
+              <div class="d2c-ui"><span class="d2c-tag">New</span><b>Design that converts</b><small>Fast, accessible, on-brand.</small><em>Get started</em>
+                <div class="d2c-cards"><i></i><i></i><i></i></div>
+                <span class="d2c-sel"><i></i><i></i><i></i><i></i></span></div></div>
+            <div class="d2c-handle"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span></div>
+          </div>
+          <p class="d2c-cap">Every pixel you approve in Figma is exactly what ships in code.</p>
         </article>
 
-        <article class="ab-c ab-skill rv" style="--d:1">
+        <article class="ab-c ab-rings rv" style="--d:1">
           <h4>Top skills</h4>
-          <ul class="sk"><li><div class="sk-top"><span>UI/UX Design</span><b>96%</b></div><div class="sk-bar"><i style="--v:96%"></i></div></li><li><div class="sk-top"><span>Website Design</span><b>95%</b></div><div class="sk-bar"><i style="--v:95%"></i></div></li><li><div class="sk-top"><span>WordPress</span><b>94%</b></div><div class="sk-bar"><i style="--v:94%"></i></div></li><li><div class="sk-top"><span>Framer & Webflow</span><b>90%</b></div><div class="sk-bar"><i style="--v:90%"></i></div></li></ul>
+          <ul><li><svg viewBox="0 0 44 44"><circle class="bg" cx="22" cy="22" r="18"/><circle class="fg" cx="22" cy="22" r="18" style="--v:96"/></svg><b data-n="96">0</b><span>UI/UX Design</span></li><li><svg viewBox="0 0 44 44"><circle class="bg" cx="22" cy="22" r="18"/><circle class="fg" cx="22" cy="22" r="18" style="--v:95"/></svg><b data-n="95">0</b><span>Website Design</span></li><li><svg viewBox="0 0 44 44"><circle class="bg" cx="22" cy="22" r="18"/><circle class="fg" cx="22" cy="22" r="18" style="--v:94"/></svg><b data-n="94">0</b><span>WordPress</span></li><li><svg viewBox="0 0 44 44"><circle class="bg" cx="22" cy="22" r="18"/><circle class="fg" cx="22" cy="22" r="18" style="--v:90"/></svg><b data-n="90">0</b><span>Framer &amp; Webflow</span></li></ul>
         </article>
 
         <article class="ab-c ab-status rv" style="--d:2">
           <h4>Currently</h4>
-          <div><span class="live"><i></i>Available for work</span><p style="margin-top:10px">Open to freelance projects &amp; long-term partnerships</p>
-          <a href="#contact">Start a project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+          <div><span class="live"><i></i>Available for work</span><p>Open to freelance projects &amp; long-term partnerships</p>
+          <a href="https://calendly.com/nooruiux/ui-ux-and-web-design" target="_blank" rel="noopener" data-cal>Book a free call <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
         </article>
 
-        <article class="ab-c ab-val rv" style="--d:3">
-          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg></span>
-          <b>Purpose first</b><p>Every pixel has a job — guide users, build trust, convert.</p>
-        </article>
-
-        <article class="ab-c ab-val rv" style="--d:4">
-          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span>
-          <b>Fast &amp; pixel-perfect</b><p>What you approve in Figma is exactly what ships.</p>
+        <article class="ab-c ab-world rv" style="--d:3">
+          <div class="aw-txt"><h4>Remote, worldwide</h4><p>Based in Dhaka, working with clients across time zones.</p>
+            <div class="aw-zones"><span><i></i>USA</span><span><i></i>UK</span><span><i></i>Europe</span><span><i></i>Middle East</span></div></div>
+          <div class="aw-globe" aria-hidden="true"><div class="aw-dots"></div><span class="aw-ring"></span><span class="aw-pin p1"></span><span class="aw-pin p2"></span><span class="aw-pin p3"></span><span class="aw-pin home"></span></div>
         </article>
 
         <article class="ab-c ab-stack rv" style="--d:5">
@@ -1374,6 +1451,22 @@ fieldset.fld legend{margin-bottom:12px;padding:0}
       c.addEventListener('pointerleave', () => cur.classList.remove('on'));
     });
     addEventListener('pointermove', (e) => { cur.style.setProperty('--x', e.clientX + 'px'); cur.style.setProperty('--y', e.clientY + 'px'); }, { passive: true });
+  })();
+  (() => {
+    const st = document.querySelector('.d2c-stage');
+    if (st) {
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches; let user = false, t0 = performance.now();
+      const set = (v) => st.style.setProperty('--pos', Math.min(96, Math.max(4, v)) + '%');
+      const loop = (t) => { if (!user && !reduce) set(50 + 38 * Math.sin((t - t0) / 1600)); requestAnimationFrame(loop); };
+      requestAnimationFrame(loop);
+      const mv = (e) => { const r = st.getBoundingClientRect(); user = true; set((e.clientX - r.left) / r.width * 100); };
+      st.addEventListener('pointermove', mv); st.addEventListener('pointerdown', mv);
+      st.addEventListener('pointerleave', () => { user = false; t0 = performance.now() - 1600 * Math.asin(Math.max(-1, Math.min(1, (parseFloat(st.style.getPropertyValue('--pos')) - 50) / 38))); });
+    }
+    const rg = document.querySelector('.ab-rings');
+    if (rg) new IntersectionObserver((es, o) => es.forEach((e) => { if (!e.isIntersecting) return; o.disconnect();
+      rg.querySelectorAll('b[data-n]').forEach((b) => { const end = +b.dataset.n, t0 = performance.now();
+        const tick = (t) => { const q = Math.min(1, (t - t0) / 1400); b.textContent = Math.round(end * (1 - Math.pow(1 - q, 3))); if (q < 1) requestAnimationFrame(tick); }; requestAnimationFrame(tick); }); }), { threshold: .4 }).observe(rg);
   })();
   document.getElementById('yr').textContent = new Date().getFullYear();
   const io = new IntersectionObserver((entries) => {
