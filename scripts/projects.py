@@ -14,24 +14,24 @@ Screenshots live in assets/work/shots/<slug>-d.webp (desktop) and -m.webp (mobil
 import html, re, sys
 
 PROJECTS = [
-    dict(slug="content-writing-ai-website", style="laptop", span=7, title="Quantum", sub="AI Content Writing Website",
+    dict(slug="content-writing-ai-website", style="frame", span=7, title="Quantum", sub="AI Content Writing Website",
          tags=["AI SaaS", "Web Design", "Next.js"], url="https://content-writing-ai-website.vercel.app/",
-         bg="#0b0716", accent="#8b5cf6", year="2026"),
-    dict(slug="project-management-saas-website", style="float", span=5, title="WorkUp", sub="Project Management SaaS",
+         bg="#e9e8e5", accent="#8b5cf6", year="2026"),
+    dict(slug="project-management-saas-website", style="macbook", span=5, title="WorkUp", sub="Project Management SaaS",
          tags=["SaaS", "UI/UX", "Dashboard"], url="https://project-management-saa-s-website.vercel.app/",
-         bg="#5b3df5", accent="#c4b5fd", year="2026", chips=["+ Add task", "Sprint 12 · 75%"]),
-    dict(slug="fitness-training-website", style="rise", span=5, title="Gymnastic", sub="Fitness Training Website",
+         bg="#e9e8e5", accent="#c4b5fd", year="2026", chips=["+ Add task", "Sprint 12 · 75%"]),
+    dict(slug="fitness-training-website", style="imac", span=5, title="Gymnastic", sub="Fitness Training Website",
          tags=["Fitness", "Web Design"], url="https://fitness-training-website-bay.vercel.app/",
-         bg="#061a1d", accent="#22d3ee", year="2026", logo="GYMNASTIC", cta="Be a Member"),
-    dict(slug="cryptocurrency-website", style="phone", span=7, title="Lumino", sub="Bitcoin Mining Platform",
+         bg="#e9e8e5", accent="#22d3ee", year="2026", logo="GYMNASTIC", cta="Be a Member"),
+    dict(slug="cryptocurrency-website", style="tablet", span=7, title="Lumino", sub="Bitcoin Mining Platform",
          tags=["Crypto", "Fintech", "Web Design"], url="https://cryptocurrency-website-development.vercel.app/",
-         bg="#0a0b2e", accent="#7c5cff", year="2026", chips=["Total deposits $8M+", "Active users 125k+"]),
-    dict(slug="rent-a-car-website", style="showcase", span=7, title="Rent", sub="Car Rental Website · Dubai",
+         bg="#e9e8e5", accent="#7c5cff", year="2026", chips=["Total deposits $8M+", "Active users 125k+"]),
+    dict(slug="rent-a-car-website", style="browser", span=7, title="Rent", sub="Car Rental Website · Dubai",
          tags=["Car Rental", "Booking UX", "Next.js"], url="https://rent-a-car-website-eight.vercel.app/",
-         bg="#ff8a3d", accent="#1d72e8", year="2026", logo="Rent", cta="Book in 60 sec"),
-    dict(slug="nattoral", style="bento", span=5, title="Nattoral", sub="Skincare E-commerce Store",
+         bg="#e9e8e5", accent="#1d72e8", year="2026", logo="Rent", cta="Book in 60 sec"),
+    dict(slug="nattoral", style="angle", span=5, title="Nattoral", sub="Skincare E-commerce Store",
          tags=["E-commerce", "Beauty", "UI/UX"], url="https://nattoral-zeta.vercel.app/",
-         bg="#dfe9e5", accent="#2f4f4a", year="2026", logo="NATTORAL", swatches=["#2f4f4a", "#9bc7c0", "#e9e3d6", "#111111"]),
+         bg="#e9e8e5", accent="#2f4f4a", year="2026", logo="NATTORAL", swatches=["#2f4f4a", "#9bc7c0", "#e9e3d6", "#111111"]),
 ]
 
 ARR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>'
@@ -44,43 +44,21 @@ def shot(p, kind, cls, alt=""):
 def cover(p):
     e = lambda k: html.escape(p.get(k, ""))
     st = p["style"]
-    if st == "laptop":
-        return (f'<img class="cv-full" src="/assets/work/{p["slug"]}.webp" srcset="/assets/work/{p["slug"]}-800.webp 800w, /assets/work/{p["slug"]}.webp 1200w" '
-                f'sizes="(max-width:880px) 92vw, 680px" alt="{e("title")} — {e("sub")} on laptop and phone" loading="lazy" decoding="async">')
-    if st == "float":
-        chips = ''.join(f'<span class="cv-chip c{i}">{html.escape(c)}</span>' for i, c in enumerate(p["chips"]))
-        return f'<div class="cv-float"><div class="cv-screen">{shot(p, "d", "", e("title") + " dashboard")}</div>{chips}</div>'
-    if st == "bleed":
-        return (f'{shot(p, "d", "cv-bg", e("title") + " website")}<span class="cv-word" aria-hidden="true">{e("word")}</span>'
-                f'<div class="cv-peek">{shot(p, "m", "")}</div>')
-    if st == "phone":
-        chips = ''.join(f'<span class="cv-stat s{i}">{html.escape(c)}</span>' for i, c in enumerate(p["chips"]))
-        return f'<div class="cv-glow"></div><div class="cv-phone"><span class="cv-isl"></span>{shot(p, "m", "", e("title") + " mobile")}</div>{chips}'
+    if st == "frame":
+        return (f'<div class="dv-frame"><div class="dv-scr"><img src="/assets/work/shots/{p["slug"]}-full.webp" alt="{e("title")} full website" loading="lazy" decoding="async"></div></div>')
+    if st == "tablet":
+        return (f'<div class="dv-tab"><span class="dv-cam"></span><div class="dv-scr"><img src="/assets/work/shots/{p["slug"]}-full.webp" alt="{e("title")} full website" loading="lazy" decoding="async"></div></div>')
     if st == "browser":
-        return (f'<span class="cv-mark" aria-hidden="true">{e("word")}</span><div class="cv-win"><div class="cv-bar"><i></i><i></i><i></i><span>{e("title").lower()}.com</span></div>'
-                f'<div class="cv-view">{shot(p, "d", "", e("title") + " website")}</div></div>')
-    if st == "split":
-        sw = ''.join(f'<i style="background:{c}"></i>' for c in p["swatches"])
-        return (f'<div class="cv-sframe">{shot(p, "d", "", e("title") + " store")}</div>'
-                f'<div class="cv-guide"><small>Colors</small><div class="cv-sw">{sw}</div><small>Type</small><b>Aa</b><span>Elegant Serif · Inter</span></div>')
-    if st == "rise":
-        return (f'<div class="cv-halo"></div><span class="cv-logo" data-d="-0.4">{e("logo")}</span>'
-                f'<div class="cv-rise" data-d="0.4">{shot(p, "d", "", e("title") + " website")}</div>'
-                f'<div class="cv-rphone" data-d="1">{shot(p, "m", "")}</div>'
-                f'<span class="cv-pill" data-d="1.4">{e("cta")} ↗</span>')
-    if st == "showcase":
-        return (f'<span class="cv-logo dark" data-d="-0.4">{e("logo")}</span>'
-                f'<div class="cv-back" data-d="0.3">{shot(p, "d", "", e("title") + " website")}</div>'
-                f'<div class="cv-car" data-d="1.2"><img src="/assets/work/shots/{p["slug"]}-car.webp" alt="" loading="lazy"></div>'
-                f'<div class="cv-search" data-d="0.8"><img src="/assets/work/shots/{p["slug"]}-search.webp" alt="" loading="lazy"></div>'
-                f'<div class="cv-sphone" data-d="1.6">{shot(p, "m", "")}</div>')
-    if st == "bento":
-        sw = ''.join(f'<i style="background:{c}"></i>' for c in p["swatches"])
-        return (f'<div class="cv-bento">'
-                f'<div class="bt a" data-d="0.5"><img src="/assets/work/shots/{p["slug"]}-product.webp" alt="{e("title")} products" loading="lazy"></div>'
-                f'<div class="bt b" data-d="0.9"><img src="/assets/work/shots/{p["slug"]}-hero.webp" alt="" loading="lazy"></div>'
-                f'<div class="bt c" data-d="1.2"><span class="bl">{e("logo")}</span><div class="cv-sw">{sw}</div></div>'
-                f'<div class="bt d" data-d="1.5">{shot(p, "m", "")}</div></div>')
+        return (f'<div class="dv-win"><div class="dv-bar"><i></i><i></i><i></i><span>{e("title").lower()}.com</span></div>'
+                f'<div class="dv-scr"><img src="/assets/work/shots/{p["slug"]}-full.webp" alt="{e("title")} full website" loading="lazy" decoding="async"></div></div>')
+    if st in ("macbook", "angle"):
+        return (f'<div class="dv-laptop{" tilt" if st == "angle" else ""}"><div class="dv-lid"><span class="dv-cam"></span>'
+                f'<div class="dv-scr"><img src="/assets/work/shots/{p["slug"]}-full.webp" alt="{e("title")} full website" loading="lazy" decoding="async"></div></div>'
+                f'<div class="dv-base"></div></div>')
+    if st == "imac":
+        return (f'<div class="dv-imac"><div class="dv-mon"><div class="dv-scr">'
+                f'<img src="/assets/work/shots/{p["slug"]}-full.webp" alt="{e("title")} full website" loading="lazy" decoding="async"></div>'
+                f'<div class="dv-chin"></div></div><div class="dv-neck"></div><div class="dv-foot"></div></div>')
     raise ValueError(st)
 
 
@@ -142,65 +120,45 @@ CSS = r'''/* Work */
 .pc-go svg{width:18px;height:18px}
 .pc:hover .pc-go{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(45deg)}
 
-/* cover: laptop */
-.is-laptop .cv-full{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.is-laptop:hover .cv-full{transform:scale(1.05)}
-/* cover: float */
-.cv-float{position:absolute;inset:0;perspective:1400px;background:radial-gradient(80% 70% at 70% 20%,var(--ac),transparent 60%)}
-.cv-float .cv-screen{position:absolute;left:12%;top:18%;width:96%;border-radius:14px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(10,5,40,.75),0 0 0 6px rgba(255,255,255,.18);transform:rotateX(22deg) rotateY(-14deg) rotateZ(6deg);transform-origin:left top;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
-.cv-float .cv-screen img{display:block;width:100%}
-.pc-cover.is-float:hover .cv-screen{transform:rotateX(10deg) rotateY(-6deg) rotateZ(2deg) translateY(-10px)}
-.cv-chip{position:absolute;padding:10px 14px;border-radius:14px;font:600 13px/1 var(--sans);color:#1b1446;background:#fff;box-shadow:0 18px 30px -14px rgba(10,5,40,.6);animation:bob 5s ease-in-out infinite}
-.cv-chip.c0{left:8%;top:12%}.cv-chip.c1{left:14%;bottom:12%;animation-delay:-2.5s;background:#1b1446;color:#fff}
-/* cover: phone */
-.cv-glow{position:absolute;inset:0;background:radial-gradient(40% 55% at 50% 55%,var(--ac),transparent 70%),repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 46px),repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 1px,transparent 1px 46px);opacity:.9}
-.cv-phone{position:absolute;left:50%;top:12%;width:min(34%,230px);margin-left:calc(min(34%,230px) / -2);border-radius:36px;padding:9px;background:#111;box-shadow:0 0 0 2px #2a2a2e inset,0 50px 90px -30px rgba(0,0,0,.85);transform:rotate(-4deg)}
-.cv-phone img{display:block;width:100%;border-radius:28px}
-.cv-isl{position:absolute;z-index:2;top:18px;left:50%;width:30%;height:16px;margin-left:-15%;border-radius:10px;background:#000}
-.pc-cover.is-phone:hover .cv-phone{transform:rotate(0) translateY(-14px) scale(1.03)}
-.cv-stat{position:absolute;z-index:3;padding:12px 16px;border-radius:16px;font:600 13px/1.25 var(--sans);color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);animation:bob 6s ease-in-out infinite}
-.cv-stat.s0{left:8%;top:22%}.cv-stat.s1{right:8%;bottom:20%;animation-delay:-3s}
-/* cover: rise (Gymnastic) */
-.cv-halo{position:absolute;inset:0;background:radial-gradient(55% 60% at 50% 100%,rgba(34,211,238,.55),transparent 70%),radial-gradient(40% 40% at 85% 10%,rgba(34,211,238,.25),transparent 70%),repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0 1px,transparent 1px 40px),repeating-linear-gradient(0deg,rgba(255,255,255,.04) 0 1px,transparent 1px 40px)}
-.cv-logo{position:absolute;z-index:4;left:50%;top:7%;transform:translateX(-50%);padding:9px 16px;border-radius:999px;font:800 13px/1 var(--sans);letter-spacing:.14em;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);white-space:nowrap}
-.cv-logo.dark{left:7%;transform:none;color:#1a1208;background:rgba(255,255,255,.55);border-color:rgba(255,255,255,.7);letter-spacing:.02em;font-size:15px}
-.cv-rise{position:absolute;left:9%;right:9%;top:22%;bottom:-6%;border-radius:18px 18px 0 0;overflow:hidden;border:6px solid rgba(255,255,255,.12);border-bottom:0;box-shadow:0 -20px 60px -10px rgba(34,211,238,.45)}
-.cv-rise{background:#121212}
-.cv-rise img{width:100%;height:100%;object-fit:cover;object-position:left top;display:block}
-.cv-rphone{position:absolute;z-index:3;right:5%;bottom:-16%;width:25%;border-radius:24px;overflow:hidden;border:5px solid #0b0b0c;box-shadow:0 30px 60px -20px rgba(0,0,0,.8)}
-.cv-rphone img{width:100%;display:block}
-.cv-pill{position:absolute;z-index:4;left:6%;bottom:12%;padding:12px 18px;border-radius:999px;font:700 13px/1 var(--sans);color:#06292e;background:#22d3ee;box-shadow:0 14px 30px -10px rgba(34,211,238,.8)}
-/* cover: showcase (Rent) */
-.is-showcase{background:linear-gradient(140deg,#ffb37a 0%,#ff8a3d 45%,#f26b1d 100%)!important}
-.is-showcase::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 60% at 75% 30%,rgba(255,255,255,.45),transparent 70%)}
-.cv-back{position:absolute;left:7%;top:20%;width:62%;border-radius:14px;overflow:hidden;box-shadow:0 30px 60px -24px rgba(120,40,0,.55);border:5px solid rgba(255,255,255,.7)}
-.cv-back img{width:100%;display:block}
-.cv-car{position:absolute;z-index:2;right:6%;top:13%;width:44%;border-radius:22px;overflow:hidden;background:#f3f4f8;box-shadow:0 30px 60px -20px rgba(120,40,0,.6)}
-.cv-car img{width:100%;display:block}
-.cv-search{position:absolute;z-index:3;left:9%;right:27%;bottom:9%;border-radius:14px;overflow:hidden;box-shadow:0 26px 50px -16px rgba(80,25,0,.55)}
-.cv-search img{width:100%;display:block}
-.cv-sphone{position:absolute;z-index:4;right:6%;bottom:-18%;width:19%;border-radius:22px;overflow:hidden;border:5px solid #111;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
-.cv-sphone img{width:100%;display:block}
-/* cover: bento (Nattoral) */
-.cv-bento{position:absolute;inset:6%;display:grid;grid-template-columns:1.05fr 1fr .7fr;grid-template-rows:1fr 1fr;gap:10px}
-.bt{border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 18px 36px -24px rgba(20,40,36,.55)}
-.bt img{width:100%;height:100%;object-fit:cover;display:block}
-.bt.a{grid-row:span 2}
-.bt.b{grid-column:span 2}
-.bt.b img{object-position:85% center}
-.bt.c{display:flex;flex-direction:column;justify-content:space-between;padding:14px;background:#2f4f4a;color:#e9e3d6}
-.bl{font:500 15px/1 Georgia,var(--serif);letter-spacing:.18em}
-.bt.c .cv-sw{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.bt.c .cv-sw i{aspect-ratio:1;border-radius:8px;box-shadow:0 0 0 1px rgba(255,255,255,.25)}
-.bt.d{position:relative;background:#111;padding:4px}
-.bt.d img{border-radius:12px;object-position:top}
-/* parallax layers */
-.pc-cover [data-d]{transition:transform .7s cubic-bezier(.2,.8,.2,1);transform:translate(calc(var(--px,0) * var(--dd,0) * 10px),calc(var(--py,0) * var(--dd,0) * 10px))}
-.cv-logo[data-d]{transform:translate(calc(-50% + var(--px,0) * var(--dd,0) * 10px),calc(var(--py,0) * var(--dd,0) * 10px))}
-.cv-logo.dark[data-d]{transform:translate(calc(var(--px,0) * var(--dd,0) * 10px),calc(var(--py,0) * var(--dd,0) * 10px))}
-.pc-cover:hover .cv-rise{bottom:-2%}
-.pc-cover:hover .cv-rphone,.pc-cover:hover .cv-sphone{bottom:-10%}
-.pc-cover:hover .bt{box-shadow:0 26px 44px -22px rgba(20,40,36,.6)}
+/* cover: device mockups (full website, scrolls on hover) */
+.pc-cover{background:#e9e8e5!important}
+.pc-cover::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(70% 60% at 50% 40%,#f6f5f2,transparent 75%)}
+.dv-frame{position:absolute;left:8%;right:8%;top:9%;bottom:-2%;padding:6px 6px 0;border-radius:14px 14px 0 0;background:#fdfdfc;box-shadow:0 0 0 1px rgba(17,17,16,.08),0 30px 60px -30px rgba(17,17,16,.35);transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.dv-frame .dv-scr{height:100%;border-radius:9px 9px 0 0}
+.pc-cover:hover .dv-frame{transform:translateY(-8px)}
+.dv-tab{position:absolute;left:9%;right:9%;top:9%;bottom:9%;padding:2.2%;border-radius:30px;background:#141416;box-shadow:inset 0 0 0 2px #2c2c30,0 40px 70px -30px rgba(17,17,16,.55);transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.dv-tab .dv-cam{top:50%;left:1%;margin:-3px 0 0}
+.dv-tab .dv-scr{height:100%;border-radius:14px}
+.pc-cover:hover .dv-tab{transform:translateY(-6px) scale(1.01)}
+.dv-win{position:absolute;left:8%;right:8%;top:10%;bottom:-3%;border-radius:14px 14px 0 0;overflow:hidden;background:#fff;box-shadow:0 0 0 1px rgba(17,17,16,.08),0 30px 60px -30px rgba(17,17,16,.35);display:flex;flex-direction:column;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.dv-bar{flex:none;height:32px;display:flex;align-items:center;gap:6px;padding:0 14px;background:#f4f3f0;border-bottom:1px solid #e8e6e1}
+.dv-bar i{width:9px;height:9px;border-radius:50%;background:#ff5f57}.dv-bar i:nth-child(2){background:#febc2e}.dv-bar i:nth-child(3){background:#28c840}
+.dv-bar span{margin:0 auto;font:500 11.5px/1 var(--sans);color:#8c8a84;padding:6px 44px;border-radius:7px;background:#fff}
+.dv-win .dv-scr{flex:1}
+.pc-cover:hover .dv-win{transform:translateY(-8px)}
+.dv-imac{top:6%}
+.is-angle .dv-lid,.dv-lid{box-shadow:inset 0 0 0 1.5px #3c3d42,0 40px 70px -30px rgba(17,17,16,.45)}
+.pc-live{color:#111;background:rgba(255,255,255,.75);border-color:rgba(17,17,16,.08)}
+.dv-scr{position:relative;overflow:hidden;background:#fff}
+.dv-scr img{position:absolute;left:0;top:0;width:100%;height:auto;transform:translateY(0);transition:transform var(--dur,5s) cubic-bezier(.45,0,.25,1)}
+.pc-cover:hover .dv-scr img{transform:translateY(calc(var(--dist,0) * -1px))}
+.dv-laptop{position:absolute;left:50%;top:50%;width:82%;transform:translate(-50%,-50%);transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.dv-lid{position:relative;padding:3.2% 3.2% 3.6%;border-radius:18px 18px 6px 6px;background:linear-gradient(180deg,#2c2d31,#121316);box-shadow:inset 0 0 0 1.5px #3c3d42,0 40px 80px -30px rgba(0,0,0,.7)}
+.dv-cam{position:absolute;top:1.2%;left:50%;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:#050506;box-shadow:0 0 0 2px #222}
+.dv-laptop .dv-scr{aspect-ratio:16/10;border-radius:4px}
+.dv-base{position:relative;height:14px;margin:0 -7%;border-radius:0 0 18px 18px;background:linear-gradient(180deg,#e3e4e8,#a9acb3 55%,#7d8088);box-shadow:0 24px 40px -12px rgba(0,0,0,.6)}
+.dv-base::before{content:"";position:absolute;left:50%;top:0;width:18%;height:6px;margin-left:-9%;border-radius:0 0 8px 8px;background:#a3a6ad}
+.pc-cover:hover .dv-laptop{transform:translate(-50%,-53%)}
+.dv-laptop.tilt{transform:translate(-50%,-50%) perspective(1600px) rotateY(-18deg) rotateX(8deg) rotateZ(1deg)}
+.pc-cover:hover .dv-laptop.tilt{transform:translate(-50%,-52%) perspective(1600px) rotateY(-6deg) rotateX(3deg)}
+.is-angle .dv-lid{box-shadow:inset 0 0 0 1.5px #3c3d42,30px 40px 70px -24px rgba(20,40,36,.55)}
+.dv-imac{position:absolute;left:50%;top:9%;width:min(84%,560px);transform:translateX(-50%);transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.dv-mon{border-radius:16px;padding:2.4% 2.4% 0;background:linear-gradient(180deg,#e9eaee,#c9ccd2);box-shadow:inset 0 0 0 1px rgba(255,255,255,.6),0 40px 80px -24px rgba(0,0,0,.75);overflow:hidden}
+.dv-imac .dv-scr{aspect-ratio:16/9;border-radius:6px;background:#111;box-shadow:0 0 0 6px #0c0c0e}
+.dv-chin{height:34px;margin:0 -3%;margin-top:10px;background:linear-gradient(180deg,#d7d9de,#b9bcc3)}
+.dv-neck{width:18%;height:56px;margin:0 auto;background:linear-gradient(90deg,#9ea1a8,#d5d7dc 50%,#9ea1a8);clip-path:polygon(12% 0,88% 0,100% 100%,0 100%)}
+.dv-foot{width:38%;height:10px;margin:0 auto;border-radius:6px 6px 10px 10px;background:linear-gradient(180deg,#d5d7dc,#9ea1a8);box-shadow:0 16px 30px -8px rgba(0,0,0,.6)}
+.pc-cover:hover .dv-imac{transform:translateX(-50%) translateY(-6px)}
 
 /* cursor bubble */
 .pc-cursor{position:fixed;left:0;top:0;z-index:60;width:104px;height:104px;margin:-52px 0 0 -52px;border-radius:50%;display:grid;place-items:center;align-content:center;gap:2px;pointer-events:none;
@@ -217,6 +175,9 @@ CSS = r'''/* Work */
 
 JS = r'''  (() => {
     const cur = document.querySelector('.pc-cursor'); if (!cur || matchMedia('(hover: none)').matches) return;
+    const fit = (img) => { const scr = img.parentElement, d = Math.max(0, img.offsetHeight - scr.clientHeight); img.style.setProperty('--dist', d); img.style.setProperty('--dur', Math.min(9, Math.max(3, d / 450)) + 's'); };
+    document.querySelectorAll('.dv-scr img').forEach((img) => { img.complete ? fit(img) : img.addEventListener('load', () => fit(img)); });
+    addEventListener('resize', () => document.querySelectorAll('.dv-scr img').forEach(fit));
     document.querySelectorAll('.pc-cover [data-d]').forEach((el) => el.style.setProperty('--dd', el.dataset.d));
     document.querySelectorAll('.pc-cover').forEach((c) => {
       c.addEventListener('pointermove', (e) => { const r = c.getBoundingClientRect(); c.style.setProperty('--px', ((e.clientX - r.left) / r.width - .5) * 2); c.style.setProperty('--py', ((e.clientY - r.top) / r.height - .5) * 2); });
