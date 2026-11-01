@@ -35,7 +35,7 @@ a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
-.serif{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em;color:var(--accent)}
 section{padding:clamp(72px,10vw,128px) 0}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;letter-spacing:.02em;color:var(--ink-2);padding:6px 14px;border:1px solid var(--line);border-radius:var(--pill);background:var(--surface)}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
@@ -751,6 +751,7 @@ fieldset.fld legend{margin-bottom:12px;padding:0}
 .bk-load span{width:30px;height:30px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--accent);animation:spin .8s linear infinite}
 @media (max-width:640px){.bk{padding:0}.bk-box{height:100dvh;border-radius:0}}
 
+.ab-say .hl,.ts-q .hl,.mk-copy .serif{color:var(--accent)}
 /* Reveal */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
