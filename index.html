@@ -79,8 +79,9 @@ section{padding:clamp(72px,10vw,128px) 0}
 .portrait .pf-photo{filter:drop-shadow(0 20px 30px rgba(0,0,0,.25))}
 .tag{position:absolute;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:10px 14px;border-radius:14px;font-size:13px;font-weight:600;box-shadow:var(--shadow);display:flex;align-items:center;gap:8px;animation:float 6s ease-in-out infinite}
 .tag small{display:block;font-weight:500;color:var(--ink-3);font-size:11px}
-.tag-1{top:22%;left:2%}
-.tag-2{top:52%;right:0;animation-delay:-3s}
+.tag-1{top:23%;right:-3%}
+.tag-2{top:55%;left:-5%;animation-delay:-3s}
+@media (max-width:880px){.tag-1{right:0}.tag-2{left:0}}
 @keyframes float{50%{transform:translateY(-8px)}}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:56px}
 .stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:22px 24px}
