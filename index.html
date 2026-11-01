@@ -319,7 +319,7 @@ section{padding:clamp(72px,10vw,128px) 0}
 /* Work */
 .pc-count{font-family:var(--sans);font-style:normal;font-size:.32em;font-weight:500;color:var(--ink-3);vertical-align:super;letter-spacing:0}
 .pc-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(18px,2.2vw,28px) 20px}
-.pc.s7{grid-column:span 7}.pc.s5{grid-column:span 5}
+.pc.s7{grid-column:span 7}.pc.s5{grid-column:span 5}.pc.s12{grid-column:span 12}
 .pc-cover{--bg:#111;--ac:#ff5a1f;position:relative;display:block;height:clamp(320px,36vw,500px);border-radius:var(--r-lg);overflow:hidden;isolation:isolate;background:var(--bg);
   clip-path:inset(12% 6% 12% 6% round 32px);transition:clip-path 1.1s cubic-bezier(.7,0,.2,1)}
 .pc.in .pc-cover,.pc:not(.rv) .pc-cover{clip-path:inset(0 0 0 0 round 32px)}
@@ -338,6 +338,22 @@ section{padding:clamp(72px,10vw,128px) 0}
 .pc-go{flex:none;width:50px;height:50px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:var(--surface);transition:background .35s,color .35s,transform .45s cubic-bezier(.2,.8,.2,1),border-color .35s}
 .pc-go svg{width:18px;height:18px}
 .pc:hover .pc-go{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(45deg)}
+
+/* cover: Behance case study */
+.be-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pc-cover:hover .be-img{transform:scale(1.05)}
+.be-cv{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden}
+.be-cv::before{content:"";position:absolute;width:70%;aspect-ratio:1;border-radius:50%;background:var(--ac);filter:blur(90px);opacity:.22;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.pc-cover:hover .be-cv::before{transform:scale(1.25)}
+.be-word{position:absolute;left:-2%;bottom:-6%;font:800 clamp(90px,13vw,190px)/1 var(--sans);letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.5px color-mix(in srgb,var(--ac) 45%,transparent);white-space:nowrap;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.pc-cover:hover .be-word{transform:translateX(4%)}
+.be-in{position:relative;text-align:center;padding:24px}
+.be-logo{display:inline-flex;align-items:center;gap:8px;font:600 12px/1 var(--sans);color:var(--ink-2);padding:7px 12px;border-radius:999px;background:#fff;box-shadow:0 6px 16px -10px rgba(0,0,0,.3)}
+.be-in b{display:block;margin-top:18px;font-size:clamp(30px,3.6vw,52px);letter-spacing:-.04em;line-height:1;color:var(--ink)}
+.be-in small{display:block;margin-top:8px;font:400 italic clamp(20px,2vw,28px)/1.1 var(--serif);color:var(--ac)}
+.be-cta{display:inline-block;margin-top:22px;font:600 13px/1 var(--sans);color:#fff;background:var(--ink);padding:11px 16px;border-radius:999px;transition:background .3s}
+.pc-cover:hover .be-cta{background:var(--ac)}
+.pc-live.be b{font:800 12px/1 var(--sans);color:#1769ff}
 
 /* cover: device mockups (full website, scrolls on hover) */
 .pc-cover{background:#e9e8e5!important}
@@ -385,7 +401,7 @@ section{padding:clamp(72px,10vw,128px) 0}
 .pc-cursor.on{transform:translate(var(--x),var(--y)) scale(1)}
 @media (hover:none),(pointer:coarse){.pc-cursor{display:none}}
 
-@media (max-width:880px){.pc.s7,.pc.s5{grid-column:span 12}.pc-cover{height:clamp(280px,64vw,420px)}}
+@media (max-width:880px){.pc.s7,.pc.s5,.pc.s12{grid-column:span 12}.pc-cover{height:clamp(280px,64vw,420px)}}
 @media (max-width:560px){.cv-bento{grid-template-columns:1fr 1fr}.bt.c{display:none}.cv-rphone{width:30%}.cv-sphone{width:24%}.cv-pill{font-size:11px;padding:9px 13px}.cv-chip{font-size:11px}.cv-stat{font-size:11px;padding:9px 12px}}
 @media (prefers-reduced-motion:reduce){.pc-cover{clip-path:none!important;transition:none}.pc-cover>*,.pc-cover *{transition:none!important;animation:none!important;transform:none!important}}
 
@@ -818,74 +834,129 @@ footer{padding:48px 0 40px}
   <section id="work" style="padding-top:0">
     <div class="wrap">
       <div class="sec-head">
-        <div class="rv"><span class="eyebrow">Recent work</span><h2 class="h2">Latest <span class="serif">projects</span> <sup class="pc-count">(06)</sup></h2></div>
+        <div class="rv"><span class="eyebrow">Recent work</span><h2 class="h2">Latest <span class="serif">projects</span> <sup class="pc-count">(11)</sup></h2></div>
         <a href="https://www.behance.net/noorxtk" target="_blank" rel="noopener" class="btn btn-ghost rv">View all on Behance <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a>
       </div>
       <div class="pc-grid">
         <article class="pc s7 rv" data-style="frame">
-          <a class="pc-cover is-frame" href="https://content-writing-ai-website.vercel.app/" target="_blank" rel="noopener" style="--bg:#e9e8e5;--ac:#8b5cf6" aria-label="Open Quantum — AI Content Writing Website (live site)">
+          <a class="pc-cover is-frame" href="https://content-writing-ai-website.vercel.app/" target="_blank" rel="noopener" style="--bg:#e9e8e5;--ac:#8b5cf6" aria-label="Open Quantum — AI Content Writing Website (live site)" data-cursor="View live">
             <div class="dv-frame"><div class="dv-scr"><img src="/assets/work/shots/content-writing-ai-website-full.webp" alt="Quantum full website" loading="lazy" decoding="async"></div></div>
             <span class="pc-live"><i></i>Live</span>
           </a>
           <div class="pc-meta">
             <span class="pc-n">01</span>
             <div class="pc-txt"><h3>Quantum <em>— AI Content Writing Website</em></h3><div class="pc-tags"><span>AI SaaS</span><span>Web Design</span><span>Next.js</span><span>2026</span></div></div>
-            <a class="pc-go" href="https://content-writing-ai-website.vercel.app/" target="_blank" rel="noopener" aria-label="Visit Quantum live site"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+            <a class="pc-go" href="https://content-writing-ai-website.vercel.app/" target="_blank" rel="noopener" aria-label="Visit Quantum (live site)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
           </div>
         </article>
         <article class="pc s5 rv" data-style="macbook">
-          <a class="pc-cover is-macbook" href="https://project-management-saa-s-website.vercel.app/" target="_blank" rel="noopener" style="--bg:#e9e8e5;--ac:#c4b5fd" aria-label="Open WorkUp — Project Management SaaS (live site)">
+          <a class="pc-cover is-macbook" href="https://project-management-saa-s-website.vercel.app/" target="_blank" rel="noopener" style="--bg:#e9e8e5;--ac:#c4b5fd" aria-label="Open WorkUp — Project Management SaaS (live site)" data-cursor="View live">
             <div class="dv-laptop"><div class="dv-lid"><span class="dv-cam"></span><div class="dv-scr"><img src="/assets/work/shots/project-management-saas-website-full.webp" alt="WorkUp full website" loading="lazy" decoding="async"></div></div><div class="dv-base"></div></div>
             <span class="pc-live"><i></i>Live</span>
           </a>
           <div class="pc-meta">
             <span class="pc-n">02</span>
             <div class="pc-txt"><h3>WorkUp <em>— Project Management SaaS</em></h3><div class="pc-tags"><span>SaaS</span><span>UI/UX</span><span>Dashboard</span><span>2026</span></div></div>
-            <a class="pc-go" href="https://project-management-saa-s-website.vercel.app/" target="_blank" rel="noopener" aria-label="Visit WorkUp live site"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+            <a class="pc-go" href="https://project-management-saa-s-website.vercel.app/" target="_blank" rel="noopener" aria-label="Visit WorkUp (live site)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
           </div>
         </article>
         <article class="pc s5 rv" data-style="imac">
-          <a class="pc-cover is-imac" href="https://fitness-training-website-bay.vercel.app/" target="_blank" rel="noopener" style="--bg:#e9e8e5;--ac:#22d3ee" aria-label="Open Gymnastic — Fitness Training Website (live site)">
+          <a class="pc-cover is-imac" href="https://fitness-training-website-bay.vercel.app/" target="_blank" rel="noopener" style="--bg:#e9e8e5;--ac:#22d3ee" aria-label="Open Gymnastic — Fitness Training Website (live site)" data-cursor="View live">
             <div class="dv-imac"><div class="dv-mon"><div class="dv-scr"><img src="/assets/work/shots/fitness-training-website-full.webp" alt="Gymnastic full website" loading="lazy" decoding="async"></div><div class="dv-chin"></div></div><div class="dv-neck"></div><div class="dv-foot"></div></div>
             <span class="pc-live"><i></i>Live</span>
           </a>
           <div class="pc-meta">
             <span class="pc-n">03</span>
             <div class="pc-txt"><h3>Gymnastic <em>— Fitness Training Website</em></h3><div class="pc-tags"><span>Fitness</span><span>Web Design</span><span>2026</span></div></div>
-            <a class="pc-go" href="https://fitness-training-website-bay.vercel.app/" target="_blank" rel="noopener" aria-label="Visit Gymnastic live site"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+            <a class="pc-go" href="https://fitness-training-website-bay.vercel.app/" target="_blank" rel="noopener" aria-label="Visit Gymnastic (live site)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
           </div>
         </article>
         <article class="pc s7 rv" data-style="tablet">
-          <a class="pc-cover is-tablet" href="https://cryptocurrency-website-development.vercel.app/" target="_blank" rel="noopener" style="--bg:#e9e8e5;--ac:#7c5cff" aria-label="Open Lumino — Bitcoin Mining Platform (live site)">
+          <a class="pc-cover is-tablet" href="https://cryptocurrency-website-development.vercel.app/" target="_blank" rel="noopener" style="--bg:#e9e8e5;--ac:#7c5cff" aria-label="Open Lumino — Bitcoin Mining Platform (live site)" data-cursor="View live">
             <div class="dv-tab"><span class="dv-cam"></span><div class="dv-scr"><img src="/assets/work/shots/cryptocurrency-website-full.webp" alt="Lumino full website" loading="lazy" decoding="async"></div></div>
             <span class="pc-live"><i></i>Live</span>
           </a>
           <div class="pc-meta">
             <span class="pc-n">04</span>
             <div class="pc-txt"><h3>Lumino <em>— Bitcoin Mining Platform</em></h3><div class="pc-tags"><span>Crypto</span><span>Fintech</span><span>Web Design</span><span>2026</span></div></div>
-            <a class="pc-go" href="https://cryptocurrency-website-development.vercel.app/" target="_blank" rel="noopener" aria-label="Visit Lumino live site"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+            <a class="pc-go" href="https://cryptocurrency-website-development.vercel.app/" target="_blank" rel="noopener" aria-label="Visit Lumino (live site)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
           </div>
         </article>
         <article class="pc s7 rv" data-style="browser">
-          <a class="pc-cover is-browser" href="https://rent-a-car-website-eight.vercel.app/" target="_blank" rel="noopener" style="--bg:#e9e8e5;--ac:#1d72e8" aria-label="Open Rent — Car Rental Website · Dubai (live site)">
+          <a class="pc-cover is-browser" href="https://rent-a-car-website-eight.vercel.app/" target="_blank" rel="noopener" style="--bg:#e9e8e5;--ac:#1d72e8" aria-label="Open Rent — Car Rental Website · Dubai (live site)" data-cursor="View live">
             <div class="dv-win"><div class="dv-bar"><i></i><i></i><i></i><span>rent.com</span></div><div class="dv-scr"><img src="/assets/work/shots/rent-a-car-website-full.webp" alt="Rent full website" loading="lazy" decoding="async"></div></div>
             <span class="pc-live"><i></i>Live</span>
           </a>
           <div class="pc-meta">
             <span class="pc-n">05</span>
             <div class="pc-txt"><h3>Rent <em>— Car Rental Website · Dubai</em></h3><div class="pc-tags"><span>Car Rental</span><span>Booking UX</span><span>Next.js</span><span>2026</span></div></div>
-            <a class="pc-go" href="https://rent-a-car-website-eight.vercel.app/" target="_blank" rel="noopener" aria-label="Visit Rent live site"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+            <a class="pc-go" href="https://rent-a-car-website-eight.vercel.app/" target="_blank" rel="noopener" aria-label="Visit Rent (live site)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
           </div>
         </article>
         <article class="pc s5 rv" data-style="angle">
-          <a class="pc-cover is-angle" href="https://nattoral-zeta.vercel.app/" target="_blank" rel="noopener" style="--bg:#e9e8e5;--ac:#2f4f4a" aria-label="Open Nattoral — Skincare E-commerce Store (live site)">
+          <a class="pc-cover is-angle" href="https://nattoral-zeta.vercel.app/" target="_blank" rel="noopener" style="--bg:#e9e8e5;--ac:#2f4f4a" aria-label="Open Nattoral — Skincare E-commerce Store (live site)" data-cursor="View live">
             <div class="dv-laptop tilt"><div class="dv-lid"><span class="dv-cam"></span><div class="dv-scr"><img src="/assets/work/shots/nattoral-full.webp" alt="Nattoral full website" loading="lazy" decoding="async"></div></div><div class="dv-base"></div></div>
             <span class="pc-live"><i></i>Live</span>
           </a>
           <div class="pc-meta">
             <span class="pc-n">06</span>
             <div class="pc-txt"><h3>Nattoral <em>— Skincare E-commerce Store</em></h3><div class="pc-tags"><span>E-commerce</span><span>Beauty</span><span>UI/UX</span><span>2026</span></div></div>
-            <a class="pc-go" href="https://nattoral-zeta.vercel.app/" target="_blank" rel="noopener" aria-label="Visit Nattoral live site"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+            <a class="pc-go" href="https://nattoral-zeta.vercel.app/" target="_blank" rel="noopener" aria-label="Visit Nattoral (live site)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+          </div>
+        </article>
+        <article class="pc s7 rv" data-style="be">
+          <a class="pc-cover is-be" href="https://www.behance.net/gallery/159708065/Team-Collabs-Website-UI" target="_blank" rel="noopener" style="--bg:#e9e8e5;--ac:#4f46e5" aria-label="Open Team Collabs — Website UI on Behance" data-cursor="View on Behance">
+            <div class="be-cv"><span class="be-word" aria-hidden="true">Collabs</span><div class="be-in"><span class="be-logo">Bē Behance case study</span><b>Team Collabs</b><small>Website UI</small><span class="be-cta">View on Behance ↗</span></div></div>
+            <span class="pc-live be"><b>Bē</b>Behance</span>
+          </a>
+          <div class="pc-meta">
+            <span class="pc-n">07</span>
+            <div class="pc-txt"><h3>Team Collabs <em>— Website UI</em></h3><div class="pc-tags"><span>Website</span><span>UI Design</span><span>Behance</span></div></div>
+            <a class="pc-go" href="https://www.behance.net/gallery/159708065/Team-Collabs-Website-UI" target="_blank" rel="noopener" aria-label="Visit Team Collabs on Behance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+          </div>
+        </article>
+        <article class="pc s5 rv" data-style="be">
+          <a class="pc-cover is-be" href="https://www.behance.net/gallery/238128689/SaaS-Landing-Page-ui-ui-design-uiux-design" target="_blank" rel="noopener" style="--bg:#e9e8e5;--ac:#ff5a1f" aria-label="Open SaaS Landing Page — UI/UX Design on Behance" data-cursor="View on Behance">
+            <div class="be-cv"><span class="be-word" aria-hidden="true">SaaS</span><div class="be-in"><span class="be-logo">Bē Behance case study</span><b>SaaS Landing Page</b><small>UI/UX Design</small><span class="be-cta">View on Behance ↗</span></div></div>
+            <span class="pc-live be"><b>Bē</b>Behance</span>
+          </a>
+          <div class="pc-meta">
+            <span class="pc-n">08</span>
+            <div class="pc-txt"><h3>SaaS Landing Page <em>— UI/UX Design</em></h3><div class="pc-tags"><span>SaaS</span><span>Landing Page</span><span>Behance</span></div></div>
+            <a class="pc-go" href="https://www.behance.net/gallery/238128689/SaaS-Landing-Page-ui-ui-design-uiux-design" target="_blank" rel="noopener" aria-label="Visit SaaS Landing Page on Behance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+          </div>
+        </article>
+        <article class="pc s5 rv" data-style="be">
+          <a class="pc-cover is-be" href="https://www.behance.net/gallery/172665281/Saas-Landing-Page-ui-ui-design-uiux-Design" target="_blank" rel="noopener" style="--bg:#e9e8e5;--ac:#0ea5e9" aria-label="Open SaaS Landing Page — UI/UX Design · v2 on Behance" data-cursor="View on Behance">
+            <div class="be-cv"><span class="be-word" aria-hidden="true">SaaS</span><div class="be-in"><span class="be-logo">Bē Behance case study</span><b>SaaS Landing Page</b><small>UI/UX Design · v2</small><span class="be-cta">View on Behance ↗</span></div></div>
+            <span class="pc-live be"><b>Bē</b>Behance</span>
+          </a>
+          <div class="pc-meta">
+            <span class="pc-n">09</span>
+            <div class="pc-txt"><h3>SaaS Landing Page <em>— UI/UX Design · v2</em></h3><div class="pc-tags"><span>SaaS</span><span>Landing Page</span><span>Behance</span></div></div>
+            <a class="pc-go" href="https://www.behance.net/gallery/172665281/Saas-Landing-Page-ui-ui-design-uiux-Design" target="_blank" rel="noopener" aria-label="Visit SaaS Landing Page on Behance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+          </div>
+        </article>
+        <article class="pc s7 rv" data-style="be">
+          <a class="pc-cover is-be" href="https://www.behance.net/gallery/183139315/Interior-Design-Landing-Page-ui-ui-design-uiux-design" target="_blank" rel="noopener" style="--bg:#e9e8e5;--ac:#a16207" aria-label="Open Interior Design — Landing Page on Behance" data-cursor="View on Behance">
+            <div class="be-cv"><span class="be-word" aria-hidden="true">Interior</span><div class="be-in"><span class="be-logo">Bē Behance case study</span><b>Interior Design</b><small>Landing Page</small><span class="be-cta">View on Behance ↗</span></div></div>
+            <span class="pc-live be"><b>Bē</b>Behance</span>
+          </a>
+          <div class="pc-meta">
+            <span class="pc-n">10</span>
+            <div class="pc-txt"><h3>Interior Design <em>— Landing Page</em></h3><div class="pc-tags"><span>Interior</span><span>Landing Page</span><span>Behance</span></div></div>
+            <a class="pc-go" href="https://www.behance.net/gallery/183139315/Interior-Design-Landing-Page-ui-ui-design-uiux-design" target="_blank" rel="noopener" aria-label="Visit Interior Design on Behance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+          </div>
+        </article>
+        <article class="pc s12 rv" data-style="be">
+          <a class="pc-cover is-be" href="https://www.behance.net/gallery/165900155/Marketing-Agency-Landing-Page-UIUX-Design" target="_blank" rel="noopener" style="--bg:#e9e8e5;--ac:#db2777" aria-label="Open Marketing Agency — Landing Page on Behance" data-cursor="View on Behance">
+            <div class="be-cv"><span class="be-word" aria-hidden="true">Agency</span><div class="be-in"><span class="be-logo">Bē Behance case study</span><b>Marketing Agency</b><small>Landing Page</small><span class="be-cta">View on Behance ↗</span></div></div>
+            <span class="pc-live be"><b>Bē</b>Behance</span>
+          </a>
+          <div class="pc-meta">
+            <span class="pc-n">11</span>
+            <div class="pc-txt"><h3>Marketing Agency <em>— Landing Page</em></h3><div class="pc-tags"><span>Agency</span><span>UI/UX Design</span><span>Behance</span></div></div>
+            <a class="pc-go" href="https://www.behance.net/gallery/165900155/Marketing-Agency-Landing-Page-UIUX-Design" target="_blank" rel="noopener" aria-label="Visit Marketing Agency on Behance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
           </div>
         </article>
       </div>
@@ -1176,7 +1247,7 @@ footer{padding:48px 0 40px}
       c.addEventListener('pointerleave', () => { c.style.setProperty('--px', 0); c.style.setProperty('--py', 0); });
     });
     document.querySelectorAll('.pc-cover').forEach((c) => {
-      c.addEventListener('pointerenter', () => cur.classList.add('on'));
+      c.addEventListener('pointerenter', () => { cur.querySelector('span').textContent = c.dataset.cursor || 'View live'; cur.classList.add('on'); });
       c.addEventListener('pointerleave', () => cur.classList.remove('on'));
     });
     addEventListener('pointermove', (e) => { cur.style.setProperty('--x', e.clientX + 'px'); cur.style.setProperty('--y', e.clientY + 'px'); }, { passive: true });

@@ -32,6 +32,17 @@ PROJECTS = [
     dict(slug="nattoral", style="angle", span=5, title="Nattoral", sub="Skincare E-commerce Store",
          tags=["E-commerce", "Beauty", "UI/UX"], url="https://nattoral-zeta.vercel.app/",
          bg="#e9e8e5", accent="#2f4f4a", year="2026", logo="NATTORAL", swatches=["#2f4f4a", "#9bc7c0", "#e9e3d6", "#111111"]),
+    # Behance case studies (cover images to be added: set img="..." in assets/work/behance/)
+    dict(kind="behance", style="be", span=7, title="Team Collabs", sub="Website UI", tags=["Website", "UI Design"],
+         url="https://www.behance.net/gallery/159708065/Team-Collabs-Website-UI", bg="#e9e8e5", accent="#4f46e5", year="Behance", word="Collabs"),
+    dict(kind="behance", style="be", span=5, title="SaaS Landing Page", sub="UI/UX Design", tags=["SaaS", "Landing Page"],
+         url="https://www.behance.net/gallery/238128689/SaaS-Landing-Page-ui-ui-design-uiux-design", bg="#e9e8e5", accent="#ff5a1f", year="Behance", word="SaaS"),
+    dict(kind="behance", style="be", span=5, title="SaaS Landing Page", sub="UI/UX Design · v2", tags=["SaaS", "Landing Page"],
+         url="https://www.behance.net/gallery/172665281/Saas-Landing-Page-ui-ui-design-uiux-Design", bg="#e9e8e5", accent="#0ea5e9", year="Behance", word="SaaS"),
+    dict(kind="behance", style="be", span=7, title="Interior Design", sub="Landing Page", tags=["Interior", "Landing Page"],
+         url="https://www.behance.net/gallery/183139315/Interior-Design-Landing-Page-ui-ui-design-uiux-design", bg="#e9e8e5", accent="#a16207", year="Behance", word="Interior"),
+    dict(kind="behance", style="be", span=12, title="Marketing Agency", sub="Landing Page", tags=["Agency", "UI/UX Design"],
+         url="https://www.behance.net/gallery/165900155/Marketing-Agency-Landing-Page-UIUX-Design", bg="#e9e8e5", accent="#db2777", year="Behance", word="Agency"),
 ]
 
 ARR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>'
@@ -44,6 +55,12 @@ def shot(p, kind, cls, alt=""):
 def cover(p):
     e = lambda k: html.escape(p.get(k, ""))
     st = p["style"]
+    if st == "be":
+        if p.get("img"):
+            return f'<img class="be-img" src="/assets/work/behance/{p["img"]}" alt="{e("title")} — {e("sub")} cover" loading="lazy" decoding="async">'
+        return (f'<div class="be-cv"><span class="be-word" aria-hidden="true">{e("word")}</span>'
+                f'<div class="be-in"><span class="be-logo">Bē Behance case study</span><b>{e("title")}</b><small>{e("sub")}</small>'
+                f'<span class="be-cta">View on Behance ↗</span></div></div>')
     if st == "frame":
         return (f'<div class="dv-frame"><div class="dv-scr"><img src="/assets/work/shots/{p["slug"]}-full.webp" alt="{e("title")} full website" loading="lazy" decoding="async"></div></div>')
     if st == "tablet":
@@ -65,15 +82,18 @@ def cover(p):
 def card(i, p):
     tags = ''.join(f'<span>{html.escape(t)}</span>' for t in p["tags"])
     style = f'--bg:{p["bg"]};--ac:{p["accent"]}'
+    be = p.get("kind") == "behance"
+    badge = '<span class="pc-live be"><b>Bē</b>Behance</span>' if be else '<span class="pc-live"><i></i>Live</span>'
+    where = "on Behance" if be else "(live site)"
     return f'''        <article class="pc s{p["span"]} rv" data-style="{p["style"]}">
-          <a class="pc-cover is-{p["style"]}" href="{p["url"]}" target="_blank" rel="noopener" style="{style}" aria-label="Open {html.escape(p["title"])} — {html.escape(p["sub"])} (live site)">
+          <a class="pc-cover is-{p["style"]}" href="{p["url"]}" target="_blank" rel="noopener" style="{style}" aria-label="Open {html.escape(p["title"])} — {html.escape(p["sub"])} {where}" data-cursor="{"View on Behance" if be else "View live"}">
             {cover(p)}
-            <span class="pc-live"><i></i>Live</span>
+            {badge}
           </a>
           <div class="pc-meta">
             <span class="pc-n">{i:02d}</span>
             <div class="pc-txt"><h3>{html.escape(p["title"])} <em>— {html.escape(p["sub"])}</em></h3><div class="pc-tags">{tags}<span>{p["year"]}</span></div></div>
-            <a class="pc-go" href="{p["url"]}" target="_blank" rel="noopener" aria-label="Visit {html.escape(p["title"])} live site">{ARR}</a>
+            <a class="pc-go" href="{p["url"]}" target="_blank" rel="noopener" aria-label="Visit {html.escape(p["title"])} {where}">{ARR}</a>
           </div>
         </article>'''
 
@@ -100,7 +120,7 @@ def section():
 CSS = r'''/* Work */
 .pc-count{font-family:var(--sans);font-style:normal;font-size:.32em;font-weight:500;color:var(--ink-3);vertical-align:super;letter-spacing:0}
 .pc-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(18px,2.2vw,28px) 20px}
-.pc.s7{grid-column:span 7}.pc.s5{grid-column:span 5}
+.pc.s7{grid-column:span 7}.pc.s5{grid-column:span 5}.pc.s12{grid-column:span 12}
 .pc-cover{--bg:#111;--ac:#ff5a1f;position:relative;display:block;height:clamp(320px,36vw,500px);border-radius:var(--r-lg);overflow:hidden;isolation:isolate;background:var(--bg);
   clip-path:inset(12% 6% 12% 6% round 32px);transition:clip-path 1.1s cubic-bezier(.7,0,.2,1)}
 .pc.in .pc-cover,.pc:not(.rv) .pc-cover{clip-path:inset(0 0 0 0 round 32px)}
@@ -119,6 +139,22 @@ CSS = r'''/* Work */
 .pc-go{flex:none;width:50px;height:50px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:var(--surface);transition:background .35s,color .35s,transform .45s cubic-bezier(.2,.8,.2,1),border-color .35s}
 .pc-go svg{width:18px;height:18px}
 .pc:hover .pc-go{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(45deg)}
+
+/* cover: Behance case study */
+.be-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pc-cover:hover .be-img{transform:scale(1.05)}
+.be-cv{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden}
+.be-cv::before{content:"";position:absolute;width:70%;aspect-ratio:1;border-radius:50%;background:var(--ac);filter:blur(90px);opacity:.22;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.pc-cover:hover .be-cv::before{transform:scale(1.25)}
+.be-word{position:absolute;left:-2%;bottom:-6%;font:800 clamp(90px,13vw,190px)/1 var(--sans);letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.5px color-mix(in srgb,var(--ac) 45%,transparent);white-space:nowrap;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.pc-cover:hover .be-word{transform:translateX(4%)}
+.be-in{position:relative;text-align:center;padding:24px}
+.be-logo{display:inline-flex;align-items:center;gap:8px;font:600 12px/1 var(--sans);color:var(--ink-2);padding:7px 12px;border-radius:999px;background:#fff;box-shadow:0 6px 16px -10px rgba(0,0,0,.3)}
+.be-in b{display:block;margin-top:18px;font-size:clamp(30px,3.6vw,52px);letter-spacing:-.04em;line-height:1;color:var(--ink)}
+.be-in small{display:block;margin-top:8px;font:400 italic clamp(20px,2vw,28px)/1.1 var(--serif);color:var(--ac)}
+.be-cta{display:inline-block;margin-top:22px;font:600 13px/1 var(--sans);color:#fff;background:var(--ink);padding:11px 16px;border-radius:999px;transition:background .3s}
+.pc-cover:hover .be-cta{background:var(--ac)}
+.pc-live.be b{font:800 12px/1 var(--sans);color:#1769ff}
 
 /* cover: device mockups (full website, scrolls on hover) */
 .pc-cover{background:#e9e8e5!important}
@@ -166,7 +202,7 @@ CSS = r'''/* Work */
 .pc-cursor.on{transform:translate(var(--x),var(--y)) scale(1)}
 @media (hover:none),(pointer:coarse){.pc-cursor{display:none}}
 
-@media (max-width:880px){.pc.s7,.pc.s5{grid-column:span 12}.pc-cover{height:clamp(280px,64vw,420px)}}
+@media (max-width:880px){.pc.s7,.pc.s5,.pc.s12{grid-column:span 12}.pc-cover{height:clamp(280px,64vw,420px)}}
 @media (max-width:560px){.cv-bento{grid-template-columns:1fr 1fr}.bt.c{display:none}.cv-rphone{width:30%}.cv-sphone{width:24%}.cv-pill{font-size:11px;padding:9px 13px}.cv-chip{font-size:11px}.cv-stat{font-size:11px;padding:9px 12px}}
 @media (prefers-reduced-motion:reduce){.pc-cover{clip-path:none!important;transition:none}.pc-cover>*,.pc-cover *{transition:none!important;animation:none!important;transform:none!important}}
 
@@ -183,7 +219,7 @@ JS = r'''  (() => {
       c.addEventListener('pointerleave', () => { c.style.setProperty('--px', 0); c.style.setProperty('--py', 0); });
     });
     document.querySelectorAll('.pc-cover').forEach((c) => {
-      c.addEventListener('pointerenter', () => cur.classList.add('on'));
+      c.addEventListener('pointerenter', () => { cur.querySelector('span').textContent = c.dataset.cursor || 'View live'; cur.classList.add('on'); });
       c.addEventListener('pointerleave', () => cur.classList.remove('on'));
     });
     addEventListener('pointermove', (e) => { cur.style.setProperty('--x', e.clientX + 'px'); cur.style.setProperty('--y', e.clientY + 'px'); }, { passive: true });
