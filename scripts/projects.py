@@ -114,7 +114,6 @@ def section():
     <div class="wrap">
       <div class="sec-head">
         <div class="rv"><span class="eyebrow">Recent work</span><h2 class="h2">Latest <span class="serif">projects</span></h2></div>
-        <a href="https://www.behance.net/noorxtk" target="_blank" rel="noopener" class="btn btn-ghost rv">View all on Behance <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a>
       </div>
     </div>
     <div class="wrap pc-wide">
