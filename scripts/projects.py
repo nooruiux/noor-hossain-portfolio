@@ -33,15 +33,15 @@ PROJECTS = [
          tags=["E-commerce", "Beauty", "UI/UX"], url="https://nattoral-zeta.vercel.app/",
          bg="#e9e8e5", accent="#2f4f4a", year="2026", logo="NATTORAL", swatches=["#2f4f4a", "#9bc7c0", "#e9e3d6", "#111111"]),
     # Behance case studies (cover images to be added: set img="..." in assets/work/behance/)
-    dict(img="collabs.webp", kind="behance", style="be", span=7, title="Team Collabs", sub="Website UI", tags=["Website", "UI Design"],
+    dict(img="collabs.webp", device="browser", kind="behance", style="be", span=7, title="Team Collabs", sub="Website UI", tags=["Website", "UI Design"],
          url="https://www.behance.net/gallery/159708065/Team-Collabs-Website-UI", bg="#e9e8e5", accent="#4f46e5", year="Behance", word="Collabs"),
-    dict(img="saas1.webp", kind="behance", style="be", span=5, title="SaaS Landing Page", sub="UI/UX Design", tags=["SaaS", "Landing Page"],
+    dict(img="saas1.webp", device="macbook", kind="behance", style="be", span=5, title="SaaS Landing Page", sub="UI/UX Design", tags=["SaaS", "Landing Page"],
          url="https://www.behance.net/gallery/238128689/SaaS-Landing-Page-ui-ui-design-uiux-design", bg="#e9e8e5", accent="#ff5a1f", year="Behance", word="SaaS"),
-    dict(img="saas2.webp", kind="behance", style="be", span=5, title="SaaS Landing Page", sub="UI/UX Design · v2", tags=["SaaS", "Landing Page"],
+    dict(img="saas2.webp", device="tablet", kind="behance", style="be", span=5, title="SaaS Landing Page", sub="UI/UX Design · v2", tags=["SaaS", "Landing Page"],
          url="https://www.behance.net/gallery/172665281/Saas-Landing-Page-ui-ui-design-uiux-Design", bg="#e9e8e5", accent="#0ea5e9", year="Behance", word="SaaS"),
-    dict(img="interior.webp", kind="behance", style="be", span=7, title="Interior Design", sub="Landing Page", tags=["Interior", "Landing Page"],
+    dict(img="interior.webp", device="imac", kind="behance", style="be", span=7, title="Interior Design", sub="Landing Page", tags=["Interior", "Landing Page"],
          url="https://www.behance.net/gallery/183139315/Interior-Design-Landing-Page-ui-ui-design-uiux-design", bg="#e9e8e5", accent="#a16207", year="Behance", word="Interior"),
-    dict(img="agency.webp", kind="behance", style="be", span=12, title="Marketing Agency", sub="Landing Page", tags=["Agency", "UI/UX Design"],
+    dict(img="agency.webp", device="frame", kind="behance", style="be", span=12, title="Marketing Agency", sub="Landing Page", tags=["Agency", "UI/UX Design"],
          url="https://www.behance.net/gallery/165900155/Marketing-Agency-Landing-Page-UIUX-Design", bg="#e9e8e5", accent="#db2777", year="Behance", word="Agency"),
 ]
 
@@ -57,7 +57,18 @@ def cover(p):
     st = p["style"]
     if st == "be":
         if p.get("img"):
-            return f'<img class="be-img" src="/assets/work/behance/{p["img"]}" alt="{e("title")} — {e("sub")} cover" loading="lazy" decoding="async">'
+            src = f'/assets/work/behance/{p["img"]}'
+            im = f'<img class="be-fill" src="{src}" alt="{e("title")} — {e("sub")} cover" loading="lazy" decoding="async">'
+            dev = p.get("device", "browser")
+            if dev == "browser":
+                return f'<div class="dv-win"><div class="dv-bar"><i></i><i></i><i></i><span>behance.net</span></div><div class="dv-scr">{im}</div></div>'
+            if dev == "frame":
+                return f'<div class="dv-frame"><div class="dv-scr">{im}</div></div>'
+            if dev == "tablet":
+                return f'<div class="dv-tab"><span class="dv-cam"></span><div class="dv-scr">{im}</div></div>'
+            if dev == "imac":
+                return f'<div class="dv-imac"><div class="dv-mon"><div class="dv-scr">{im}</div><div class="dv-chin"></div></div><div class="dv-neck"></div><div class="dv-foot"></div></div>'
+            return f'<div class="dv-laptop"><div class="dv-lid"><span class="dv-cam"></span><div class="dv-scr">{im}</div></div><div class="dv-base"></div></div>'
         return (f'<div class="be-cv"><span class="be-word" aria-hidden="true">{e("word")}</span>'
                 f'<div class="be-in"><span class="be-logo">Bē Behance case study</span><b>{e("title")}</b><small>{e("sub")}</small>'
                 f'<span class="be-cta">View on Behance ↗</span></div></div>')
@@ -142,6 +153,7 @@ CSS = r'''/* Work */
 
 /* cover: Behance case study */
 .be-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dv-scr img.be-fill{height:100%;object-fit:cover;object-position:center top}
 .pc-cover:hover .be-img{transform:scale(1.05)}
 .be-cv{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden}
 .be-cv::before{content:"";position:absolute;width:70%;aspect-ratio:1;border-radius:50%;background:var(--ac);filter:blur(90px);opacity:.22;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
