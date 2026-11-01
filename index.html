@@ -382,24 +382,6 @@ section{padding:clamp(72px,10vw,128px) 0}
 @media (max-width:560px){.ts-main{min-height:420px}.ts-ctrl .ts-count{display:none}}
 @media (prefers-reduced-motion:reduce){.ts-q .w{animation:none;opacity:1;filter:none;transform:none}.ts-who{animation:none}.ts-card{transition:none}}
 
-/* Pricing */
-.plans{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:960px;margin:0 auto}
-.plan{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(26px,3.5vw,40px);display:flex;flex-direction:column}
-.plan.featured{background:var(--dark);color:var(--dark-ink);border-color:var(--dark)}
-.plan .top{display:flex;justify-content:space-between;align-items:center}
-.plan h3{font-size:22px;font-weight:600;letter-spacing:-.02em}
-.badge{font-size:12px;font-weight:600;background:var(--accent);color:#fff;padding:5px 10px;border-radius:var(--pill)}
-.price{font-size:clamp(44px,5vw,60px);font-weight:600;letter-spacing:-.05em;margin:24px 0 4px;line-height:1}
-.price small{font-size:16px;font-weight:500;letter-spacing:0;color:var(--ink-3)}
-.plan.featured .price small,.plan.featured .desc{color:#a8a59e}
-.desc{color:var(--ink-2);font-size:15px}
-.plan ul{list-style:none;margin:28px 0 32px;display:grid;gap:12px;flex:1}
-.plan li{display:flex;gap:10px;font-size:15px}
-.plan li::before{content:"";flex:none;width:20px;height:20px;border-radius:50%;background:var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/12px no-repeat;margin-top:2px}
-.plan .btn{justify-content:center;width:100%}
-.plan.featured .btn-dark{background:var(--dark-ink);color:var(--dark)}
-@media (max-width:760px){.plans{grid-template-columns:1fr}}
-
 /* FAQ */
 .faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
 .faq details{border-bottom:1px solid var(--line)}
@@ -512,7 +494,6 @@ footer{padding:48px 0 40px}
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#work">Work</a></li>
-    <li><a href="#pricing">Pricing</a></li>
   </ul>
   <a href="#contact" class="btn btn-dark">Let's talk</a>
 </nav>
@@ -772,31 +753,6 @@ footer{padding:48px 0 40px}
       <div class="ts-tabs rv" role="tablist" aria-label="Choose a testimonial"><button class="ts-tab on" role="tab" aria-selected="true" data-i="0" style="--c:#2563eb"><span class="ts-av"><img src="/assets/clients/sarah-k.webp" alt="" width="36" height="36" loading="lazy"></span><span class="ts-tn"><b>Sarah K.</b><small>Founder, SaaS startup</small></span><i class="ts-bar"><em></em></i></button><button class="ts-tab" role="tab" aria-selected="false" data-i="1" style="--c:#16a34a"><span class="ts-av"><img src="/assets/clients/rahim-a.webp" alt="" width="36" height="36" loading="lazy"></span><span class="ts-tn"><b>Rahim A.</b><small>CTO, E-commerce brand</small></span><i class="ts-bar"><em></em></i></button><button class="ts-tab" role="tab" aria-selected="false" data-i="2" style="--c:#ff5a1f"><span class="ts-av"><img src="/assets/clients/mark-l.webp" alt="" width="36" height="36" loading="lazy"></span><span class="ts-tn"><b>Mark L.</b><small>Marketing Lead, Agency</small></span><i class="ts-bar"><em></em></i></button><button class="ts-tab" role="tab" aria-selected="false" data-i="3" style="--c:#7c3aed"><span class="ts-av"><img src="/assets/clients/daniel-r.webp" alt="" width="36" height="36" loading="lazy"></span><span class="ts-tn"><b>Daniel R.</b><small>Product Manager, Fintech</small></span><i class="ts-bar"><em></em></i></button><button class="ts-tab" role="tab" aria-selected="false" data-i="4" style="--c:#db2777"><span class="ts-av"><img src="/assets/clients/ayesha-m.webp" alt="" width="36" height="36" loading="lazy"></span><span class="ts-tn"><b>Ayesha M.</b><small>Co-founder, EdTech</small></span><i class="ts-bar"><em></em></i></button></div>
     </div>
     <script type="application/json" id="ts-data">[{"q": "Noor redesigned our landing page and sign-ups jumped noticeably in the first month. Sharp eye, fast delivery, great communication.", "hl": "sign-ups jumped noticeably", "n": "Sarah K.", "r": "Founder, SaaS startup", "tag": "Landing page", "c": "#2563eb", "i": "SK", "img": "/assets/clients/sarah-k.webp"}, {"q": "He thinks like a product person, not just a designer. The design system he built saved our dev team weeks.", "hl": "saved our dev team weeks", "n": "Rahim A.", "r": "CTO, E-commerce brand", "tag": "Design system", "c": "#16a34a", "i": "RA", "img": "/assets/clients/rahim-a.webp"}, {"q": "Pixel-perfect, fast and SEO-ready. Our new site finally looks as good as our product.", "hl": "finally looks as good as our product", "n": "Mark L.", "r": "Marketing Lead, Agency", "tag": "Website", "c": "#ff5a1f", "i": "ML", "img": "/assets/clients/mark-l.webp"}, {"q": "The dashboard went from confusing to effortless. Our users noticed the difference the very first week.", "hl": "confusing to effortless", "n": "Daniel R.", "r": "Product Manager, Fintech", "tag": "Dashboard UI", "c": "#7c3aed", "i": "DR", "img": "/assets/clients/daniel-r.webp"}, {"q": "Clear process, honest timelines and zero hand-off headaches. Design and build from one person is a game changer.", "hl": "zero hand-off headaches", "n": "Ayesha M.", "r": "Co-founder, EdTech", "tag": "Design + build", "c": "#db2777", "i": "AM", "img": "/assets/clients/ayesha-m.webp"}]</script>
-  </section>
-
-  <!-- PRICING -->
-  <section id="pricing" style="padding-top:0">
-    <div class="wrap">
-      <div class="sec-head" style="justify-content:center;text-align:center">
-        <div class="rv"><span class="eyebrow">Pricing</span><h2 class="h2">Simple, <span class="serif">transparent</span> pricing</h2></div>
-      </div>
-      <div class="plans">
-        <div class="plan rv">
-          <div class="top"><h3>Landing Page</h3></div>
-          <div class="price">$899<small> / project</small></div>
-          <p class="desc">Perfect for launches, campaigns and validating ideas.</p>
-          <ul><li>1 high-converting page</li><li>Custom UI design in Figma</li><li>Responsive development</li><li>Basic SEO & analytics</li><li>7–10 day delivery</li></ul>
-          <a href="#contact" class="btn btn-ghost">Get started</a>
-        </div>
-        <div class="plan featured rv">
-          <div class="top"><h3>Full Website</h3><span class="badge">Most popular</span></div>
-          <div class="price">$2,499<small> / project</small></div>
-          <p class="desc">A complete, scalable website or product UI for growing brands.</p>
-          <ul><li>Up to 8 pages / screens</li><li>UX research & user flows</li><li>Design system & components</li><li>Next.js, Framer or WordPress build</li><li>30 days of post-launch support</li></ul>
-          <a href="#contact" class="btn btn-dark">Book a call</a>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- FAQ -->
