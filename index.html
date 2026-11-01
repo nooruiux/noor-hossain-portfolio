@@ -624,12 +624,43 @@ fieldset.fld legend{margin-bottom:12px;padding:0}
 @media (prefers-reduced-motion:reduce){.cx::before,.cx::after{animation:none}}
 
 /* Footer */
-footer{padding:48px 0 40px}
-.foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;color:var(--ink-2);font-size:14px}
-.socials{display:flex;gap:8px}
-.socials a{width:40px;height:40px;border-radius:50%;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;transition:background .2s,color .2s}
-.socials a:hover{background:var(--ink);color:var(--bg)}
-.socials svg{width:16px;height:16px}
+.ft{padding-top:clamp(56px,7vw,88px);background:var(--surface);border-top:1px solid var(--line);margin-top:40px}
+.ft-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;padding-bottom:36px;border-bottom:1px solid var(--line)}
+.ft-brand{display:inline-flex;align-items:center;gap:12px;font-size:clamp(26px,2.6vw,34px);font-weight:600;letter-spacing:-.03em}
+.ft-tag{margin-top:14px;max-width:460px;color:var(--ink-2);font-size:15.5px}
+.ft-top-btn{flex:none;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:var(--bg);transition:background .3s,color .3s,transform .3s}
+.ft-top-btn svg{width:20px;height:20px}
+.ft-top-btn:hover{background:var(--ink);color:var(--bg);transform:translateY(-3px)}
+.ft-main{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.4fr);gap:48px;padding:48px 0 56px}
+.ft-say{font-size:clamp(28px,3vw,38px);line-height:1.12;letter-spacing:-.035em;font-weight:600}
+.ft-say .serif{color:var(--accent)}
+.ft-contact{display:flex;gap:40px;flex-wrap:wrap;margin:32px 0 36px}
+.ft-contact small{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px}
+.ft-contact small svg{width:15px;height:15px}
+.ft-contact a{font-size:16.5px;font-weight:600}
+.ft-contact a:hover{color:var(--accent)}
+.ft-cta{display:inline-flex;align-items:center;gap:12px;height:58px;padding:0 26px 0 8px;border-radius:999px;background:var(--ink);color:#fff;font-weight:600;font-size:16px;box-shadow:0 22px 40px -18px rgba(17,17,16,.55);transition:transform .3s,background .3s}
+.ft-cta span{width:42px;height:42px;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center;transition:transform .4s}
+.ft-cta span svg{width:18px;height:18px}
+.ft-cta:hover{transform:translateY(-2px);background:var(--accent)}
+.ft-cta:hover span{transform:rotate(-45deg)}
+.ft-cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px}
+.ft-col a{white-space:nowrap}
+.ft-col h4{font-size:13px;font-weight:500;color:var(--ink-3);margin-bottom:22px}
+.ft-col ul{list-style:none;display:grid;gap:14px;align-content:start}
+.ft-svc{display:grid;grid-template-columns:1fr 1fr;column-gap:24px;align-content:start}
+.ft-svc h4{grid-column:1/-1}
+.ft-col a{display:inline-flex;align-items:center;gap:6px;font-size:16px;color:var(--ink);transition:color .25s}
+.ft-col a:hover{color:var(--accent)}
+.ft-ar{width:14px;height:14px;opacity:.55;transition:transform .3s,opacity .3s}
+.ft-col a:hover .ft-ar{transform:translate(2px,-2px);opacity:1}
+.ft-bar{background:#111110;color:#d6d3cc;padding:22px 0;font-size:14px}
+.ft-bar .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.ft-legal{display:flex;gap:22px}
+.ft-legal a{color:#fff;font-weight:600}
+.ft-legal a:hover{color:var(--accent)}
+@media (max-width:980px){.ft-main{grid-template-columns:1fr}}
+@media (max-width:640px){.ft-cols{grid-template-columns:1fr 1fr}.ft-svc{grid-column:1/-1}.ft-top-btn{width:44px;height:44px}}
 
 /* Reveal */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
@@ -1099,15 +1130,30 @@ footer{padding:48px 0 40px}
   </section>
 </main>
 
-<footer>
-  <div class="wrap foot">
-    <span>© <span id="yr">2026</span> Noor Hossain. All rights reserved.</span>
-    <div class="socials">
-      <a href="mailto:noorxtk@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
-      <a href="https://github.com/nooruiux" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg></a>
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-top">
+      <div><a href="#top" class="ft-brand"><span class="logo" aria-hidden="true">NH</span>Noor Hossain</a>
+        <p class="ft-tag">UI/UX designer &amp; web developer crafting fast, high-converting websites and product interfaces for growing brands.</p></div>
+      <a href="#top" class="ft-top-btn" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
     </div>
-    <a href="#top">Back to top ↑</a>
+    <div class="ft-main">
+      <div class="ft-left">
+        <h3 class="ft-say">Great design shouldn't take months.<br><span class="serif">I ship in weeks.</span></h3>
+        <div class="ft-contact">
+          <div><small>Drop me a line</small><a href="mailto:noorxtk@gmail.com">noorxtk@gmail.com</a></div>
+          <div><small><svg viewBox="0 0 24 24" fill="#25d366" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>Call / WhatsApp</small><a href="https://wa.me/8801913264543" target="_blank" rel="noopener">+880 1913-264543</a></div>
+        </div>
+        <a href="#contact" class="ft-cta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>Start a project</a>
+      </div>
+      <nav class="ft-cols" aria-label="Footer">
+        <div class="ft-col ft-svc"><h4>Services</h4><ul><li><a href="#services">UI/UX Design</a></li><li><a href="#services">Website Design</a></li><li><a href="#services">SaaS Design</a></li><li><a href="#services">Dashboard Design</a></li><li><a href="#services">WordPress</a></li></ul><ul><li><a href="#services">Framer</a></li><li><a href="#services">Webflow</a></li><li><a href="#services">MVP Development</a></li><li><a href="#services">Branding Design</a></li></ul></div>
+        <div class="ft-col"><h4>Quick Links</h4><ul><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#work">Work</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#testimonials">Testimonials</a></li><li><a href="#contact">Contact</a></li></ul></div>
+        <div class="ft-col"><h4>Follow Me</h4><ul><li><a href="https://www.linkedin.com/in/noorxtk/" target="_blank" rel="noopener">LinkedIn<svg class="ft-ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a></li><li><a href="https://www.behance.net/noorxtk" target="_blank" rel="noopener">Behance<svg class="ft-ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a></li><li><a href="https://dribbble.com/Noorxtk" target="_blank" rel="noopener">Dribbble<svg class="ft-ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a></li><li><a href="https://x.com/noorxtk" target="_blank" rel="noopener">X (Twitter)<svg class="ft-ar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a></li></ul></div>
+      </nav>
+    </div>
   </div>
+  <div class="ft-bar"><div class="wrap"><span>© <span id="yr">2026</span> Noor Hossain. All rights reserved.</span><span class="ft-legal"><a href="#contact">Privacy Policy</a><a href="#contact">Terms of Service</a></span></div></div>
 </footer>
 
 <script>
