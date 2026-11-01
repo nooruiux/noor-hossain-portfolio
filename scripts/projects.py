@@ -95,21 +95,15 @@ def cover(p):
 
 
 def card(i, p):
-    tags = ''.join(f'<span>{html.escape(t)}</span>' for t in p["tags"])
     style = f'--bg:{p["bg"]};--ac:{p["accent"]}'
     be = p.get("kind") == "behance"
-    badge = '<span class="pc-live be"><b>Bē</b>Behance</span>' if be else '<span class="pc-live"><i></i>Live</span>'
-    where = "on Behance" if be else "(live site)"
-    return f'''        <article class="pc s{p["span"]} rv" data-style="{p["style"]}">
-          <a class="pc-cover is-{p["style"]}" href="{p["url"]}" target="_blank" rel="noopener" style="{style}" aria-label="Open {html.escape(p["title"])} — {html.escape(p["sub"])} {where}" data-cursor="{"View on Behance" if be else "View live"}">
+    where = "on Behance" if be else "live site"
+    title = html.escape(p["title"]); sub = html.escape(p["sub"])
+    return f'''        <article class="pc rv" data-style="{p["style"]}">
+          <a class="pc-cover is-{p["style"]}" href="{p["url"]}" target="_blank" rel="noopener" style="{style}" aria-label="{title} — {sub} ({where})" data-cursor="{title}">
             {cover(p)}
-            {badge}
           </a>
-          <div class="pc-meta">
-            <span class="pc-n">{i:02d}</span>
-            <div class="pc-txt"><h3>{html.escape(p["title"])} <em>— {html.escape(p["sub"])}</em></h3><div class="pc-tags">{tags}<span>{p["year"]}</span></div></div>
-            <a class="pc-go" href="{p["url"]}" target="_blank" rel="noopener" aria-label="Visit {html.escape(p["title"])} {where}">{ARR}</a>
-          </div>
+          <p class="pc-cap"><b>{title}</b> {sub}</p>
         </article>'''
 
 
@@ -122,11 +116,14 @@ def section():
         <div class="rv"><span class="eyebrow">Recent work</span><h2 class="h2">Latest <span class="serif">projects</span> <sup class="pc-count">({len(PROJECTS):02d})</sup></h2></div>
         <a href="https://www.behance.net/noorxtk" target="_blank" rel="noopener" class="btn btn-ghost rv">View all on Behance <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a>
       </div>
+    </div>
+    <div class="wrap pc-wide">
       <div class="pc-grid">
 {cards}
+        <a class="pc-more rv" href="https://www.behance.net/noorxtk" target="_blank" rel="noopener"><span>{ARR}</span><b>See more work</b><small>Full portfolio on Behance</small></a>
       </div>
     </div>
-    <div class="pc-cursor" aria-hidden="true"><span>View live</span>{ARR}</div>
+    <div class="pc-cursor" aria-hidden="true"><span>View</span><small class="pc-cv">View project ↗</small></div>
   </section>
 
 '''
@@ -134,11 +131,18 @@ def section():
 
 CSS = r'''/* Work */
 .pc-count{font-family:var(--sans);font-style:normal;font-size:.32em;font-weight:500;color:var(--ink-3);vertical-align:super;letter-spacing:0}
-.pc-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(18px,2.2vw,28px) 20px}
-.pc.s7{grid-column:span 7}.pc.s5{grid-column:span 5}.pc.s12{grid-column:span 12}
-.pc-cover{--bg:#111;--ac:#ff5a1f;position:relative;display:block;height:clamp(320px,36vw,500px);border-radius:var(--r-lg);overflow:hidden;isolation:isolate;background:var(--bg);
-  clip-path:inset(12% 6% 12% 6% round 32px);transition:clip-path 1.1s cubic-bezier(.7,0,.2,1)}
-.pc.in .pc-cover,.pc:not(.rv) .pc-cover{clip-path:inset(0 0 0 0 round 32px)}
+.pc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.pc-wide{max-width:none;padding:0 clamp(8px,1.6vw,28px)}
+.pc-cap{display:none}
+.pc-more{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px;aspect-ratio:612/452;border-radius:24px;background:var(--surface);border:1px solid var(--line);color:var(--ink);text-align:center;transition:background .35s,color .35s}
+.pc-more b{font-size:clamp(22px,2vw,30px);letter-spacing:-.03em}
+.pc-more span{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:#fff;transition:transform .4s}
+.pc-more span svg{width:22px;height:22px}
+.pc-more:hover span{transform:rotate(45deg)}
+.pc-more small{color:var(--ink-3);font-size:14px}
+.pc-cover{--bg:#111;--ac:#ff5a1f;position:relative;display:block;aspect-ratio:612/452;border-radius:24px;cursor:none;overflow:hidden;isolation:isolate;background:var(--bg);
+  clip-path:inset(8% 6% 8% 6% round 24px);transition:clip-path 1.1s cubic-bezier(.7,0,.2,1)}
+.pc.in .pc-cover,.pc:not(.rv) .pc-cover{clip-path:inset(0 0 0 0 round 24px)}
 .pc.rv{opacity:1;transform:none}
 .pc-cover>*{transition:transform 1.1s cubic-bezier(.2,.8,.2,1)}
 .pc:not(.in) .pc-cover>*{transform:scale(1.12)}
@@ -175,8 +179,8 @@ CSS = r'''/* Work */
 .pc-live.be b{font:800 12px/1 var(--sans);color:#1769ff}
 
 /* cover: device mockups (full website, scrolls on hover) */
-.pc-cover{background:#e9e8e5!important}
-.pc-cover::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(70% 60% at 50% 40%,#f6f5f2,transparent 75%)}
+.pc-cover{background:#ececec!important}
+.pc-cover::before{content:none}
 .dv-frame{position:absolute;left:8%;right:8%;top:9%;bottom:-2%;padding:6px 6px 0;border-radius:14px 14px 0 0;background:#fdfdfc;box-shadow:0 0 0 1px rgba(17,17,16,.08),0 30px 60px -30px rgba(17,17,16,.35);transition:transform .9s cubic-bezier(.2,.8,.2,1)}
 .dv-frame .dv-scr{height:100%;border-radius:9px 9px 0 0}
 .pc-cover:hover .dv-frame{transform:translateY(-8px)}
@@ -206,7 +210,7 @@ CSS = r'''/* Work */
 .dv-laptop.tilt{transform:translate(-50%,-50%) perspective(1600px) rotateY(-18deg) rotateX(8deg) rotateZ(1deg)}
 .pc-cover:hover .dv-laptop.tilt{transform:translate(-50%,-52%) perspective(1600px) rotateY(-6deg) rotateX(3deg)}
 .is-angle .dv-lid{box-shadow:inset 0 0 0 1.5px #3c3d42,30px 40px 70px -24px rgba(20,40,36,.55)}
-.dv-imac{position:absolute;left:50%;top:50%;width:min(92%,620px);transform:translate(-50%,-50%);transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.dv-imac{position:absolute;left:50%;top:50%;width:min(74%,620px);transform:translate(-50%,-50%);transition:transform .9s cubic-bezier(.2,.8,.2,1)}
 .dv-mon{border-radius:16px;padding:2.4% 2.4% 0;background:linear-gradient(180deg,#e9eaee,#c9ccd2);box-shadow:inset 0 0 0 1px rgba(255,255,255,.6),0 40px 80px -24px rgba(0,0,0,.75);overflow:hidden}
 .dv-imac .dv-scr{aspect-ratio:16/10;border-radius:6px;background:#111;box-shadow:0 0 0 6px #0c0c0e}
 .dv-chin{height:clamp(24px,3vw,36px);margin:0 -3%;margin-top:10px;background:linear-gradient(180deg,#d7d9de,#b9bcc3)}
@@ -215,13 +219,15 @@ CSS = r'''/* Work */
 .pc-cover:hover .dv-imac{transform:translate(-50%,calc(-50% - 6px))}
 
 /* cursor bubble */
-.pc-cursor{position:fixed;left:0;top:0;z-index:60;width:104px;height:104px;margin:-52px 0 0 -52px;border-radius:50%;display:grid;place-items:center;align-content:center;gap:2px;pointer-events:none;
-  background:var(--accent);color:#fff;font:600 13px/1.1 var(--sans);text-align:center;transform:translate(var(--x,-200px),var(--y,-200px)) scale(0);transition:transform .35s cubic-bezier(.2,.8,.2,1);box-shadow:0 16px 40px -12px rgba(255,90,31,.8)}
-.pc-cursor svg{width:16px;height:16px;justify-self:center}
+.pc-cursor{position:fixed;left:0;top:0;z-index:60;min-width:118px;height:118px;padding:0 22px;margin:-59px 0 0 -59px;border-radius:999px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;pointer-events:none;background:rgba(17,17,16,.88);color:#fff;font:600 14px/1.15 var(--sans);text-align:center;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transform:translate(var(--x,-200px),var(--y,-200px)) scale(0);transition:transform .35s cubic-bezier(.2,.8,.2,1);box-shadow:0 18px 40px -14px rgba(0,0,0,.6)}
+.pc-cursor small{font:500 11.5px/1 var(--sans);opacity:.7}
+[data-theme="dark"] .pc-cursor{background:rgba(244,242,238,.92);color:#111}
 .pc-cursor.on{transform:translate(var(--x),var(--y)) scale(1)}
 @media (hover:none),(pointer:coarse){.pc-cursor{display:none}}
 
-@media (max-width:880px){.pc.s7,.pc.s5,.pc.s12{grid-column:span 12}.pc-cover{height:clamp(280px,64vw,420px)}}
+@media (max-width:980px){.pc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.pc-grid{grid-template-columns:1fr;gap:20px}}
+@media (hover:none),(pointer:coarse){.pc-cover{cursor:pointer}.pc-cap{display:block;margin:10px 4px 0;font-size:14px;color:var(--ink-3)}.pc-cap b{color:var(--ink);font-weight:600}}
 @media (max-width:560px){.cv-bento{grid-template-columns:1fr 1fr}.bt.c{display:none}.cv-rphone{width:30%}.cv-sphone{width:24%}.cv-pill{font-size:11px;padding:9px 13px}.cv-chip{font-size:11px}.cv-stat{font-size:11px;padding:9px 12px}}
 @media (prefers-reduced-motion:reduce){.pc-cover{clip-path:none!important;transition:none}.pc-cover>*,.pc-cover *{transition:none!important;animation:none!important;transform:none!important}}
 
