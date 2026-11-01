@@ -110,7 +110,7 @@ def card(i, p):
 def section():
     cards = '\n'.join(card(i + 1, p) for i, p in enumerate(PROJECTS))
     return f'''  <!-- WORK -->
-  <section id="work" style="padding-top:0">
+  <section id="work">
     <div class="wrap">
       <div class="sec-head">
         <div class="rv"><span class="eyebrow">Recent work</span><h2 class="h2">Latest <span class="serif">projects</span></h2></div>
