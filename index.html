@@ -814,13 +814,13 @@ footer{padding:48px 0 40px}
         <div class="rv" style="max-width:640px"><span class="eyebrow">Pricing</span><h2 class="h2">Premium design, <span class="serif">friendly prices</span></h2><p class="lead" style="margin:16px auto 0">Fixed prices, no hidden fees. Pick what you need — every plan includes revisions and a proper handoff.</p></div>
       </div>
       <div class="pr rv" id="pr">
-        <div class="pr-cats" role="tablist" aria-label="Service"><button class="pr-cat on" role="tab" aria-selected="true" data-k="website">Website Design</button><button class="pr-cat" role="tab" aria-selected="false" data-k="dev">Design + Development</button><button class="pr-cat" role="tab" aria-selected="false" data-k="uiux">UI/UX Design</button><button class="pr-cat" role="tab" aria-selected="false" data-k="brand">Branding</button><span class="pr-ind" aria-hidden="true"></span></div>
+        <div class="pr-cats" role="tablist" aria-label="Service"><button class="pr-cat on" role="tab" aria-selected="true" data-k="uiux">UI/UX Design</button><button class="pr-cat" role="tab" aria-selected="false" data-k="website">Website Design</button><button class="pr-cat" role="tab" aria-selected="false" data-k="dev">Design + Development</button><button class="pr-cat" role="tab" aria-selected="false" data-k="brand">Branding</button><span class="pr-ind" aria-hidden="true"></span></div>
         <div class="pr-grid">
           <div class="pr-tiers" role="radiogroup" aria-label="Size"></div>
           <div class="pr-card">
             <div class="pr-top"><span class="pr-tag"></span><span class="pr-days"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b></b></span></div>
             <div class="pr-name"></div>
-            <div class="pr-price"><sup>$</sup><b>799</b><small>one-time</small></div>
+            <div class="pr-price"><sup>$</sup><b>999</b><small>one-time</small></div>
             <p class="pr-note">Fixed price · 50% to start, 50% on delivery</p>
             <ul class="pr-feat"></ul>
             <a href="#contact" class="pr-cta">Get started <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -999,7 +999,7 @@ footer{padding:48px 0 40px}
     const card = root.querySelector('.pr-card'), priceEl = card.querySelector('.pr-price b');
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>';
-    let k = 'website', t = 1, shown = 799;
+    let k = 'uiux', t = 1, shown = 999;
     const moveInd = () => { const c = root.querySelector('.pr-cat.on'); ind.style.width = c.offsetWidth + 'px'; ind.style.transform = `translateX(${c.offsetLeft}px)`; };
     const count = (to) => { if (reduce) { priceEl.textContent = to.toLocaleString('en-US'); shown = to; return; } const from = shown, t0 = performance.now();
       const step = (n) => { const q = Math.min((n - t0) / 600, 1), e = 1 - Math.pow(1 - q, 3); priceEl.textContent = Math.round(from + (to - from) * e).toLocaleString('en-US'); if (q < 1) requestAnimationFrame(step); else shown = to; }; requestAnimationFrame(step); };
