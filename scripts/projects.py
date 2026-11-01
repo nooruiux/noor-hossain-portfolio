@@ -144,7 +144,7 @@ CSS = r'''/* Work */
 .pc.in .pc-cover,.pc:not(.rv) .pc-cover{clip-path:inset(0 0 0 0 round 24px)}
 .pc.rv{opacity:1;transform:none}
 .pc-cover>*{transition:transform 1.1s cubic-bezier(.2,.8,.2,1)}
-.pc:not(.in) .pc-cover>*{transform:scale(1.12)}
+.pc:not(.in) .pc-cover{transform:scale(.97)}
 .pc-live{position:absolute;z-index:5;top:18px;right:18px;display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:999px;font:600 12px/1 var(--sans);color:#fff;background:rgba(17,17,16,.35);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .pc-live i{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.25)}
 .pc-meta{display:flex;align-items:flex-start;gap:16px;margin-top:18px}
