@@ -898,6 +898,15 @@ fieldset.fld legend{margin-bottom:12px;padding:0}
 .stat{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 @media (min-width:1024px){.stats{max-width:1040px;margin-left:auto;margin-right:auto;gap:20px}}
 .hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
+/* Hero typing */
+.tw-c{opacity:0;transition:opacity .08s linear}
+.tw-c.on{opacity:1}
+.tw-caret{display:inline-block;position:relative;width:0;height:1em;vertical-align:baseline}
+.tw-caret::after{content:"";position:absolute;left:.04em;bottom:-.08em;width:.07em;height:.92em;border-radius:2px;background:var(--accent);animation:twBlink 1s steps(1) infinite}
+.tw-caret.typing::after{animation:none}
+.tw-caret.done{opacity:0;transition:opacity .6s .2s}
+@keyframes twBlink{50%{opacity:0}}
+
 /* Reveal */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
@@ -941,7 +950,7 @@ fieldset.fld legend{margin-bottom:12px;padding:0}
       <div class="hero-grid">
         <div>
           <span class="avail rv"><span class="dot"></span>Available for new projects</span>
-          <h1 class="rv">Hi, I'm Noor.<br>I design <span class="serif">websites</span> that convert.</h1>
+          <h1 class="rv" id="hero-title" aria-label="Hi, I'm Noor. I design websites that convert.">Hi, I'm Noor.<br>I design <span class="serif">websites</span> that convert.</h1>
           <p class="lead rv">UI/UX designer & web developer helping startups and brands turn ideas into clean, fast, high-converting digital products — from first wireframe to launch.</p>
           <div class="cta-row rv">
             <a href="https://calendly.com/nooruiux/ui-ux-and-web-design" target="_blank" rel="noopener" data-cal class="btn btn-dark">Book a free call <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
@@ -1582,6 +1591,25 @@ fieldset.fld legend{margin-bottom:12px;padding:0}
       c.addEventListener('pointerleave', () => cur.classList.remove('on'));
     });
     addEventListener('pointermove', (e) => { cur.style.setProperty('--x', e.clientX + 'px'); cur.style.setProperty('--y', e.clientY + 'px'); }, { passive: true });
+  })();
+  (() => {
+    const h = document.getElementById('hero-title'); if (!h || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const chars = [];
+    const split = (node) => [...node.childNodes].forEach((n) => {
+      if (n.nodeType === 3) { const f = document.createDocumentFragment();
+        for (const ch of n.textContent) { const c = document.createElement('span'); c.className = 'tw-c'; c.textContent = ch; c.setAttribute('aria-hidden', 'true'); f.appendChild(c); chars.push(c); }
+        n.replaceWith(f); }
+      else if (n.nodeType === 1 && n.tagName !== 'BR') split(n);
+    });
+    split(h);
+    const caret = document.createElement('span'); caret.className = 'tw-caret typing'; caret.setAttribute('aria-hidden', 'true');
+    let i = 0;
+    const step = () => {
+      if (i >= chars.length) { caret.classList.remove('typing'); setTimeout(() => caret.classList.add('done'), 2600); return; }
+      const c = chars[i++]; c.classList.add('on'); c.after(caret);
+      const ch = c.textContent; setTimeout(step, ch === '.' ? 380 : ch === ' ' ? 70 : 38 + Math.random() * 34);
+    };
+    chars[0].before(caret); setTimeout(step, 450);
   })();
   document.getElementById('yr').textContent = new Date().getFullYear();
   const io = new IntersectionObserver((entries) => {
