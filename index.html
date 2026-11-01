@@ -101,12 +101,76 @@ section{padding:clamp(72px,10vw,128px) 0}
 @keyframes scroll{to{transform:translateX(calc(-50% - var(--gap)/2))}}
 
 /* About */
-.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
-.about-text{font-size:clamp(24px,3vw,36px);line-height:1.22;letter-spacing:-.025em;font-weight:500}
-.about-text .muted{color:var(--ink-3)}
-.tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px}
-.tools span{padding:8px 14px;border-radius:var(--pill);background:var(--surface);border:1px solid var(--line);font-size:14px;font-weight:500}
-@media (max-width:880px){.about-grid{grid-template-columns:1fr;gap:24px}}
+.ab-lead{max-width:1060px}
+.ab-say{font-size:clamp(28px,4.1vw,54px);line-height:1.14;letter-spacing:-.035em;font-weight:500;margin-top:22px}
+.ab-say .w{color:var(--ink);opacity:var(--o,.14);transition:opacity .25s linear}
+.ab-pill{display:inline-flex;align-items:center;gap:.28em;vertical-align:middle;height:1.02em;padding:0 .34em 0 .1em;margin:0 .06em;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:.62em;font-weight:600;letter-spacing:-.02em;transform:translateY(-.08em);opacity:var(--o,.14);transition:opacity .25s linear}
+.ab-pill img{height:.95em;width:.95em;border-radius:50%;object-fit:cover;object-position:top;background:linear-gradient(135deg,#ffb48f,#ff5a1f)}
+.ab-pill i{display:grid;place-items:center;height:.95em;width:.95em;border-radius:50%;font-style:normal;font-size:1em;line-height:1;color:#fff;background:var(--c,#111)}
+.ab-say .hl{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--accent)}
+
+.ab-bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(150px,auto);gap:16px;margin-top:clamp(40px,6vw,72px)}
+.ab-c{position:relative;overflow:hidden;border-radius:var(--r-lg);background:var(--surface);border:1px solid var(--line);padding:24px;isolation:isolate;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
+.ab-c:hover{transform:translateY(-5px);box-shadow:0 26px 50px -30px rgba(17,17,16,.3)}
+.ab-c h4{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+.ab-c.rv{transition-delay:calc(var(--d,0) * 80ms)}
+
+.ab-me{grid-column:span 2;grid-row:span 2;padding:0;background:#0f0f0e;color:#f4f2ee;display:flex;flex-direction:column;justify-content:flex-end;min-height:420px}
+.ab-me::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(90% 70% at 70% 30%,#ff7a45,#ff5a1f 40%,#7a2a0d 75%,#0f0f0e)}
+.ab-me::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,transparent 45%,rgba(15,15,14,.92) 85%),repeating-linear-gradient(90deg,rgba(255,255,255,.06) 0 1px,transparent 1px 48px),repeating-linear-gradient(0deg,rgba(255,255,255,.06) 0 1px,transparent 1px 48px)}
+.ab-me img{position:absolute;z-index:-1;right:-4%;bottom:0;height:96%;width:auto;max-width:none;filter:drop-shadow(0 20px 40px rgba(0,0,0,.35));transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.ab-me:hover img{transform:scale(1.04) translateY(-6px)}
+.ab-me .meta{position:relative;padding:28px}
+.ab-me b{display:block;font-size:clamp(26px,2.6vw,34px);letter-spacing:-.03em;font-weight:600;line-height:1.05}
+.ab-me small{display:block;color:#d6d3cc;font-size:15px;margin-top:6px}
+.ab-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.ab-tags span{font-size:12.5px;font-weight:500;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(8px)}
+
+.ab-time{grid-column:span 1;display:flex;flex-direction:column;justify-content:space-between}
+.ab-clock{font-size:clamp(34px,3.4vw,44px);font-weight:600;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.ab-clock small{font-size:.4em;font-weight:600;color:var(--ink-3);margin-left:4px;letter-spacing:0}
+.ab-place{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-2);margin-top:10px}
+.ab-globe{position:absolute;right:-50px;bottom:-60px;width:170px;height:170px;border-radius:50%;z-index:-1;opacity:.6;
+  background:radial-gradient(circle at 35% 35%,transparent 55%,rgba(17,17,16,.06) 56%),repeating-linear-gradient(90deg,rgba(17,17,16,.08) 0 1px,transparent 1px 18px),repeating-linear-gradient(0deg,rgba(17,17,16,.08) 0 1px,transparent 1px 18px);
+  -webkit-mask:radial-gradient(circle,#000 69%,transparent 70%);mask:radial-gradient(circle,#000 69%,transparent 70%);animation:spin 40s linear infinite}
+.ab-ping{position:absolute;right:58px;bottom:62px;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(255,90,31,.6);animation:pulseO 2s infinite}
+@keyframes pulseO{70%{box-shadow:0 0 0 14px rgba(255,90,31,0)}100%{box-shadow:0 0 0 0 rgba(255,90,31,0)}}
+
+.ab-status{grid-column:span 1;background:#0f0f0e;color:#f4f2ee;display:flex;flex-direction:column;justify-content:space-between;border-color:#0f0f0e}
+.ab-status h4{color:#a8a59e}
+.ab-status p{font-size:19px;font-weight:600;letter-spacing:-.02em;line-height:1.2}
+.ab-status .live{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#86efac}
+.ab-status .live i{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite}
+.ab-status a{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:14px;font-weight:600;color:var(--accent)}
+.ab-status a svg{width:16px;height:16px;transition:transform .3s}
+.ab-status:hover a svg{transform:translateX(4px)}
+
+.ab-stack{grid-column:span 2;display:flex;flex-direction:column;justify-content:space-between;gap:16px}
+.ab-mq{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.ab-row{display:flex;gap:10px;width:max-content;animation:abMq 26s linear infinite}
+.ab-row.rev{animation-direction:reverse;animation-duration:30s;margin-top:10px}
+.ab-mq:hover .ab-row{animation-play-state:paused}
+@keyframes abMq{to{transform:translateX(calc(-50% - 5px))}}
+.ab-tool{display:inline-flex;align-items:center;gap:9px;padding:9px 14px 9px 9px;border-radius:14px;background:var(--bg);border:1px solid var(--line);font-size:14px;font-weight:600;white-space:nowrap}
+.ab-tool i{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-style:normal;font-size:12px;font-weight:700;color:#fff;background:var(--c)}
+
+.ab-val{grid-column:span 1;display:flex;flex-direction:column;gap:10px}
+.ab-val .ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:#fff1ea;color:var(--accent);transition:transform .5s cubic-bezier(.2,.8,.2,1),background .3s,color .3s}
+.ab-val .ic svg{width:22px;height:22px}
+.ab-val:hover .ic{transform:rotate(-10deg) scale(1.08);background:var(--accent);color:#fff}
+.ab-val b{font-size:18px;letter-spacing:-.02em;margin-top:auto}
+.ab-val p{font-size:14.5px;color:var(--ink-2)}
+
+.ab-soc{grid-column:span 2;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ab-soc p{font-size:18px;font-weight:600;letter-spacing:-.02em;max-width:300px}
+.ab-soc nav{display:flex;gap:10px;flex-wrap:wrap}
+.ab-soc a{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg);font-size:14px;font-weight:600;transition:background .3s,color .3s,transform .3s,border-color .3s}
+.ab-soc a:hover{background:var(--ink);color:var(--bg);border-color:var(--ink);transform:translateY(-2px)}
+.ab-soc a svg{width:16px;height:16px}
+
+@media (max-width:980px){.ab-bento{grid-template-columns:repeat(2,minmax(0,1fr))}.ab-me,.ab-stack,.ab-soc{grid-column:span 2}.ab-me{grid-row:auto}}
+@media (max-width:560px){.ab-bento{grid-template-columns:1fr}.ab-me,.ab-stack,.ab-soc,.ab-time,.ab-status,.ab-val{grid-column:auto}.ab-me{min-height:380px}}
+@media (prefers-reduced-motion:reduce){.ab-say .w,.ab-pill{--o:1!important}.ab-row,.ab-globe{animation:none}}
 
 /* Services */
 .sv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -603,11 +667,55 @@ footer{padding:48px 0 40px}
 
   <!-- ABOUT -->
   <section id="about">
-    <div class="wrap about-grid">
-      <div class="rv"><span class="eyebrow">About me</span></div>
-      <div>
-        <p class="about-text rv">I'm Noor Hossain — a designer who codes. <span class="muted">I blend user psychology, clean visual systems and production-ready development to build products people actually enjoy using — and that move your numbers.</span></p>
-        <div class="tools rv"><span>Figma</span><span>Framer</span><span>Webflow</span><span>Next.js</span><span>React</span><span>Tailwind CSS</span><span>WordPress</span><span>Elementor</span></div>
+    <div class="wrap">
+      <div class="ab-lead">
+        <span class="eyebrow rv">About me</span>
+        <p class="ab-say" id="ab-say">Hi, I'm Noor <span class="ab-pill"><img src="/assets/noor-hossain-sm.webp" alt="" width="40" height="40">Hossain</span> — a UI/UX designer who codes. I turn messy ideas into <span class="ab-pill"><i style="--c:#a259ff"><svg viewBox="0 0 24 24" width="55%" height="55%" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 10h16"/></svg></i>clean interfaces</span> and <span class="ab-pill"><i style="--c:#ff5a1f"><svg viewBox="0 0 24 24" width="55%" height="55%" fill="#fff"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></i>fast websites</span> that people <span class="hl">love to use</span> and businesses love to grow with.</p>
+      </div>
+
+      <div class="ab-bento">
+        <article class="ab-c ab-me rv" style="--d:0">
+          <img src="/assets/noor-hossain.webp" alt="Noor Hossain" width="900" height="900" loading="lazy">
+          <div class="meta"><b>Noor Hossain</b><small>UI/UX Designer &amp; Web Developer</small>
+            <div class="ab-tags"><span>Product thinking</span><span>Design systems</span><span>No-code &amp; code</span></div></div>
+        </article>
+
+        <article class="ab-c ab-time rv" style="--d:1">
+          <h4>Local time</h4>
+          <div><div class="ab-clock" id="ab-clock">--:--<small>AM</small></div>
+          <div class="ab-place"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Dhaka, Bangladesh · GMT+6</div></div>
+          <span class="ab-globe" aria-hidden="true"></span><span class="ab-ping" aria-hidden="true"></span>
+        </article>
+
+        <article class="ab-c ab-status rv" style="--d:2">
+          <h4>Currently</h4>
+          <div><span class="live"><i></i>Available for work</span><p style="margin-top:10px">Open to freelance projects &amp; long-term partnerships</p>
+          <a href="#contact">Start a project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        </article>
+
+        <article class="ab-c ab-val rv" style="--d:3">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg></span>
+          <b>Purpose first</b><p>Every pixel has a job — guide users, build trust, convert.</p>
+        </article>
+
+        <article class="ab-c ab-val rv" style="--d:4">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span>
+          <b>Fast &amp; pixel-perfect</b><p>What you approve in Figma is exactly what ships.</p>
+        </article>
+
+        <article class="ab-c ab-stack rv" style="--d:5">
+          <h4>My toolkit</h4>
+          <div class="ab-mq"><div class="ab-row"><span class="ab-tool" style="--c:#a259ff"><i>F</i>Figma</span><span class="ab-tool" style="--c:#0055ff"><i>Fr</i>Framer</span><span class="ab-tool" style="--c:#4353ff"><i>W</i>Webflow</span><span class="ab-tool" style="--c:#21759b"><i>Wp</i>WordPress</span><span class="ab-tool" style="--c:#111111"><i>N</i>Next.js</span><span class="ab-tool" style="--c:#0ea5e9"><i>R</i>React</span><span class="ab-tool" style="--c:#a259ff"><i>F</i>Figma</span><span class="ab-tool" style="--c:#0055ff"><i>Fr</i>Framer</span><span class="ab-tool" style="--c:#4353ff"><i>W</i>Webflow</span><span class="ab-tool" style="--c:#21759b"><i>Wp</i>WordPress</span><span class="ab-tool" style="--c:#111111"><i>N</i>Next.js</span><span class="ab-tool" style="--c:#0ea5e9"><i>R</i>React</span></div><div class="ab-row rev"><span class="ab-tool" style="--c:#06b6d4"><i>Tw</i>Tailwind CSS</span><span class="ab-tool" style="--c:#92003b"><i>E</i>Elementor</span><span class="ab-tool" style="--c:#111111"><i>No</i>Notion</span><span class="ab-tool" style="--c:#ff9a00"><i>Ai</i>Illustrator</span><span class="ab-tool" style="--c:#31a8ff"><i>Ps</i>Photoshop</span><span class="ab-tool" style="--c:#06b6d4"><i>Tw</i>Tailwind CSS</span><span class="ab-tool" style="--c:#92003b"><i>E</i>Elementor</span><span class="ab-tool" style="--c:#111111"><i>No</i>Notion</span><span class="ab-tool" style="--c:#ff9a00"><i>Ai</i>Illustrator</span><span class="ab-tool" style="--c:#31a8ff"><i>Ps</i>Photoshop</span></div></div>
+        </article>
+
+        <article class="ab-c ab-soc rv" style="--d:6">
+          <p>See more of my work &amp; process</p>
+          <nav aria-label="Profiles">
+            <a href="https://www.behance.net/noorxtk" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.2 11.3c.9-.4 1.4-1.1 1.4-2.1C9.6 7.3 8.2 6.5 6.4 6.5H2v11h4.6c1.9 0 3.6-.9 3.6-3 0-1.3-.6-2.2-2-2.7zM4.2 8.3h1.9c.7 0 1.4.2 1.4 1.1 0 .8-.5 1.1-1.3 1.1h-2zm2.1 7.4H4.2v-3.1h2.2c.9 0 1.5.4 1.5 1.5 0 1.2-.8 1.6-1.6 1.6zM15.5 7.3h4.3v1.1h-4.3zM22 13.6c0-2.4-1.4-4.4-4-4.4-2.5 0-4.2 1.9-4.2 4.3 0 2.5 1.6 4.3 4.2 4.3 1.9 0 3.2-.9 3.8-2.7h-2c-.2.7-1 1-1.7 1-1.2 0-1.9-.7-1.9-1.9H22v-.6zm-5.8-.8c.1-1 .8-1.7 1.8-1.7 1.1 0 1.6.6 1.7 1.7z"/></svg>Behance</a>
+            <a href="https://github.com/nooruiux" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-4.9 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.6.6.7 1 1.6 1 2.7 0 3.8-2.3 4.7-4.6 4.9.4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg>GitHub</a>
+            <a href="https://wa.me/8801913264543" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>WhatsApp</a>
+          </nav>
+        </article>
       </div>
     </div>
   </section>
@@ -1021,6 +1129,33 @@ footer{padding:48px 0 40px}
     });
     addEventListener('resize', moveInd); if (document.fonts) document.fonts.ready.then(moveInd);
     moveInd(); renderTiers();
+  })();
+  (() => {
+    const say = document.getElementById('ab-say'); if (!say) return;
+    // split plain text nodes into word spans
+    [...say.childNodes].forEach((n) => {
+      if (n.nodeType !== 3) return;
+      const frag = document.createDocumentFragment();
+      n.textContent.split(/(\s+)/).forEach((t) => { if (!t) return; if (/^\s+$/.test(t)) frag.appendChild(document.createTextNode(t)); else { const sp = document.createElement('span'); sp.className = 'w'; sp.textContent = t; frag.appendChild(sp); } });
+      say.replaceChild(frag, n);
+    });
+    say.querySelectorAll('.hl').forEach((h) => h.classList.add('w'));
+    const items = [...say.querySelectorAll('.w, .ab-pill')];
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return items.forEach((w) => w.style.setProperty('--o', 1));
+    let ticking = false;
+    const update = () => { ticking = false; const r = say.getBoundingClientRect(), vh = innerHeight;
+      const p = Math.min(1, Math.max(0, (vh * .85 - r.top) / (r.height + vh * .35)));
+      const lit = p * items.length;
+      items.forEach((w, i) => w.style.setProperty('--o', Math.min(1, Math.max(.14, lit - i + .14)))); };
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    addEventListener('resize', update); update();
+  })();
+  (() => {
+    const el = document.getElementById('ab-clock'); if (!el) return;
+    const fmt = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Dhaka', hour: 'numeric', minute: '2-digit', hour12: true });
+    const tick = () => { const parts = fmt.formatToParts(new Date()); const g = (t) => (parts.find((x) => x.type === t) || {}).value || '';
+      el.innerHTML = `${g('hour')}:${g('minute')}<small>${g('dayPeriod')}</small>`; };
+    tick(); setInterval(tick, 15000);
   })();
   document.getElementById('yr').textContent = new Date().getFullYear();
   const io = new IntersectionObserver((entries) => {
