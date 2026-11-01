@@ -119,6 +119,44 @@ section{padding:clamp(72px,10vw,128px) 0}
 .chips i{font-style:normal;font-size:12px;font-weight:500;padding:5px 10px;border-radius:var(--pill);background:var(--bg);color:var(--ink-2)}
 @media (max-width:760px){.services{grid-template-columns:1fr}}
 
+/* AI */
+.ai-grid{display:grid;grid-template-columns:1.25fr 1fr 1fr;grid-template-rows:auto auto;gap:16px}
+.ai-hero{grid-row:span 3;position:relative;overflow:hidden;border-radius:var(--r-lg);background:#0f0f0e;color:#f4f2ee;padding:clamp(26px,3vw,40px);display:flex;flex-direction:column;justify-content:space-between;isolation:isolate}
+.ai-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 50% at 50% 42%,rgba(255,90,31,.45),transparent 70%),repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,transparent 1px 44px),repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 1px,transparent 1px 44px)}
+.ai-hero h3{font-size:clamp(24px,2.4vw,30px);letter-spacing:-.03em;font-weight:600;line-height:1.1}
+.ai-hero p{color:#a8a59e;font-size:15px;margin-top:10px;max-width:360px}
+.orbit{position:relative;width:min(78%,330px);aspect-ratio:1;margin:30px auto;container-type:inline-size}
+.orbit .ring{position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(255,255,255,.18)}
+.orbit .ring.r2{inset:18%;border-style:solid;border-color:rgba(255,255,255,.1)}
+.orbit .core{position:absolute;inset:36%;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#ffb48f,#ff5a1f 60%,#c2410c);box-shadow:0 0 0 10px rgba(255,90,31,.15),0 0 60px rgba(255,90,31,.6)}
+.orbit .core svg{width:42%;height:42%}
+.spin{position:absolute;inset:0;animation:spin 28s linear infinite}
+.spin.rev{inset:18%;animation-direction:reverse;animation-duration:20s}
+.spin span{position:absolute;left:50%;top:50%;width:0;height:0;transform:rotate(var(--a)) translateX(var(--d)) rotate(calc(-1 * var(--a)))}
+.spin span i{position:absolute;left:0;top:0;transform:translate(-50%,-50%)}
+.spin span i{display:block;align-items:center;gap:6px;white-space:nowrap;font:600 12px/1 var(--sans);font-style:normal;color:#111;background:#f4f2ee;padding:9px 12px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.spin span{animation:counter 28s linear infinite}
+.spin.rev span{animation:counter-r 20s linear infinite}
+@keyframes counter{from{transform:rotate(var(--a)) translateX(var(--d)) rotate(calc(-1 * var(--a)))}to{transform:rotate(var(--a)) translateX(var(--d)) rotate(calc(-1 * var(--a) - 360deg))}}
+@keyframes counter-r{from{transform:rotate(var(--a)) translateX(var(--d)) rotate(calc(-1 * var(--a)))}to{transform:rotate(var(--a)) translateX(var(--d)) rotate(calc(-1 * var(--a) + 360deg))}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.flow{gap:6px}
+.flow b{font-weight:500;font-size:12.5px;padding:7px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.16);color:#e7e4de}
+.flow em{font-style:normal;color:var(--accent)}
+.ai-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;display:flex;flex-direction:column;gap:10px;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.ai-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px -20px rgba(0,0,0,.18)}
+.ai-ico{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:#fff1ea;color:var(--accent)}
+.ai-ico svg{width:22px;height:22px}
+.ai-card h3{font-size:19px;letter-spacing:-.02em;font-weight:600;margin-top:14px}
+.ai-card p{color:var(--ink-2);font-size:15px}
+.ai-note{grid-column:2 / span 2;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px 26px}
+.ai-note p{font-size:15px;color:var(--ink-2);max-width:380px}
+.ai-note p b{color:var(--ink)}
+@media (max-width:980px){.ai-grid{grid-template-columns:1fr 1fr}.ai-hero{grid-column:1 / -1;grid-row:auto;min-height:0}.ai-note{grid-column:1 / -1}}
+@media (max-width:560px){.ai-grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.spin,.spin span{animation:none}}
+
 /* Work */
 .work{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,2.5vw,32px)}
 .pj-cover{position:relative;display:block;aspect-ratio:4/3;border-radius:var(--r-lg);overflow:hidden;container-type:inline-size;isolation:isolate;
@@ -337,6 +375,32 @@ footer{padding:48px 0 40px}
         <article class="svc rv"><span class="num">02</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></span><h3>UI/UX Design</h3><p>Intuitive product interfaces backed by research, user flows and usability testing.</p><div class="chips"><i>SaaS</i><i>Mobile apps</i><i>Dashboards</i></div></article>
         <article class="svc rv"><span class="num">03</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span><h3>Web Development</h3><p>Fast, accessible, SEO-ready builds in Next.js, Framer or WordPress — pixel-perfect to design.</p><div class="chips"><i>Next.js</i><i>Framer</i><i>WordPress</i></div></article>
         <article class="svc rv"><span class="num">04</span><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><h3>Design Systems</h3><p>Scalable tokens, components and documentation so your team ships consistent UI faster.</p><div class="chips"><i>Tokens</i><i>Components</i><i>Docs</i></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI -->
+  <section id="ai" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="rv"><span class="eyebrow">AI-Powered Design</span><h2 class="h2">Smarter design, <span class="serif">accelerated by AI</span></h2></div>
+        <p class="lead rv">I pair the best AI tools with real UX thinking — so research, wireframes and polished UI land in days, not weeks, without losing the human touch.</p>
+      </div>
+      <div class="ai-grid">
+        <div class="ai-hero rv">
+          <div><h3>An AI-assisted workflow, guided by strategy</h3><p>AI handles the heavy lifting. I make the decisions that move your metrics.</p></div>
+          <div class="orbit" aria-hidden="true">
+            <div class="ring"></div><div class="ring r2"></div>
+            <div class="spin"><span style="--a:0deg;--d:50cqw"><i>ChatGPT</i></span><span style="--a:45deg;--d:50cqw"><i>Figma AI</i></span><span style="--a:90deg;--d:50cqw"><i>Gemini</i></span><span style="--a:135deg;--d:50cqw"><i>Framer AI</i></span><span style="--a:180deg;--d:50cqw"><i>Midjourney</i></span><span style="--a:225deg;--d:50cqw"><i>Relume</i></span><span style="--a:270deg;--d:50cqw"><i>Notion AI</i></span><span style="--a:315deg;--d:50cqw"><i>v0</i></span></div>
+            <div class="core"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2l1.9 5.6L19.5 9.5l-5.6 1.9L12 17l-1.9-5.6L4.5 9.5l5.6-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></div>
+          </div>
+          <div class="flow"><b>Prompt</b><em>→</em><b>Wireframe</b><em>→</em><b>UI</b><em>→</em><b>Launch</b></div>
+        </div>
+        <article class="ai-card rv"><span class="ai-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span><h3>Faster UX research</h3><p>AI-summarised competitor, audience and review insights — so design starts from data, not guesses.</p></article>
+        <article class="ai-card rv"><span class="ai-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span><h3>Rapid wireframing</h3><p>Generate and test layout directions in hours, then refine the winner by hand.</p></article>
+        <article class="ai-card rv"><span class="ai-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L18.5 9.5a2.8 2.8 0 0 0-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg></span><h3>Sharper copy &amp; content</h3><p>Conversion-focused headlines and microcopy, drafted with AI and edited for your brand voice.</p></article>
+        <article class="ai-card rv"><span class="ai-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span><h3>Data-led iteration</h3><p>Analytics and heatmap insights turned into clear next steps that keep improving results.</p></article>
+        <div class="ai-note rv"><p><b>Human-led, AI-accelerated.</b> Every layout, word and interaction is reviewed by me before it ships.</p><a href="#contact" class="btn btn-dark">Start an AI-powered project <span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
       </div>
     </div>
   </section>
