@@ -382,6 +382,57 @@ section{padding:clamp(72px,10vw,128px) 0}
 @media (max-width:560px){.ts-main{min-height:420px}.ts-ctrl .ts-count{display:none}}
 @media (prefers-reduced-motion:reduce){.ts-q .w{animation:none;opacity:1;filter:none;transform:none}.ts-who{animation:none}.ts-card{transition:none}}
 
+/* Pricing */
+.pr{max-width:1040px;margin:0 auto}
+.pr-cats{position:relative;display:flex;gap:4px;padding:6px;margin:0 auto 22px;width:max-content;max-width:100%;overflow-x:auto;border-radius:999px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);scrollbar-width:none}
+.pr-cats::-webkit-scrollbar{display:none}
+.pr-cat{position:relative;z-index:1;padding:11px 20px;border-radius:999px;font-size:14.5px;font-weight:600;color:var(--ink-2);white-space:nowrap;transition:color .35s}
+.pr-cat.on{color:#fff}
+.pr-ind{position:absolute;z-index:0;top:6px;bottom:6px;left:0;width:0;border-radius:999px;background:var(--ink);transition:transform .5s cubic-bezier(.2,.8,.2,1),width .5s cubic-bezier(.2,.8,.2,1)}
+.pr-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:16px;align-items:stretch}
+.pr-tiers{display:flex;flex-direction:column;gap:12px}
+.pr-tier{position:relative;display:flex;align-items:center;gap:16px;text-align:left;padding:20px 22px;border-radius:22px;background:var(--surface);border:1.5px solid var(--line);transition:border-color .3s,transform .3s,box-shadow .3s,background .3s;flex:1}
+.pr-tier:hover{transform:translateX(4px);border-color:rgba(17,17,16,.2)}
+.pr-tier .rd{width:22px;height:22px;flex:none;border-radius:50%;border:2px solid #cfcac2;display:grid;place-items:center;transition:border-color .3s}
+.pr-tier .rd::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--accent);transform:scale(0);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.pr-tier .tn{flex:1;min-width:0}
+.pr-tier .tn b{display:block;font-size:17px;letter-spacing:-.02em}
+.pr-tier .tn small{display:block;font-size:13px;color:var(--ink-3);margin-top:2px}
+.pr-tier .tp{font-size:22px;font-weight:600;letter-spacing:-.03em}
+.pr-tier .pop{position:absolute;top:-10px;right:18px;font-size:11px;font-weight:700;letter-spacing:.02em;color:#fff;background:var(--accent);padding:4px 10px;border-radius:999px;box-shadow:0 6px 14px -6px rgba(255,90,31,.8)}
+.pr-tier.on{border-color:var(--accent);background:#fff8f4;box-shadow:0 18px 40px -24px rgba(255,90,31,.55);transform:none}
+.pr-tier.on .rd{border-color:var(--accent)}
+.pr-tier.on .rd::after{transform:scale(1)}
+.pr-card{position:relative;overflow:hidden;isolation:isolate;border-radius:var(--r-lg);background:#0f0f0e;color:#f4f2ee;padding:clamp(26px,3.4vw,40px);display:flex;flex-direction:column}
+.pr-card::before{content:"";position:absolute;z-index:-1;width:460px;height:460px;right:-160px;top:-200px;border-radius:50%;background:var(--accent);filter:blur(110px);opacity:.55;animation:cxGlow 10s ease-in-out infinite alternate}
+.pr-card::after{content:"";position:absolute;inset:0;z-index:-1;background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0 1px,transparent 1px 44px),repeating-linear-gradient(0deg,rgba(255,255,255,.04) 0 1px,transparent 1px 44px);-webkit-mask-image:radial-gradient(80% 70% at 85% 0%,#000,transparent)}
+.pr-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.pr-tag{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#ffb48f}
+.pr-days{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:#d6d3cc;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}
+.pr-days svg{width:15px;height:15px}
+.pr-name{font-size:18px;font-weight:600;margin-top:20px;color:#e7e4de}
+.pr-price{display:flex;align-items:flex-start;gap:4px;margin:6px 0 4px;line-height:1}
+.pr-price sup{font-size:28px;font-weight:600;margin-top:12px;color:#ffb48f}
+.pr-price b{font-size:clamp(64px,8vw,92px);font-weight:600;letter-spacing:-.06em;font-variant-numeric:tabular-nums}
+.pr-price small{align-self:flex-end;margin:0 0 14px 8px;font-size:14px;color:#a8a59e}
+.pr-note{font-size:13.5px;color:#a8a59e}
+.pr-feat{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px 18px;margin:26px 0 30px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1)}
+.pr-feat li{display:flex;gap:10px;font-size:14.5px;color:#e7e4de;opacity:0;transform:translateY(8px);animation:tsUp .5s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i) * 50ms)}
+.pr-feat li svg{flex:none;width:18px;height:18px;padding:3px;border-radius:50%;background:var(--accent);color:#fff;margin-top:1px}
+@keyframes tsUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.pr-cta{margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:10px;height:56px;border-radius:16px;font-weight:600;font-size:15.5px;color:#fff;background:linear-gradient(135deg,#ff7a45,#e8460f);box-shadow:0 14px 30px -12px rgba(255,90,31,.8);transition:transform .25s,box-shadow .25s}
+.pr-cta svg{width:18px;height:18px;transition:transform .3s}
+.pr-cta:hover{transform:translateY(-2px);box-shadow:0 18px 36px -12px rgba(255,90,31,.95)}
+.pr-cta:hover svg{transform:translateX(4px)}
+.pr-foot{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:16px;padding:20px 24px;border-radius:22px;background:var(--surface);border:1px dashed rgba(17,17,16,.18)}
+.pr-foot p{font-size:15px;color:var(--ink-2)}
+.pr-foot p b{color:var(--ink)}
+.pr-bump{animation:prBump .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes prBump{40%{transform:scale(1.04)}}
+@media (max-width:880px){.pr-grid{grid-template-columns:1fr}.pr-tiers{gap:10px;padding-top:8px}.pr-tier{padding:16px 18px}.pr-tier .tp{font-size:20px}}
+@media (max-width:560px){.pr-feat{grid-template-columns:1fr}.pr-cats{width:100%}}
+@media (prefers-reduced-motion:reduce){.pr-feat li{animation:none;opacity:1;transform:none}.pr-card::before{animation:none}}
+
 /* FAQ */
 .faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px}
 .faq details{border-bottom:1px solid var(--line)}
@@ -494,6 +545,7 @@ footer{padding:48px 0 40px}
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#work">Work</a></li>
+    <li><a href="#pricing">Pricing</a></li>
   </ul>
   <a href="#contact" class="btn btn-dark">Let's talk</a>
 </nav>
@@ -755,6 +807,31 @@ footer{padding:48px 0 40px}
     <script type="application/json" id="ts-data">[{"q": "Noor redesigned our landing page and sign-ups jumped noticeably in the first month. Sharp eye, fast delivery, great communication.", "hl": "sign-ups jumped noticeably", "n": "Sarah K.", "r": "Founder, SaaS startup", "tag": "Landing page", "c": "#2563eb", "i": "SK", "img": "/assets/clients/sarah-k.webp"}, {"q": "He thinks like a product person, not just a designer. The design system he built saved our dev team weeks.", "hl": "saved our dev team weeks", "n": "Rahim A.", "r": "CTO, E-commerce brand", "tag": "Design system", "c": "#16a34a", "i": "RA", "img": "/assets/clients/rahim-a.webp"}, {"q": "Pixel-perfect, fast and SEO-ready. Our new site finally looks as good as our product.", "hl": "finally looks as good as our product", "n": "Mark L.", "r": "Marketing Lead, Agency", "tag": "Website", "c": "#ff5a1f", "i": "ML", "img": "/assets/clients/mark-l.webp"}, {"q": "The dashboard went from confusing to effortless. Our users noticed the difference the very first week.", "hl": "confusing to effortless", "n": "Daniel R.", "r": "Product Manager, Fintech", "tag": "Dashboard UI", "c": "#7c3aed", "i": "DR", "img": "/assets/clients/daniel-r.webp"}, {"q": "Clear process, honest timelines and zero hand-off headaches. Design and build from one person is a game changer.", "hl": "zero hand-off headaches", "n": "Ayesha M.", "r": "Co-founder, EdTech", "tag": "Design + build", "c": "#db2777", "i": "AM", "img": "/assets/clients/ayesha-m.webp"}]</script>
   </section>
 
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="sec-head" style="justify-content:center;text-align:center">
+        <div class="rv" style="max-width:640px"><span class="eyebrow">Pricing</span><h2 class="h2">Premium design, <span class="serif">friendly prices</span></h2><p class="lead" style="margin:16px auto 0">Fixed prices, no hidden fees. Pick what you need — every plan includes revisions and a proper handoff.</p></div>
+      </div>
+      <div class="pr rv" id="pr">
+        <div class="pr-cats" role="tablist" aria-label="Service"><button class="pr-cat on" role="tab" aria-selected="true" data-k="website">Website Design</button><button class="pr-cat" role="tab" aria-selected="false" data-k="dev">Design + Development</button><button class="pr-cat" role="tab" aria-selected="false" data-k="uiux">UI/UX Design</button><button class="pr-cat" role="tab" aria-selected="false" data-k="brand">Branding</button><span class="pr-ind" aria-hidden="true"></span></div>
+        <div class="pr-grid">
+          <div class="pr-tiers" role="radiogroup" aria-label="Size"></div>
+          <div class="pr-card">
+            <div class="pr-top"><span class="pr-tag"></span><span class="pr-days"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><b></b></span></div>
+            <div class="pr-name"></div>
+            <div class="pr-price"><sup>$</sup><b>249</b><small>one-time</small></div>
+            <p class="pr-note">Fixed price · 50% to start, 50% on delivery</p>
+            <ul class="pr-feat"></ul>
+            <a href="#contact" class="pr-cta">Get started <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+        <div class="pr-foot"><p><b>Need something custom?</b> Larger sites, ongoing design or a full product — let's scope it together.</p><a href="#contact" class="btn btn-ghost">Get a custom quote</a></div>
+      </div>
+    </div>
+    <script type="application/json" id="pr-data">{"website": {"label": "Website Design", "unit": "Pages", "service": "Web Design", "tiers": [{"name": "1–4 pages", "price": 249, "days": "5–7 days", "tag": "Starter"}, {"name": "5–9 pages", "price": 449, "days": "8–12 days", "tag": "Most popular"}, {"name": "10–15 pages", "price": 699, "days": "14–18 days", "tag": "Growth"}], "features": ["Custom UI design in Figma", "Desktop, tablet & mobile layouts", "Conversion-focused copy structure", "Interactive prototype", "2 rounds of revisions", "Developer-ready handoff"]}, "dev": {"label": "Design + Development", "unit": "Pages", "service": "WordPress", "tiers": [{"name": "1–4 pages", "price": 399, "days": "7–10 days", "tag": "Starter"}, {"name": "5–9 pages", "price": 699, "days": "12–16 days", "tag": "Most popular"}, {"name": "10–15 pages", "price": 999, "days": "18–24 days", "tag": "Growth"}], "features": ["Everything in Website Design", "Built in Framer, Webflow, WordPress or Next.js", "Fully responsive & fast (90+ PageSpeed)", "On-page SEO & analytics setup", "CMS / blog setup", "30 days of free support"]}, "uiux": {"label": "UI/UX Design", "unit": "Screens", "service": "UI/UX Design", "tiers": [{"name": "Up to 10 screens", "price": 299, "days": "5–7 days", "tag": "MVP"}, {"name": "11–25 screens", "price": 599, "days": "10–14 days", "tag": "Most popular"}, {"name": "26–50 screens", "price": 999, "days": "18–25 days", "tag": "Product"}], "features": ["UX research & user flows", "Wireframes to high-fidelity UI", "Web app or mobile app screens", "Clickable prototype", "Reusable component library", "Developer handoff in Figma"]}, "brand": {"label": "Branding", "unit": "Package", "service": "Brand Identity", "tiers": [{"name": "Logo design", "price": 149, "days": "3–5 days", "tag": "Essential"}, {"name": "Logo + identity", "price": 299, "days": "6–8 days", "tag": "Most popular"}, {"name": "Full brand kit", "price": 499, "days": "10–14 days", "tag": "Complete"}], "features": ["Unique logo concepts", "Color palette & typography", "Brand guidelines (PDF)", "Social media kit", "All source files (AI, SVG, PNG)", "Unlimited revisions on chosen concept"]}}</script>
+  </section>
+
   <!-- FAQ -->
   <section style="padding-top:0">
     <div class="wrap faq-grid">
@@ -914,6 +991,35 @@ footer{padding:48px 0 40px}
     if (reduce) tabs.forEach((t) => t.style.setProperty('--dur', '0s'));
     show(0); renderDeck();
     if (reduce) tabs.forEach((t) => { t.querySelector('em').style.animation = 'none'; });
+  })();
+  (() => {
+    const root = document.getElementById('pr'); if (!root) return;
+    const D = JSON.parse(document.getElementById('pr-data').textContent);
+    const cats = [...root.querySelectorAll('.pr-cat')], ind = root.querySelector('.pr-ind'), tiersEl = root.querySelector('.pr-tiers');
+    const card = root.querySelector('.pr-card'), priceEl = card.querySelector('.pr-price b');
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>';
+    let k = 'website', t = 1, shown = 449;
+    const moveInd = () => { const c = root.querySelector('.pr-cat.on'); ind.style.width = c.offsetWidth + 'px'; ind.style.transform = `translateX(${c.offsetLeft}px)`; };
+    const count = (to) => { if (reduce) { priceEl.textContent = to; shown = to; return; } const from = shown, t0 = performance.now();
+      const step = (n) => { const q = Math.min((n - t0) / 600, 1), e = 1 - Math.pow(1 - q, 3); priceEl.textContent = Math.round(from + (to - from) * e); if (q < 1) requestAnimationFrame(step); else shown = to; }; requestAnimationFrame(step); };
+    const renderCard = () => { const c = D[k], d = c.tiers[t];
+      card.querySelector('.pr-tag').textContent = d.tag; card.querySelector('.pr-days b').textContent = d.days;
+      card.querySelector('.pr-name').textContent = `${c.label} · ${d.name}`; count(d.price);
+      card.querySelector('.pr-feat').innerHTML = c.features.map((f, i) => `<li style="--i:${i}">${check}${f}</li>`).join('');
+      card.classList.remove('pr-bump'); card.offsetWidth; card.classList.add('pr-bump');
+      tiersEl.querySelectorAll('.pr-tier').forEach((b, i) => { b.classList.toggle('on', i === t); b.setAttribute('aria-checked', i === t); }); };
+    const renderTiers = () => { const c = D[k];
+      tiersEl.innerHTML = c.tiers.map((d, i) => `<button class="pr-tier" role="radio" aria-checked="false" data-i="${i}">${d.tag === 'Most popular' ? '<span class="pop">Most popular</span>' : ''}<span class="rd"></span><span class="tn"><b>${d.name}</b><small>${d.days} delivery</small></span><span class="tp">$${d.price}</span></button>`).join('');
+      tiersEl.querySelectorAll('.pr-tier').forEach((b) => b.addEventListener('click', () => { t = +b.dataset.i; renderCard(); })); renderCard(); };
+    cats.forEach((c) => c.addEventListener('click', () => { cats.forEach((x) => { x.classList.toggle('on', x === c); x.setAttribute('aria-selected', x === c); }); k = c.dataset.k; t = 1; moveInd(); renderTiers(); }));
+    card.querySelector('.pr-cta').addEventListener('click', () => {
+      const li = [...document.querySelectorAll('.dd-list li')].find((x) => x.dataset.v === D[k].service); if (li) li.click();
+      const r = document.querySelector('input[name=budget][value="Less than $1K"]'); if (r) { r.checked = true; r.dispatchEvent(new Event('change')); }
+      const det = document.querySelector('textarea[name=details]'); if (det && !det.value) det.value = `Interested in ${D[k].label} — ${D[k].tiers[t].name} ($${D[k].tiers[t].price}).`;
+    });
+    addEventListener('resize', moveInd); if (document.fonts) document.fonts.ready.then(moveInd);
+    moveInd(); renderTiers();
   })();
   document.getElementById('yr').textContent = new Date().getFullYear();
   const io = new IntersectionObserver((entries) => {
