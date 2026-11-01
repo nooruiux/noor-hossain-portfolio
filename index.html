@@ -126,16 +126,15 @@ section{padding:clamp(72px,10vw,128px) 0}
 .ab-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
 .ab-tags span{font-size:12.5px;font-weight:500;padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(8px)}
 
-.ab-time{grid-column:span 1;display:flex;flex-direction:column;justify-content:space-between}
-.ab-clock{font-size:clamp(34px,3.4vw,44px);font-weight:600;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
-.ab-clock small{font-size:.4em;font-weight:600;color:var(--ink-3);margin-left:4px;letter-spacing:0}
-.ab-place{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-2);margin-top:10px}
-.ab-globe{position:absolute;right:-50px;bottom:-60px;width:170px;height:170px;border-radius:50%;z-index:-1;opacity:.6;
-  background:radial-gradient(circle at 35% 35%,transparent 55%,rgba(17,17,16,.06) 56%),repeating-linear-gradient(90deg,rgba(17,17,16,.08) 0 1px,transparent 1px 18px),repeating-linear-gradient(0deg,rgba(17,17,16,.08) 0 1px,transparent 1px 18px);
-  -webkit-mask:radial-gradient(circle,#000 69%,transparent 70%);mask:radial-gradient(circle,#000 69%,transparent 70%);animation:spin 40s linear infinite}
-.ab-ping{position:absolute;right:58px;bottom:62px;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(255,90,31,.6);animation:pulseO 2s infinite}
-@keyframes pulseO{70%{box-shadow:0 0 0 14px rgba(255,90,31,0)}100%{box-shadow:0 0 0 0 rgba(255,90,31,0)}}
-
+.ab-skill{grid-column:span 1;display:flex;flex-direction:column}
+.sk{list-style:none;display:grid;gap:14px;margin-top:auto}
+.sk-top{display:flex;justify-content:space-between;align-items:baseline;font-size:13.5px;font-weight:600;margin-bottom:7px}
+.sk-top b{font-size:12.5px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.sk-bar{height:7px;border-radius:99px;background:var(--surface-2);overflow:hidden}
+.sk-bar i{display:block;height:100%;width:var(--v);border-radius:inherit;background:linear-gradient(90deg,#ffb48f,var(--accent));transform-origin:left;transform:scaleX(0);transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
+.sk li:nth-child(2) .sk-bar i{transition-delay:.12s}.sk li:nth-child(3) .sk-bar i{transition-delay:.24s}.sk li:nth-child(4) .sk-bar i{transition-delay:.36s}
+.ab-skill.in .sk-bar i{transform:scaleX(1)}
+.ab-skill:hover .sk-bar i{filter:saturate(1.3)}
 .ab-status{grid-column:span 1;background:#0f0f0e;color:#f4f2ee;display:flex;flex-direction:column;justify-content:space-between;border-color:#0f0f0e}
 .ab-status h4{color:#a8a59e}
 .ab-status p{font-size:19px;font-weight:600;letter-spacing:-.02em;line-height:1.2}
@@ -169,8 +168,8 @@ section{padding:clamp(72px,10vw,128px) 0}
 .ab-soc a svg{width:16px;height:16px}
 
 @media (max-width:980px){.ab-bento{grid-template-columns:repeat(2,minmax(0,1fr))}.ab-me,.ab-stack,.ab-soc{grid-column:span 2}.ab-me{grid-row:auto}}
-@media (max-width:560px){.ab-bento{grid-template-columns:1fr}.ab-me,.ab-stack,.ab-soc,.ab-time,.ab-status,.ab-val{grid-column:auto}.ab-me{min-height:380px}}
-@media (prefers-reduced-motion:reduce){.ab-say .w,.ab-pill{--o:1!important}.ab-row,.ab-globe{animation:none}}
+@media (max-width:560px){.ab-bento{grid-template-columns:1fr}.ab-me,.ab-stack,.ab-soc,.ab-skill,.ab-status,.ab-val{grid-column:auto}.ab-me{min-height:380px}}
+@media (prefers-reduced-motion:reduce){.ab-say .w,.ab-pill{--o:1!important}.ab-row{animation:none}.sk-bar i{transform:none;transition:none}}
 
 /* Services */
 .sv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -680,11 +679,9 @@ footer{padding:48px 0 40px}
             <div class="ab-tags"><span>Product thinking</span><span>Design systems</span><span>No-code &amp; code</span></div></div>
         </article>
 
-        <article class="ab-c ab-time rv" style="--d:1">
-          <h4>Local time</h4>
-          <div><div class="ab-clock" id="ab-clock">--:--<small>AM</small></div>
-          <div class="ab-place"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Dhaka, Bangladesh · GMT+6</div></div>
-          <span class="ab-globe" aria-hidden="true"></span><span class="ab-ping" aria-hidden="true"></span>
+        <article class="ab-c ab-skill rv" style="--d:1">
+          <h4>Top skills</h4>
+          <ul class="sk"><li><div class="sk-top"><span>UI/UX Design</span><b>96%</b></div><div class="sk-bar"><i style="--v:96%"></i></div></li><li><div class="sk-top"><span>Website Design</span><b>94%</b></div><div class="sk-bar"><i style="--v:94%"></i></div></li><li><div class="sk-top"><span>Framer & Webflow</span><b>90%</b></div><div class="sk-bar"><i style="--v:90%"></i></div></li><li><div class="sk-top"><span>Front-end Dev</span><b>86%</b></div><div class="sk-bar"><i style="--v:86%"></i></div></li></ul>
         </article>
 
         <article class="ab-c ab-status rv" style="--d:2">
@@ -1149,13 +1146,6 @@ footer{padding:48px 0 40px}
       items.forEach((w, i) => w.style.setProperty('--o', Math.min(1, Math.max(.14, lit - i + .14)))); };
     addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
     addEventListener('resize', update); update();
-  })();
-  (() => {
-    const el = document.getElementById('ab-clock'); if (!el) return;
-    const fmt = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Dhaka', hour: 'numeric', minute: '2-digit', hour12: true });
-    const tick = () => { const parts = fmt.formatToParts(new Date()); const g = (t) => (parts.find((x) => x.type === t) || {}).value || '';
-      el.innerHTML = `${g('hour')}:${g('minute')}<small>${g('dayPeriod')}</small>`; };
-    tick(); setInterval(tick, 15000);
   })();
   document.getElementById('yr').textContent = new Date().getFullYear();
   const io = new IntersectionObserver((entries) => {
