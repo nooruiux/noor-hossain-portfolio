@@ -33,13 +33,13 @@ PROJECTS = [
          tags=["E-commerce", "Beauty", "UI/UX"], url="https://nattoral-zeta.vercel.app/",
          bg="#e9e8e5", accent="#2f4f4a", year="2026", logo="NATTORAL", swatches=["#2f4f4a", "#9bc7c0", "#e9e3d6", "#111111"]),
     # Behance case studies (cover images to be added: set img="..." in assets/work/behance/)
-    dict(img="team-collabs.webp", device="full", kind="behance", style="be", span=7, title="Team Collabs", sub="Website UI", tags=["Website", "UI Design"],
+    dict(img="team-collabs.webp", device="full", fill="#d4e4fe", kind="behance", style="be", span=7, title="Team Collabs", sub="Website UI", tags=["Website", "UI Design"],
          url="https://www.behance.net/gallery/159708065/Team-Collabs-Website-UI", bg="#e9e8e5", accent="#4f46e5", year="Behance", word="Collabs"),
-    dict(img="saas-clicker.webp", device="full", kind="behance", style="be", span=5, title="SaaS Landing Page", sub="UI/UX Design", tags=["SaaS", "Landing Page"],
+    dict(img="saas-clicker.webp", device="full", fill="#d9def8", kind="behance", style="be", span=5, title="SaaS Landing Page", sub="UI/UX Design", tags=["SaaS", "Landing Page"],
          url="https://www.behance.net/gallery/238128689/SaaS-Landing-Page-ui-ui-design-uiux-design", bg="#e9e8e5", accent="#ff5a1f", year="Behance", word="SaaS"),
     dict(img="saas2.webp", device="frame", kind="behance", style="be", span=5, title="SaaS Landing Page", sub="UI/UX Design · v2", tags=["SaaS", "Landing Page"],
          url="https://www.behance.net/gallery/172665281/Saas-Landing-Page-ui-ui-design-uiux-Design", bg="#e9e8e5", accent="#0ea5e9", year="Behance", word="SaaS"),
-    dict(img="interior-design.webp", device="full", kind="behance", style="be", span=7, title="Interior Design", sub="Landing Page", tags=["Interior", "Landing Page"],
+    dict(img="interior-design.webp", device="full", fill="#d2f4fd", kind="behance", style="be", span=7, title="Interior Design", sub="Landing Page", tags=["Interior", "Landing Page"],
          url="https://www.behance.net/gallery/183139315/Interior-Design-Landing-Page-ui-ui-design-uiux-design", bg="#e9e8e5", accent="#a16207", year="Behance", word="Interior"),
     dict(img="agency.webp", device="frame", kind="behance", style="be", span=12, title="Marketing Agency", sub="Landing Page", tags=["Agency", "UI/UX Design"],
          url="https://www.behance.net/gallery/165900155/Marketing-Agency-Landing-Page-UIUX-Design", bg="#e9e8e5", accent="#db2777", year="Behance", word="Agency"),
@@ -61,7 +61,8 @@ def cover(p):
             im = f'<img class="be-fill" src="{src}" alt="{e("title")} — {e("sub")} cover" loading="lazy" decoding="async">'
             dev = p.get("device", "browser")
             if dev == "full":
-                return f'<img class="be-img" src="{src}" alt="{e("title")} — {e("sub")} design" loading="lazy" decoding="async">'
+                return (f'<span class="be-fill-bg" style="background:{p.get("fill", "#e9e8e5")}"></span>'
+                        f'<img class="be-img fit" src="{src}" alt="{e("title")} — {e("sub")} design" loading="lazy" decoding="async">')
             if dev == "browser":
                 return f'<div class="dv-win"><div class="dv-bar"><i></i><i></i><i></i><span>behance.net</span></div><div class="dv-scr">{im}</div></div>'
             if dev == "frame":
@@ -155,6 +156,8 @@ CSS = r'''/* Work */
 
 /* cover: Behance case study */
 .be-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.be-img.fit{object-fit:contain}
+.be-fill-bg{position:absolute;inset:0}
 .dv-scr img.be-fill{height:100%;object-fit:cover;object-position:center top}
 .pc-cover:hover .be-img{transform:scale(1.05)}
 .be-cv{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden}
