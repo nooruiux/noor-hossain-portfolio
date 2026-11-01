@@ -156,7 +156,7 @@ CSS = r'''/* Work */
 
 /* cover: Behance case study */
 .be-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.be-img.fit{object-fit:contain}
+.be-img.fit{object-fit:contain;object-position:center bottom}
 .be-fill-bg{position:absolute;inset:0}
 .dv-scr img.be-fill{height:100%;object-fit:cover;object-position:center top}
 .pc-cover:hover .be-img{transform:scale(1.05)}
